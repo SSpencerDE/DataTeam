@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/31/2018 5:57:56 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MN-DE-WSQLJS-D2"
+  DTS:CreatorName="DATACENTER\tgeer"
+  DTS:DTSID="{08773232-04DD-4DE9-B09D-D6EE0486B854}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="14.0.3002.106"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionGUID="{3D1C7327-73DC-4CD3-BB55-D319E5781AAE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables />
+</DTS:Executable>

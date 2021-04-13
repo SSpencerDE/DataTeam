@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PII", "Databases\New Release Process\PII\PII\PII.sqlproj", "{A24F9D8B-FAB2-4B72-A140-3572EB067D12}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "PII_SSIS", "SSIS\PII_SSIS\PII_SSIS.dtproj", "{7AE382E6-7CFC-45B3-BBEF-B7CC301CBE4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Development|Any CPU = Development|Any CPU
+		PII_SSIS_Release|Any CPU = PII_SSIS_Release|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A24F9D8B-FAB2-4B72-A140-3572EB067D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A24F9D8B-FAB2-4B72-A140-3572EB067D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A24F9D8B-FAB2-4B72-A140-3572EB067D12}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A24F9D8B-FAB2-4B72-A140-3572EB067D12}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{A24F9D8B-FAB2-4B72-A140-3572EB067D12}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{A24F9D8B-FAB2-4B72-A140-3572EB067D12}.Development|Any CPU.Deploy.0 = Debug|Any CPU
+		{A24F9D8B-FAB2-4B72-A140-3572EB067D12}.PII_SSIS_Release|Any CPU.ActiveCfg = PII_SSIS_Release|Any CPU
+		{A24F9D8B-FAB2-4B72-A140-3572EB067D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A24F9D8B-FAB2-4B72-A140-3572EB067D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AE382E6-7CFC-45B3-BBEF-B7CC301CBE4A}.Debug|Any CPU.ActiveCfg = Development
+		{7AE382E6-7CFC-45B3-BBEF-B7CC301CBE4A}.Debug|Any CPU.Build.0 = Development
+		{7AE382E6-7CFC-45B3-BBEF-B7CC301CBE4A}.Development|Any CPU.ActiveCfg = Development
+		{7AE382E6-7CFC-45B3-BBEF-B7CC301CBE4A}.Development|Any CPU.Build.0 = Development
+		{7AE382E6-7CFC-45B3-BBEF-B7CC301CBE4A}.PII_SSIS_Release|Any CPU.ActiveCfg = PII_SSIS_Release
+		{7AE382E6-7CFC-45B3-BBEF-B7CC301CBE4A}.PII_SSIS_Release|Any CPU.Build.0 = PII_SSIS_Release
+		{7AE382E6-7CFC-45B3-BBEF-B7CC301CBE4A}.Release|Any CPU.ActiveCfg = PII_SSIS_Release
+		{7AE382E6-7CFC-45B3-BBEF-B7CC301CBE4A}.Release|Any CPU.Build.0 = PII_SSIS_Release
+		{BB44D155-671E-4C7A-ADFE-6DCE8965084F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB44D155-671E-4C7A-ADFE-6DCE8965084F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB44D155-671E-4C7A-ADFE-6DCE8965084F}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB44D155-671E-4C7A-ADFE-6DCE8965084F}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{BB44D155-671E-4C7A-ADFE-6DCE8965084F}.PII_SSIS_Release|Any CPU.ActiveCfg = PII_SSIS_Release|Any CPU
+		{BB44D155-671E-4C7A-ADFE-6DCE8965084F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB44D155-671E-4C7A-ADFE-6DCE8965084F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {273156A0-E490-47D2-B1D0-E773722BD01C}
+	EndGlobalSection
+EndGlobal

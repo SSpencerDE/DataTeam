@@ -1,0 +1,473 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/13/2017 10:53:21 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="CHCL306944"
+  DTS:CreatorName="US\tgeer"
+  DTS:DTSID="{D2CA4750-E074-4496-9BBB-527997AF130B}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="14.0.3002.113"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="UndeleteUnarchivedUsers"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="138"
+  DTS:VersionGUID="{075FD9C6-C153-4648-B5C8-F4E2B26F6393}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AF87A1BC-8FB6-427E-938F-1DEBF303B514}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorMessage">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{21799BE3-0DD9-4585-A351-41EAD7F2EA53}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExecutionID">
+      <DTS:VariableValue
+        DTS:DataType="3">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AFC5889D-9967-4240-BDEF-00013F68BDFD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="NumberOfUsersUndeleted">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A1BAC263-568C-4512-B7A9-D879C847D45C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ProcessName">
+      <DTS:VariableValue
+        DTS:DataType="8">UndeleteUnarchivedUsers</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\End"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{CA32EAA3-5574-40C0-AECB-60391C49E4A5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="End">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\End\Complete the Execution"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EBFE3E2C-4132-47D7-8B1E-2C98E97B7B0D}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Complete the Execution"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare @ExecutionID int = ? &#xA;execute process.CompleteExecution @ExecutionID = @ExecutionID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ExecutionID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\End\LOG - Ended"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DA285BFD-2A8D-4F72-9772-D890098327EE}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOG - Ended"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare&#xA; @ExecutionID int = ?,&#xA; @LogType varchar(100) = 'Info',&#xA; @Message varchar(max) = 'Ended'&#xA;&#xA;execute process.WriteLog &#xA; @ExecutionID = @ExecutionID, &#xA; @LogType = @LogType, &#xA; @Message = @Message, &#xA; @Data = null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ExecutionID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B50CFE13-56D8-4499-BE7C-1536892E0757}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically\LOG - number of users undeleted"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{e84daad9-64fc-4e62-baba-173a688ab0db}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOG - number of users undeleted"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare&#xA; @ExecutionID int = ?,&#xA; @NumberOfUndeletedUsers int = ?,&#xA; @LogType varchar(100) = 'Info',&#xA; @Message varchar(max) = 'Unarchived Deleted Users to Undelete:'&#xA;&#xA;execute process.WriteLog &#xA; @ExecutionID = @ExecutionID, &#xA; @LogType = @LogType, &#xA; @Message = @Message, &#xA; @Data = @NumberOfUndeletedUsers" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ExecutionID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::NumberOfUsersUndeleted"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically\Undelete Unarchived Users in EDU_SEC_WRITE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C2C4B027-E42C-4008-B828-622ED62D9668}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Undelete Unarchived Users in EDU_SEC_WRITE"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9E8CA41D-2487-4E78-903C-A8BF45D04332}"
+              SQLTask:SqlStatementSource="update AU&#xA;&#x9;set AU.ISDELETED = 0&#xA;&#x9;from dbo.APP_USER AU&#xA;&#x9;where&#xA;&#x9;&#x9;&#x9;AU.ISDELETED = 1&#xA;&#x9;&#x9;and&#x9;AU.ARCHIVE_DT is null&#xA;&#xA;select RowsUpdated = @@rowcount"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="RowsUpdated"
+                SQLTask:DtsVariableName="User::NumberOfUsersUndeleted" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{295F4C2D-BB4F-418F-859E-D9A97C6A4078}"
+          DTS:From="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically\Undelete Unarchived Users in EDU_SEC_WRITE"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically\LOG - number of users undeleted" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{FFDB07E9-A223-4F0E-AAE5-0C032D220056}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Start\Create an Execution ID"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F8548098-7016-4C65-A0E5-5DDB84E9EEEA}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create an Execution ID"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare &#xA; @ProcessName varchar(100) = ?,&#xA; @ExecutionID int&#xA;&#xA;execute process.CreateExecution&#xA; @ProcessName = @ProcessName,&#xA; @ExecutionID = @ExecutionID output&#xA;&#xA;select ExecutionID = @ExecutionID"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ExecutionID"
+                SQLTask:DtsVariableName="User::ExecutionID" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ProcessName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Start\LOG - Started"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{85547281-6634-4103-B723-5312EBFDD633}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOG - Started"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare&#xA; @ExecutionID int = ?,&#xA; @LogType varchar(100) = 'Info',&#xA; @Message varchar(max) = 'Started'&#xA;&#xA;execute process.WriteLog &#xA; @ExecutionID = @ExecutionID, &#xA; @LogType = @LogType, &#xA; @Message = @Message, &#xA; @Data = null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ExecutionID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Start.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{13A94880-E86B-4577-9AB1-F0C15669CDA7}"
+          DTS:From="Package\Start\Create an Execution ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Start\LOG - Started" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B2E630A3-862C-4765-BAE7-4B25D0EB539A}"
+      DTS:From="Package\Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{3DC8C234-30F5-44A9-A4E7-C6FEE04BE4AB}"
+      DTS:From="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\End" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="193.333333333334,42"
+          Id="Package\End\Complete the Execution"
+          TopLeft="20,17" />
+        <NodeLayout
+          Size="141.333333333334,42"
+          Id="Package\End\LOG - Ended"
+          TopLeft="27,87" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="254.666666666667,168"
+          Size="254.666666666667,210.666666666667"
+          Id="Package\End"
+          TopLeft="402,584" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically\LOG - number of users undeleted"
+          TopLeft="59,161" />
+        <NodeLayout
+          Size="314.666666666667,42.6666666666667"
+          Id="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically\Undelete Unarchived Users in EDU_SEC_WRITE"
+          TopLeft="59,59" />
+        <EdgeLayout
+          Id="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically.PrecedenceConstraints[Constraint]"
+          TopLeft="216.333333333333,101.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-38.3333333333333,59.3333333333333"
+              Start="0,0"
+              End="-38.3333333333333,51.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.6666666666667"
+                    Point2="0,29.6666666666667"
+                    Point3="-4,29.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-34.3333333333333,29.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-34.3333333333333,29.6666666666667"
+                    Point2="-38.3333333333333,29.6666666666667"
+                    Point3="-38.3333333333333,33.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-38.3333333333333,51.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="398,309.333333333334"
+          Size="398,352"
+          Id="Package\Get a batch of users - collect their PII - Mask their PII - and Process them in edu_sec_WRITE atomically"
+          TopLeft="352,202" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Start\Create an Execution ID"
+          TopLeft="35,24" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Start\LOG - Started"
+          TopLeft="53,127" />
+        <EdgeLayout
+          Id="Package\Start.PrecedenceConstraints[Constraint]"
+          TopLeft="128,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="246,222.666666666667"
+          Size="246,266"
+          Id="Package\Start"
+          TopLeft="28,231" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="274,364">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="78,14"
+              Start="0,0"
+              End="70.5,14">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="35,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35,0"
+                    Point2="39,0"
+                    Point3="39,4" />
+                  <mssgle:LineSegment
+                    End="39,10" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39,10"
+                    Point2="39,14"
+                    Point3="43,14" />
+                  <mssgle:LineSegment
+                    End="70.5,14" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="551,554">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.5,30"
+              Start="0,0"
+              End="-21.5,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11"
+                    Point2="0,15"
+                    Point3="-4,15" />
+                  <mssgle:LineSegment
+                    End="-17.5,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.5,15"
+                    Point2="-21.5,15"
+                    Point3="-21.5,19" />
+                  <mssgle:LineSegment
+                    End="-21.5,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1891 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/19/2013 11:25:55 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MN-DE-WSQLJS-D1"
+  DTS:CreatorName="DATACENTER\tspagnoli"
+  DTS:DTSID="{1DCDD5BC-DEF0-4EA2-91F4-A8D0DB0A5D62}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="14.0.0800.90"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Stage_dimAsset2"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="75"
+  DTS:VersionGUID="{E161BC2F-6448-4C1D-870F-A5EE81D230B7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Start by loading all known guids into dimAsset2_Stage"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{D4EFC803-3349-49EF-8FAE-48A3D201E56B}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start by loading all known guids into dimAsset2_Stage">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{44159236-0f4a-495b-ab3a-4eae08cb5d05}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Concepts"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Insert into DW_Stage dbo dimAsset2_Stage"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[dimAsset2_Stage]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Connections[OleDbConnection]"
+                      connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].Columns[AssetGuid]"
+                          cachedDataType="guid"
+                          cachedName="AssetGuid"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetGuid]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[AssetGuid]" />
+                        <inputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].Columns[AssetType]"
+                          cachedDataType="wstr"
+                          cachedLength="7"
+                          cachedName="AssetType"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetType]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[AssetType]" />
+                        <inputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].Columns[Title]"
+                          cachedDataType="wstr"
+                          cachedLength="500"
+                          cachedName="Title"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[Title]" />
+                        <inputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].Columns[InternalAssetType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="7"
+                          cachedName="InternalAssetType"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[InternalAssetType]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[InternalAssetType]" />
+                        <inputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].Columns[Status]"
+                          cachedDataType="i4"
+                          cachedName="Status"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[Status]" />
+                        <inputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].Columns[UserCreated]"
+                          cachedDataType="i4"
+                          cachedName="UserCreated"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[UserCreated]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[UserCreated]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetStageID]"
+                          dataType="i4"
+                          name="AssetStageID" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetGuid]"
+                          dataType="guid"
+                          name="AssetGuid" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[InternalAssetType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="InternalAssetType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetType]"
+                          dataType="wstr"
+                          length="255"
+                          name="AssetType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetSubType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="AssetSubType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                          dataType="wstr"
+                          length="100"
+                          name="Category" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[UserCreated]"
+                          dataType="bool"
+                          name="UserCreated" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="500"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[TitleDescription]"
+                          dataType="nText"
+                          name="TitleDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Keywords]"
+                          dataType="wstr"
+                          length="2000"
+                          name="Keywords" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Copyright]"
+                          dataType="i4"
+                          name="Copyright" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                          dataType="i4"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[CreatedCalendarKey]"
+                          dataType="i4"
+                          name="CreatedCalendarKey" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetProducer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="AssetProducer" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetGradeBit]"
+                          dataType="i4"
+                          name="AssetGradeBit" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetSubjectBit]"
+                          dataType="i4"
+                          name="AssetSubjectBit" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[BinaryChecksum]"
+                          dataType="i4"
+                          name="BinaryChecksum" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[LastUpdated]"
+                          dataType="dbTimeStamp"
+                          name="LastUpdated" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[LanguageCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="LanguageCode" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables"
+                  componentClassID="DTSAdapter.OLEDBSource.3"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Query - Get New Concept Assets from APA Taxonomy tables"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select 
+	distinct
+	AssetGuid			= TTD.guidTaxID,
+	AssetType			= N'Concept',
+	InternalAssetType	= 'Concept',
+	[Status]			= 1,
+	UserCreated			= 0,
+	Title				= convert(nvarchar, TTD.Name)
+	from 
+		-- Get all the Units
+					AllProductAssets.dbo.tblAssetTypes AT
+		join		AllProductAssets.dbo.tblAssets A on AT.guidAssetTypeID = A.guidAssetTypeID
+		-- Find the relationships to the Concepts then limit to Relationship type "AssetTaxonomy" (guid is 1446A6E0-A855-48C0-B5C2-8348D8B7523C )
+		join		AllProductAssets.dbo.tblXREF_AssetTaxonomyIndex ATI on A.guidAssetID = ATI.guidAssetID
+		join		AllProductAssets.dbo.tblAssetRelationshipTypes ART 
+					on	ATI.guidAssetRelationshipTypeID = ART.guidAssetRelationshipTypeID
+					and	ART.strAssetRelationshipTypeName = 'AssetTaxonomy'
+		-- Verify that the relationship is at intlevel 5. That means that it is a Concept
+		join		AllProductAssets.dbo.tblTaxonomyTreeData TTD
+					on	ATI.guidTaxId = TTD.guidTaxId
+					and	TTD.intLevel = 5
+		left join	dw_stage.dbo.dimAsset2_Stage S on TTD.guidTaxID = S.AssetGuid
+	where
+			AT.strFriendlyAssetType = 'Techbook Unit'
+		and	S.AssetStageID is null</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Connections[OleDbConnection]"
+                      connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                          name="AssetGuid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[AssetType]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[AssetType]"
+                          length="7"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[AssetType]"
+                          name="AssetType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[Title]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                          length="500"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[Title]"
+                          name="Title"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[InternalAssetType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[InternalAssetType]"
+                          length="7"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[InternalAssetType]"
+                          name="InternalAssetType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[Status]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[Status]"
+                          name="Status"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[UserCreated]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[UserCreated]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].Columns[UserCreated]"
+                          name="UserCreated"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                          dataType="guid"
+                          name="AssetGuid" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[AssetType]"
+                          dataType="wstr"
+                          length="7"
+                          name="AssetType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="30"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[InternalAssetType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="7"
+                          name="InternalAssetType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                          dataType="i4"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output].ExternalColumns[UserCreated]"
+                          dataType="i4"
+                          name="UserCreated" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                          dataType="guid"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                          name="AssetGuid" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[AssetType]"
+                          dataType="wstr"
+                          length="7"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[AssetType]"
+                          name="AssetType" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[InternalAssetType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="7"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[InternalAssetType]"
+                          name="InternalAssetType" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[Status]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[Status]"
+                          name="Status" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[UserCreated]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[UserCreated]"
+                          name="UserCreated" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[Title]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[Title]"
+                          name="Title" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts.Paths[OLE DB Source Output]"
+                  endId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{84333c53-eeb0-4c52-9ea8-a6f7574038b2}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Folder Assets"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Insert into DW_Stage dbo dimAsset2_Stage"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[dimAsset2_Stage]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Connections[OleDbConnection]"
+                      connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].Columns[AssetGuid]"
+                          cachedDataType="guid"
+                          cachedName="AssetGuid"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetGuid]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].Columns[AssetGuid]" />
+                        <inputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].Columns[AssetType]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="AssetType"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetType]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].Columns[AssetType]" />
+                        <inputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].Columns[InternalAssetType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="6"
+                          cachedName="InternalAssetType"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[InternalAssetType]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].Columns[InternalAssetType]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetStageID]"
+                          dataType="i4"
+                          name="AssetStageID" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetGuid]"
+                          dataType="guid"
+                          name="AssetGuid" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[InternalAssetType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="InternalAssetType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetType]"
+                          dataType="wstr"
+                          length="255"
+                          name="AssetType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetSubType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="AssetSubType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                          dataType="wstr"
+                          length="100"
+                          name="Category" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[UserCreated]"
+                          dataType="bool"
+                          name="UserCreated" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="500"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[TitleDescription]"
+                          dataType="nText"
+                          name="TitleDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Keywords]"
+                          dataType="wstr"
+                          length="2000"
+                          name="Keywords" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Copyright]"
+                          dataType="i4"
+                          name="Copyright" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                          dataType="i4"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[CreatedCalendarKey]"
+                          dataType="i4"
+                          name="CreatedCalendarKey" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetProducer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="AssetProducer" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetGradeBit]"
+                          dataType="i4"
+                          name="AssetGradeBit" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetSubjectBit]"
+                          dataType="i4"
+                          name="AssetSubjectBit" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[BinaryChecksum]"
+                          dataType="i4"
+                          name="BinaryChecksum" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[LastUpdated]"
+                          dataType="dbTimeStamp"
+                          name="LastUpdated" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[LanguageCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="LanguageCode" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData"
+                  componentClassID="DTSAdapter.OLEDBSource.3"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Query - Get New Assets from APA dbo tblFolderAssetMetaData"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select
+	distinct		
+		AssetGuid			= guidAssetMetaDataID,
+		AssetType			= N'Folder',
+		InternalAssetType	= 'Folder'
+		from 
+						AllProductAssets.dbo.tblFolderAssetMetaData A
+			left join	dw_stage.dbo.dimAsset2_Stage S on A.guidAssetMetaDataID = S.AssetGuid
+		where
+			S.AssetStageID is null</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Connections[OleDbConnection]"
+                      connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                          name="AssetGuid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].Columns[AssetType]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].ExternalColumns[AssetType]"
+                          length="50"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].Columns[AssetType]"
+                          name="AssetType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].Columns[InternalAssetType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].ExternalColumns[InternalAssetType]"
+                          length="6"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].Columns[InternalAssetType]"
+                          name="InternalAssetType"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                          dataType="guid"
+                          name="AssetGuid" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].ExternalColumns[AssetType]"
+                          dataType="wstr"
+                          length="6"
+                          name="AssetType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output].ExternalColumns[InternalAssetType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="InternalAssetType" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                          dataType="guid"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                          name="AssetGuid" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Error Output].Columns[AssetType]"
+                          dataType="wstr"
+                          length="6"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Error Output].Columns[AssetType]"
+                          name="AssetType" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Error Output].Columns[InternalAssetType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Error Output].Columns[InternalAssetType]"
+                          name="InternalAssetType" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets.Paths[OLE DB Source Output]"
+                  endId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{083444CE-5A0F-41CC-896A-69DF79DBDA4F}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Standard Assets"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Insert into DW_Stage dbo dimAsset2_Stage"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[dimAsset2_Stage]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Connections[OleDbConnection]"
+                      connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].Columns[AssetGuid]"
+                          cachedDataType="guid"
+                          cachedName="AssetGuid"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetGuid]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Output].Columns[AssetGuid]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetStageID]"
+                          dataType="i4"
+                          name="AssetStageID" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetGuid]"
+                          dataType="guid"
+                          name="AssetGuid" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[InternalAssetType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="InternalAssetType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetType]"
+                          dataType="wstr"
+                          length="255"
+                          name="AssetType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetSubType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="AssetSubType" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                          dataType="wstr"
+                          length="100"
+                          name="Category" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[UserCreated]"
+                          dataType="bool"
+                          name="UserCreated" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="500"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[TitleDescription]"
+                          dataType="nText"
+                          name="TitleDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Keywords]"
+                          dataType="wstr"
+                          length="2000"
+                          name="Keywords" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Copyright]"
+                          dataType="i4"
+                          name="Copyright" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                          dataType="i4"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[CreatedCalendarKey]"
+                          dataType="i4"
+                          name="CreatedCalendarKey" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetProducer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="AssetProducer" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetGradeBit]"
+                          dataType="i4"
+                          name="AssetGradeBit" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[AssetSubjectBit]"
+                          dataType="i4"
+                          name="AssetSubjectBit" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[BinaryChecksum]"
+                          dataType="i4"
+                          name="BinaryChecksum" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[LastUpdated]"
+                          dataType="dbTimeStamp"
+                          name="LastUpdated" />
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input].ExternalColumns[LanguageCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="LanguageCode" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets"
+                  componentClassID="DTSAdapter.OLEDBSource.3"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Query - Get New Assets from APA dbo tblAssets"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select
+	distinct
+		AssetGuid = guidAssetID
+		from 
+						AllProductAssets.dbo.tblAssets A
+			left join	dw_stage.dbo.dimAsset2_Stage S on A.guidAssetID = S.AssetGuid
+		where
+			S.AssetStageID is null</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Connections[OleDbConnection]"
+                      connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                          name="AssetGuid"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                          dataType="guid"
+                          name="AssetGuid" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                          dataType="guid"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                          name="AssetGuid" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets.Paths[OLE DB Source Output]"
+                  endId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update any changed records in Stage"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B3D3755B-DE39-416C-B3AD-8EC42C05CAF8}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update any changed records in Stage">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Update any changed records in Stage\Update Folders"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{957472D5-B8DB-4384-A0A1-CC26D96DC00D}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Folders"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+              SQLTask:SqlStatementSource="&#xA;declare @MaxCalendarKey int&#xA;select @MaxCalendarKey = max(CalendarKey) from dw.dbo.dimCalendar&#xA;&#xA;&#xA;update S&#xA;&#x9;set&#xA;&#x9;&#x9;S.Category&#x9;&#x9;&#x9;&#x9;= ACM.Category,&#xA;&#x9;&#x9;S.Title&#x9;&#x9;&#x9;&#x9;&#x9;= FAMD.title,&#xA;&#x9;&#x9;S.TitleDescription&#x9;&#x9;= FAMD.title_description,&#xA;&#x9;&#x9;S.Keywords&#x9;&#x9;&#x9;&#x9;= FAMD.Keywords,&#xA;&#x9;&#x9;S.Copyright&#x9;&#x9;&#x9;&#x9;= FAMD.Copyright,&#xA;&#x9;&#x9;S.CreatedCalendarKey&#x9;= case&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when datediff(dd, '19991231', FAMD.create_date) &gt; @MaxCalendarKey&#x9;then -1&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when datediff(dd, '19991231', FAMD.create_date) &lt; 1&#x9;&#x9;&#x9;&#x9;&#x9;then -2&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when FAMD.create_date is null&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then -3&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else datediff(dd, '19991231', FAMD.create_date) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;end,&#xA;&#x9;&#x9;S.[Status]&#x9;&#x9;&#x9;&#x9;= FAMD.[Status],&#xA;&#x9;&#x9;S.UserCreated&#x9;&#x9;&#x9;= isnull(FAMD.UserCreated, 0),&#xA;&#x9;&#x9;S.LastUpdated&#x9;&#x9;&#x9;= getdate(),&#xA;&#x9;&#x9;S.LanguageCode&#x9;&#x9;&#x9;= FAMD.language_code&#xA;&#x9;/*&#xA;select top 10&#xA;**/&#xA;&#x9;&#x9;from&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;dw_stage.dbo.dimAsset2_Stage S&#xA;&#x9;&#x9;&#x9;join&#x9;&#x9;dw_stage.dbo.AssetCategoryMapping ACM on S.AssetType = ACM.AssetType&#xA;&#x9;&#x9;&#x9;left join&#x9;AllProductAssets.dbo.tblFolderAssetMetaData FAMD on S.AssetGuid = FAMD.guidAssetMetaDataId&#xA;&#x9;&#x9;where&#xA;&#x9;&#x9;&#x9;&#x9;S.AssetType = 'Folder'&#xA;&#x9;&#x9;&#x9;and&#x9;s.BinaryChecksum != binary_checksum(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetGuid,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.InternalAssetType,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetType,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetSubType,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(nvarchar(100), ACM.Category),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FAMD.UserCreated,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.IsDeleted,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(nvarchar(500), FAMD.title),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(nvarchar(max), FAMD.title_description),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(nvarchar(2000), FAMD.Keywords),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FAMD.Copyright,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FAMD.[Status],&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(int, case&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when datediff(dd, '19991231', FAMD.create_date) &gt; @MaxCalendarKey&#x9;then -1&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when datediff(dd, '19991231', FAMD.create_date) &lt; 1&#x9;&#x9;&#x9;&#x9;&#x9;then -2&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when FAMD.create_date is null&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then -3&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else datediff(dd, '19991231', FAMD.create_date) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;end),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetProducer,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetGradeBit,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetSubjectBit,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FAMD.language_code&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update any changed records in Stage\Update MetaData for Concepts"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{733B47A4-58F6-46F9-804B-0F0779778D23}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update MetaData for Concepts"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+              SQLTask:SqlStatementSource=" use dw_stage;&#xA; go&#xA;&#xA;&#xA;&#xA;declare @MaxCalendarKey int&#xA;select @MaxCalendarKey = max(CalendarKey) from dw.dbo.dimCalendar&#xA;&#xA;;with cteConceptInfo (AssetStageID, Title, CreatedCalendarKey, AssetGradeBit, AssetSubjectBit, AssetProducer, LanguageCode) as (&#xA;&#x9;select&#xA;&#x9;&#x9;S.AssetStageID,&#xA;&#x9;&#x9;Title&#x9;&#x9;&#x9;&#x9;= TTD.Name,&#xA;&#x9;&#x9;CreatedCalendarKey&#x9;= min(UNIT.CreatedCalendarKey),&#xA;&#x9;&#x9;AssetGradeBit&#x9;&#x9;= isnull(sum(distinct GRD.AssetGradeBit), 0),&#xA;&#x9;&#x9;AssetSubjectBit&#x9;&#x9;= isnull(sum(distinct SUB.AssetSubjectBit), 0),&#xA;&#x9;&#x9;AssetProducer&#x9;&#x9;= convert(varchar(255), null),&#xA;&#x9;&#x9;LanguageCode&#x9;&#x9;= null&#xA;&#x9;&#x9;from&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;dw_stage.dbo.dimAsset2_Stage S&#xA;&#x9;&#x9;&#x9;join&#x9;&#x9;AllProductAssets.dbo.tblTaxonomyTreeData TTD&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;on&#x9;S.AssetGuid = TTD.guidTaxID&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#x9;TTD.intLevel = 5&#xA;&#x9;&#x9;&#x9;--&#x9;The AssetTaxonomy &#xA;&#x9;&#x9;&#x9;join&#x9;&#x9;AllProductAssets.dbo.tblAssetRelationshipTypes ART on ART.strAssetRelationshipTypeName = 'AssetTaxonomy'&#xA;&#x9;&#x9;&#x9;--&#x9;the Assets here are the Units&#xA;&#x9;&#x9;&#x9;join&#x9;&#x9;AllProductAssets.dbo.tblXREF_AssetTaxonomyIndex ATI&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;on&#x9;ART.guidAssetRelationshipTypeID = ATI.guidAssetRelationshipTypeID&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#x9;TTD.guidTaxID = ATI.guidTaxID&#xA;&#x9;&#x9;&#x9;--&#x9;Get the Unit MetaData&#xA;&#x9;&#x9;&#x9;--join&#x9;&#x9;AllProductAssets.dbo.tblAssetMetaData AMD on ATI.guidAssetID = AMD.guidAssetMetaDataID&#xA;&#x9;&#x9;&#x9;--  Get the Units&#xA;&#x9;&#x9;&#x9;left join&#x9;dw_stage.dbo.dimAsset2_Stage UNIT on ATI.guidAssetID = UNIT.AssetGuid&#xA;&#x9;&#x9;&#x9;-- Get the Unit Subjects&#xA;&#x9;&#x9;&#x9;left join&#x9;dw.dbo.dimAssetSubject SUB on UNIT.AssetSubjectBit &amp; SUB.AssetSubjectBit = SUB.AssetSubjectBit&#xA;&#x9;&#x9;&#x9;-- Get the Unit Grades&#xA;&#x9;&#x9;&#x9;left join&#x9;dw.dbo.dimAssetGrade GRD on UNIT.AssetGradeBit &amp; GRD.AssetGradeBit = GRD.AssetGradeBit&#xA;&#x9;&#x9;where&#xA;&#x9;&#x9;&#x9;S.AssetType = 'Concept'&#xA;&#x9;&#x9;group by&#xA;&#x9;&#x9;&#x9;S.AssetStageID,&#xA;&#x9;&#x9;&#x9;TTD.Name&#xA;)&#xA;update S&#xA;&#x9;set&#xA;&#x9;&#x9;S.Title&#x9;&#x9;&#x9;&#x9;&#x9;= CI.Title,&#xA;&#x9;&#x9;S.Category&#x9;&#x9;&#x9;&#x9;= ACM.Category,&#xA;&#x9;&#x9;S.CreatedCalendarKey&#x9;= CI.CreatedCalendarKey,&#xA;&#x9;&#x9;S.AssetGradeBit&#x9;&#x9;&#x9;= CI.AssetGradeBit,&#xA;&#x9;&#x9;S.AssetSubjectBit&#x9;&#x9;= CI.AssetSubjectBit,&#xA;&#x9;&#x9;S.AssetProducer&#x9;&#x9;&#x9;= CI.AssetProducer,&#xA;&#x9;&#x9;S.LastUpdated&#x9;&#x9;&#x9;= getdate(),&#xA;&#x9;&#x9;S.LanguageCode&#x9;&#x9;&#x9;= null&#xA;&#x9;&#x9;from&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;dw_stage.dbo.dimAsset2_Stage S&#xA;&#x9;&#x9;&#x9;join&#x9;cteConceptInfo CI on S.AssetStageID = CI.AssetStageID&#xA;&#x9;&#x9;&#x9;join&#x9;dw_stage.dbo.AssetCategoryMapping ACM on S.AssetType = ACM.AssetType&#xA;&#x9;&#x9;where&#xA;&#x9;&#x9;&#x9;&#x9;S.AssetType = 'Concept'&#xA;&#x9;&#x9;&#x9;and&#x9;S.BinaryChecksum != binary_checksum(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetGuid,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.InternalAssetType,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetType,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetSubType,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(nvarchar(100), ACM.Category),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.UserCreated,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.IsDeleted,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(nvarchar(500), CI.Title),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.TitleDescription,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.Keywords,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.Copyright,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.[Status],&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CI.CreatedCalendarKey,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CI.AssetProducer,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CI.AssetGradeBit,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CI.AssetSubjectBit,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;null -- LanguageCode&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update any changed records in Stage\Update Non Folders and Non Concepts Grades"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{30A2D92D-EAFE-4919-B494-44ED7FD536F2}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Non Folders and Non Concepts Grades"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+              SQLTask:SqlStatementSource="&#xA;declare @MaxCalendarKey int&#xA;select @MaxCalendarKey = max(CalendarKey) from dw.dbo.dimCalendar&#xA;&#xA;;with assetGrades (AssetGuid, AssetGradeBit) as (&#xA;&#x9;select &#xA;&#x9;&#x9;aa.AssetGuid,&#xA;&#x9;&#x9;AssetGradeBit = sum(dAg.AssetGradeBit)&#xA;&#x9;&#x9;from &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;AllProductAssets.dbo.AudienceAsset aa&#xA;&#x9;&#x9;left join&#x9;AllProductAssets.dbo.Audience au on aa.AudienceGuid = au.AudienceGuid&#xA;&#x9;&#x9;left join&#x9;dw.dbo.dimAssetGrade dAg on au.legacy_id = dAg.AssetGradeId&#xA;&#x9;&#x9;group by &#xA;&#x9;&#x9;&#x9;aa.AssetGuid&#xA;)&#xA;&#x9;update S&#xA;&#x9;&#x9;set &#xA;&#x9;&#x9;&#x9;S.AssetGradeBit = isnull(AG.AssetGradeBit, 0),&#xA;&#x9;&#x9;&#x9;S.LastUpdated&#x9;= getdate()&#xA;&#x9;&#x9;from &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;dw_stage.dbo.dimAsset2_Stage S&#xA;&#x9;&#x9;&#x9;left join&#x9;assetGrades AG on S.AssetGuid = AG.AssetGuid&#xA;&#x9;&#x9;where&#xA;&#x9;&#x9;&#x9;&#x9;S.AssetGradeBit != isnull(AG.AssetGradeBit, 0)&#xA;&#x9;&#x9;&#x9;and&#x9;S.AssetType not in ('Concept', 'Folder')&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update any changed records in Stage\Update Non Folders and non Concepts Producers"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1A0F0565-02E1-4DF4-BE0B-EBB94A15B51A}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Non Folders and non Concepts Producers"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+              SQLTask:SqlStatementSource="&#xA;&#x9;&#x9;&#x9;&#xA;declare @MaxCalendarKey int&#xA;select @MaxCalendarKey = max(CalendarKey) from dw.dbo.dimCalendar&#xA;&#xA;;with cteProducer as (&#xA;&#x9;select &#xA;&#x9;&#x9;pa.AssetGuid, &#xA;&#x9;&#x9;p.Name, &#xA;&#x9;&#x9;rn = row_number() over (partition by pa.assetguid order by pa.partnerGuid desc)&#xA;&#x9;&#x9;from&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;AllProductAssets.dbo.PartnerAsset pa&#xA;&#x9;&#x9;&#x9;join&#x9;AllProductAssets.dbo.[Partner] p on pa.PartnerGuid = p.PartnerGuid&#xA;&#x9;&#x9;where &#xA;&#x9;&#x9;&#x9;pa.PartnerRoleGuid = 'EB94271C-3D54-4159-960F-4DC58024A750'&#xA;&#x9;&#x9;&#x9;-- What does this Guid Mean?&#xA;)&#xA;&#x9;update S&#xA;&#x9;&#x9;set&#xA;&#x9;&#x9;&#x9;S.AssetProducer&#x9;= P.Name,&#xA;&#x9;&#x9;&#x9;S.LastUpdated&#x9;= getdate()&#xA;&#x9;&#x9;from&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;dw_stage.dbo.dimAsset2_Stage S&#xA;&#x9;&#x9;&#x9;left join&#x9;cteProducer P on S.AssetGuid = P.AssetGuid and P.rn = 1&#xA;&#x9;&#x9;where&#xA;&#x9;&#x9;&#x9;&#x9;isnull(S.AssetProducer, '') != isnull(P.Name, '')&#xA;&#x9;&#x9;&#x9;and&#x9;S.AssetType not in ('Concept', 'Folder')&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update any changed records in Stage\Update Non Folders and Non Concepts Subjects"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{30355445-9BB3-4D4A-ADED-C44F5CC1E252}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Non Folders and Non Concepts Subjects"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+              SQLTask:SqlStatementSource="&#x9;&#xA;declare @MaxCalendarKey int&#xA;select @MaxCalendarKey = max(CalendarKey) from dw.dbo.dimCalendar&#xA;&#xA;;with curves (lvl0Guid, lvl0Name, lvl1guid, lvl1name, rotatingguid) as (&#xA;&#x9;select &#xA;&#x9;&#x9;lvl0Guid = lvl0.guidtaxid,&#xA;&#x9;&#x9;lvl0Name = lvl0.Name,&#xA;&#x9;&#x9;lvl1Guid = lvl1.guidtaxid,&#xA;&#x9;&#x9;lvl1Name = lvl1.Name,&#xA;&#x9;&#x9;RotatingGuid = lvl1.guidtaxid&#xA;&#x9;&#x9;from &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;AllProductAssets.dbo.tblTaxonomyTreeData lvl0&#xA;&#x9;&#x9;&#x9;join&#x9;AllProductAssets.dbo.tblTaxonomyTreeData lvl1 on lvl0.guidtaxid = lvl1.guidParentId&#xA;&#x9;where lvl0.intLevel = 0&#xA;&#xA;&#x9;union all&#xA;&#xA;&#x9;select &#xA;&#x9;&#x9;lvl0Guid&#x9;&#x9;= c.lvl0Guid,&#xA;&#x9;&#x9;lvl0Name&#x9;&#x9;= c.lvl0Name,&#xA;&#x9;&#x9;lvl1Guid&#x9;&#x9;= c.lvl1Guid,&#xA;&#x9;&#x9;lvl1Name&#x9;&#x9;= c.lvl1Name,&#xA;&#x9;&#x9;RotatingGuid&#x9;= t.guidTaxId&#xA;&#x9;&#x9;from &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;curves c&#xA;&#x9;&#x9;&#x9;join&#x9;AllProductAssets.dbo.tblTaxonomyTreeData t on c.rotatingguid = t.guidParentId&#xA;),&#xA;/* create subject groups */&#xA;assetSubjectGroups (guidTaxId, SubjectGroup) as (&#xA;&#x9;select &#xA;&#x9;&#x9;guidTaxID&#x9;&#x9;= rotatingguid,&#xA;&#x9;&#x9;SubjectGroup&#x9;= case curves.lvl0Guid&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when 'F8605638-6F30-4C05-90CF-485CEC9158EF' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Science'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when '2930086F-27B4-467E-A584-4629A11A618E' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Mathematics'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when '4E15C3C2-457C-404E-AA65-039D661A7CED' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then replace(curves.lvl1name,'English Language Arts','English/Language Arts')&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when '9DB55F15-E8EB-4561-9B74-502FD781A0AB' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Social Studies'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when '81196A5D-AE45-4F50-86F0-636D994D1FC0' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then case &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid != '5A15B784-98EE-4615-8FC4-2EAB63C81DE4' then curves.lvl1name&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid = '5A15B784-98EE-4615-8FC4-2EAB63C81DE4' then 'Visual and Performing Arts'&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;end&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when '41597B98-D1C7-4142-90BF-660F35F5AF21' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then case&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid = '62F0D3BF-4463-4AB3-B274-200216FAFC0F'&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Visual and Performing Arts'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid in (&#x9;'616A559D-5346-474F-B1AD-24D7494B5F09',&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;'71DAAE7E-6651-4DD6-9BF7-62598B977F93',&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;'1F03C528-3534-11E4-9D73-F3245E297E11')&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'World Languages'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid in (&#x9;'0A444C86-8B2B-4129-A4B6-36AD13B43D86',&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;'40692D6A-5894-11E4-AA39-AA375E297E11')&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Social Studies'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid = 'F98267C2-642A-4583-8F05-6F2C589DE8FC' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'English/Language Arts' &#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid = '2DF6F7F8-63D9-4F4B-97B9-7B78F3F9A66B' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Visual and Performing Arts'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid in (&#x9;'9A8D2EA9-A56B-4997-B7D4-C4784752EF8F',&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;'AC78D9CC-0701-428F-BF81-9ADA7A8C4AE9',&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;'F5974E55-1090-4CEE-B4E4-EB187115F026') &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Careers/Work Place Skills'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid in (&#x9;'B6C01845-C866-4B3F-A317-FDFED57EFF17',&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;'3A20DD0B-A2CD-4E16-AF8A-A904F604C781')&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Science'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid = '07325986-547F-11E4-B9A8-B10D5E297E11'&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Mathematics'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid = 'B97EF7C6-3DCC-11E4-933C-9F275E297E11'&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Health'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid = 'A7AB911E-5085-11E4-AC96-D8385E297E11' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'English/Language Arts'&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;end&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when  '6AADC39C-BCC0-40BE-8546-97FD474EFE79'&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Science'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when '088F9D1E-B183-441B-96FE-D5F048CA99A6'&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Science'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when  'FDB26C6A-43EA-4F18-A13F-80DC1A4FFD88'&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Science'&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when '9EFF39DB-FC62-43B3-B312-C6F854B239CE' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then case &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when curves.lvl1guid in (&#x9;'686422F0-82C3-4CAB-9104-79D9511C5B69',&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;'B021AC49-1A2C-4DAA-B2B8-A110BADF49DB') &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Careers/Work Place Skills'&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else curves.lvl1name&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;end&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when '56735AAD-B6C3-4991-BDD9-CFD8CB472D8C' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then 'Health'&#xA;&#x9;&#x9;end&#xA;&#x9;from curves&#xA;),&#xA;/*retrieve asset Subject Bit */&#xA;assetSubjectBits (AssetGuid, AssetSubjectBit) as (&#xA;&#x9;select &#xA;&#x9;&#x9;AssetGuid&#x9;&#x9;= ti.guidAssetId, &#xA;&#x9;&#x9;AssetSubjectBit&#x9;= sum(dAs.AssetSubjectBit)&#xA;&#x9;from &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;AllProductAssets.dbo.tblXREF_assetTaxonomyIndex ti&#xA;&#x9;&#x9;left join&#x9;assetSubjectGroups asG on ti.guidtaxid = asG.guidTaxId&#xA;&#x9;&#x9;left join&#x9;dw.dbo.dimAssetSubject dAs on asG.SubjectGroup = dAs.AssetSubjectGroup&#xA;&#x9;group by &#xA;&#x9;&#x9;ti.guidAssetId&#xA;)&#xA;&#x9;update S&#xA;&#x9;&#x9;set &#xA;&#x9;&#x9;&#x9;S.AssetSubjectBit&#x9;= isnull(SUB.AssetSubjectBit, 0),&#xA;&#x9;&#x9;&#x9;S.LastUpdated&#x9;&#x9;= getdate()&#xA;&#x9;&#x9;from&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;dw_stage.dbo.dimAsset2_Stage S&#xA;&#x9;&#x9;&#x9;left join&#x9;assetSubjectBits SUB on S.AssetGuid = SUB.AssetGuid&#xA;&#x9;&#x9;where&#xA;&#x9;&#x9;&#x9;&#x9;S.AssetSubjectBit != isnull(SUB.AssetSubjectBit, 0)&#xA;&#x9;&#x9;&#x9;and&#x9;S.AssetType not in ('Concept', 'Folder')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update any changed records in Stage\Update Non Folders and Non Concepts with MetaData"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BAFB1093-E081-4DC2-994A-B9B5E08A8288}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Non Folders and Non Concepts with MetaData"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+              SQLTask:SqlStatementSource="use dw_Stage&#xA;go&#xA;&#xA;declare @MaxCalendarKey int&#xA;select @MaxCalendarKey = max(CalendarKey) from dw.dbo.dimCalendar&#xA;&#xA;&#xA;update S&#xA;&#x9;set &#xA;&#x9;&#x9;S.AssetType&#x9;&#x9;&#x9;&#x9;= AT.strFriendlyAssetType,&#xA;&#x9;&#x9;S.InternalAssetType&#x9;&#x9;= AT.strAssetTypeName,&#xA;&#x9;&#x9;S.AssetSubType&#x9;&#x9;&#x9;= AST.name,&#xA;&#x9;&#x9;S.Category&#x9;&#x9;&#x9;&#x9;= ACM.Category,&#xA;&#x9;&#x9;S.Title&#x9;&#x9;&#x9;&#x9;&#x9;= AMD.title,&#xA;&#x9;&#x9;S.TitleDescription&#x9;&#x9;= AMD.title_description,&#xA;&#x9;&#x9;S.Keywords&#x9;&#x9;&#x9;&#x9;= left(AMD.Keywords, 2000),&#xA;&#x9;&#x9;S.Copyright&#x9;&#x9;&#x9;&#x9;= AMD.Copyright,&#xA;&#x9;&#x9;S.CreatedCalendarKey&#x9;= case&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when datediff(dd, '19991231', AMD.create_date) &gt; @MaxCalendarKey&#x9;then -1&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when datediff(dd, '19991231', AMD.create_date) &lt; 1&#x9;&#x9;&#x9;&#x9;&#x9;then -2&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when AMD.create_date is null&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then -3&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else datediff(dd, '19991231', AMD.create_date)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;end,&#xA;&#x9;&#x9;S.[Status]&#x9;&#x9;&#x9;&#x9;= AMD.[Status],&#xA;&#x9;&#x9;S.UserCreated&#x9;&#x9;&#x9;= isnull(AMD.UserCreated, 0),&#xA;&#x9;&#x9;S.LanguageCode&#x9;&#x9;&#x9;= AMD.language_code&#xA;&#x9;&#x9;from&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;dw_stage.dbo.dimAsset2_Stage S&#xA;&#x9;&#x9;&#x9;join&#x9;&#x9;AllProductAssets.dbo.tblAssets A on S.AssetGuid = A.guidAssetID&#xA;&#x9;&#x9;&#x9;join&#x9;&#x9;AllProductAssets.dbo.tblAssetTypes AT on A.guidAssetTypeID = AT.guidAssetTypeID&#xA;&#x9;&#x9;&#x9;left join&#x9;AllProductAssets.dbo.tblAssetMetaData AMD on S.AssetGuid = AMD.guidAssetMetaDataID&#xA;&#x9;&#x9;&#x9;left join&#x9;AllProductAssets.dbo.tblAssetSubType AST on A.guidAssetSubTypeID = AST.guidAssetSubTypeID&#xA;&#x9;&#x9;&#x9;join&#x9;&#x9;dw_stage.dbo.AssetCategoryMapping ACM on AT.strFriendlyAssetType = ACM.AssetType&#xA;&#xA;&#x9;&#x9;where&#xA;&#x9;&#x9;&#x9;&#x9;isnull(S.AssetType, '') not in ('Concept', 'Folder')&#xA;&#x9;&#x9;&#x9;and&#x9;S.BinaryChecksum != binary_checksum(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetGuid,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(varchar(255), AT.strAssetTypeName),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(nvarchar(255), AT.strFriendlyAssetType),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(varchar(50), AST.name),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(nvarchar(100), ACM.Category),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;isnull(AMD.UserCreated, 0),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.IsDeleted,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(nvarchar(500), AMD.title),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(nvarchar(max), AMD.title_description),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;convert(nvarchar(2000), AMD.Keywords),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;AMD.Copyright,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;AMD.[Status],&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when datediff(dd, '19991231', AMD.create_date) &gt; @MaxCalendarKey&#x9;then -1&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when datediff(dd, '19991231', AMD.create_date) &lt; 1&#x9;&#x9;&#x9;&#x9;&#x9;then -2&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when AMD.create_date is null&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then -3&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else datediff(dd, '19991231', AMD.create_date)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;end,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetProducer,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetGradeBit,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;S.AssetSubjectBit,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;AMD.language_code&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#xA;&#xA;--17,675,913" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update any changed records in Stage.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{7A1B2428-8AC8-43DA-83D8-A640B906E5C5}"
+          DTS:From="Package\Update any changed records in Stage\Update Non Folders and Non Concepts with MetaData"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Update any changed records in Stage\Update Non Folders and Non Concepts Subjects" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update any changed records in Stage.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{E4614531-B618-4718-B3F7-8447E008EBD1}"
+          DTS:From="Package\Update any changed records in Stage\Update Non Folders and Non Concepts Subjects"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Update any changed records in Stage\Update Non Folders and Non Concepts Grades" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update any changed records in Stage.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{1EC651E2-3826-4D06-A551-7F09BEFDB62C}"
+          DTS:From="Package\Update any changed records in Stage\Update Non Folders and Non Concepts Grades"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Update any changed records in Stage\Update Non Folders and non Concepts Producers" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update any changed records in Stage.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{CAB0C211-EECB-443B-8423-8ACBF9CA0D94}"
+          DTS:From="Package\Update any changed records in Stage\Update Non Folders and non Concepts Producers"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Update any changed records in Stage\Update MetaData for Concepts" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update any changed records in Stage.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{E06B8C82-A3F7-44FE-AF17-830DCB543D0B}"
+          DTS:From="Package\Update any changed records in Stage\Update Folders"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Update any changed records in Stage\Update Non Folders and Non Concepts with MetaData" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{352F1289-77EC-4E8C-B564-DC2C1505A40A}"
+      DTS:From="Package\Start by loading all known guids into dimAsset2_Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Update any changed records in Stage" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="124,42"
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Concepts"
+          TopLeft="369,14" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets"
+          TopLeft="204,12" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets"
+          TopLeft="26,13" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="540,111"
+          Size="540,154"
+          Id="Package\Start by loading all known guids into dimAsset2_Stage"
+          TopLeft="125,18" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Update any changed records in Stage\Update Folders"
+          TopLeft="15,8" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Update any changed records in Stage\Update MetaData for Concepts"
+          TopLeft="201,267" />
+        <NodeLayout
+          Size="299,42"
+          Id="Package\Update any changed records in Stage\Update Non Folders and Non Concepts Grades"
+          TopLeft="201,141" />
+        <NodeLayout
+          Size="312,42"
+          Id="Package\Update any changed records in Stage\Update Non Folders and non Concepts Producers"
+          TopLeft="201,199" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package\Update any changed records in Stage\Update Non Folders and Non Concepts Subjects"
+          TopLeft="201,77" />
+        <NodeLayout
+          Size="335,42"
+          Id="Package\Update any changed records in Stage\Update Non Folders and Non Concepts with MetaData"
+          TopLeft="201,8" />
+        <EdgeLayout
+          Id="Package\Update any changed records in Stage.PrecedenceConstraints[Constraint]"
+          TopLeft="368.5,50">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.5,27"
+              Start="0,0"
+              End="-14.5,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.5"
+                    Point2="0,13.5"
+                    Point3="-4,13.5" />
+                  <mssgle:LineSegment
+                    End="-10.5,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.5,13.5"
+                    Point2="-14.5,13.5"
+                    Point3="-14.5,17.5" />
+                  <mssgle:LineSegment
+                    End="-14.5,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update any changed records in Stage.PrecedenceConstraints[Constraint 1]"
+          TopLeft="507,98">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-7,64"
+              Start="0,0"
+              End="0.5,64">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,60" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,60"
+                    Point2="22.5,64"
+                    Point3="18.5,64" />
+                  <mssgle:LineSegment
+                    End="0.5,64" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update any changed records in Stage.PrecedenceConstraints[Constraint 2]"
+          TopLeft="201,162">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="-7.5,58">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,0"
+                    Point2="-22.5,0"
+                    Point3="-22.5,4" />
+                  <mssgle:LineSegment
+                    End="-22.5,54" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,54"
+                    Point2="-22.5,58"
+                    Point3="-18.5,58" />
+                  <mssgle:LineSegment
+                    End="-7.5,58" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update any changed records in Stage.PrecedenceConstraints[Constraint 3]"
+          TopLeft="357,241">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-43,26"
+              Start="0,0"
+              End="-43,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9"
+                    Point2="0,13"
+                    Point3="-4,13" />
+                  <mssgle:LineSegment
+                    End="-39,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-39,13"
+                    Point2="-43,13"
+                    Point3="-43,17" />
+                  <mssgle:LineSegment
+                    End="-43,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update any changed records in Stage.PrecedenceConstraints[Constraint 4]"
+          TopLeft="167,29">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="34,0"
+              Start="0,0"
+              End="26.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="26.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="577,375"
+          Size="577,418"
+          Id="Package\Update any changed records in Stage"
+          TopLeft="119,219" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="395,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.5,47"
+              Start="0,0"
+              End="12.5,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5"
+                    Point2="0,23.5"
+                    Point3="4,23.5" />
+                  <mssgle:LineSegment
+                    End="8.5,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.5,23.5"
+                    Point2="12.5,23.5"
+                    Point3="12.5,27.5" />
+                  <mssgle:LineSegment
+                    End="12.5,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Start by loading all known guids into dimAsset2_Stage\Concepts">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="366,42"
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables"
+          TopLeft="227,138" />
+        <NodeLayout
+          Size="287,42"
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage"
+          TopLeft="239,229" />
+        <EdgeLayout
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Concepts.Paths[OLE DB Source Output]"
+          TopLeft="410,180">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-27.5,49"
+              Start="0,0"
+              End="-27.5,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="-4,24.5" />
+                  <mssgle:LineSegment
+                    End="-23.5,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-23.5,24.5"
+                    Point2="-27.5,24.5"
+                    Point3="-27.5,28.5" />
+                  <mssgle:LineSegment
+                    End="-27.5,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Insert into DW_Stage dbo dimAsset2_Stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Start by loading all known guids into dimAsset2_Stage\Concepts\Query - Get New Concept Assets from APA Taxonomy tables">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="376,42"
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData"
+          TopLeft="227,138" />
+        <NodeLayout
+          Size="287,42"
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage"
+          TopLeft="239,229" />
+        <EdgeLayout
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets.Paths[OLE DB Source Output]"
+          TopLeft="415,180">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-32.5,49"
+              Start="0,0"
+              End="-32.5,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="-4,24.5" />
+                  <mssgle:LineSegment
+                    End="-28.5,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-28.5,24.5"
+                    Point2="-32.5,24.5"
+                    Point3="-32.5,28.5" />
+                  <mssgle:LineSegment
+                    End="-32.5,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Insert into DW_Stage dbo dimAsset2_Stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Start by loading all known guids into dimAsset2_Stage\Folder Assets\Query - Get New Assets from APA dbo tblFolderAssetMetaData">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="307,42"
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets"
+          TopLeft="227,138" />
+        <NodeLayout
+          Size="287,42"
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage"
+          TopLeft="239,229" />
+        <EdgeLayout
+          Id="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets.Paths[OLE DB Source Output]"
+          TopLeft="381.5,180">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Insert into DW_Stage dbo dimAsset2_Stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Start by loading all known guids into dimAsset2_Stage\Standard Assets\Query - Get New Assets from APA dbo tblAssets">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,884 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/17/2013 9:02:32 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MN-DE-WSQL-P3"
+  DTS:CreatorName="DATACENTER\mtassin"
+  DTS:DTSID="{C8DD4391-FDD2-4A69-A23E-22919D9D7864}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="dimSite"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{F79DFC40-A9FB-4773-8F19-3A906BEE9B1E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Perform type 2 logic via stored proc"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{56280F6F-F4FB-4B57-9886-8B86F15E50BD}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Perform type 2 logic via stored proc"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+          SQLTask:SqlStatementSource="EXEC dbo.usp_dimSite_Type2SCD_Process" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stage Data from Production"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{9D1027BB-0104-453B-95D0-27F23786EA63}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Data from Production"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stage Data from Production\Derived Column"
+              componentClassID="DTSTransform.DerivedColumn.3"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Stage Data from Production\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Stage Data from Production\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]"
+                      name="SourceSystem"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,3)"HUB"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,3)"HUB"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Stage Data from Production\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Data from Production\get site data"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="get site data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">;with base as (
+select
+SiteGUID = b.SITE_GUID,
+SiteName = ISNULL(NULLIF(E1.ACCOUNT,''),b.name),
+Sitecity = ISNULL(NULLIF(F1.CITY,''),b.City),
+SiteRegion = ISNULL(NULLIF(LEFT(F1.STATE,2),''),c1.REGION_CODE_ALPHA),
+SitePostalCode = case ISNULL(LEFT(F1.COUNTRY,2),LEFT(B.country_code,2)) when 'US' 
+                 then ISNULL(LEFT(F1.POSTALCODE,5),left(B.Postal_code,5)) else ISNULL(F1.POSTALCODE,B.postal_code) end,
+SiteCountryCode = ISNULL(LEFT(F1.COUNTRY,2),LEFT(B.country_code,2)),
+SiteType = isnull(e1.type,''),
+RC = ROW_number() OVER (PARTITION BY b.SITE_GUID ORDER BY isnull(b.update_DT,b.create_DT) desc)
+from 
+EDU_SEC.dbo.site b 
+left join EDU_SEC.dbo.SYSTEM_COUNTRY_REGION c1 on 
+b.REGION_CODE = c1.REGION_CODE and 
+b.COUNTRY_CODE = c1.COUNTRY_CODE
+left join EDU_SEC.dbo.entity_property_setting d1 on 
+b.SITE_GUID = d1.ENTITY_GUID and
+d1.entity_property_guid ='E93509F0-9C9B-4554-9C98-23E4361195A3'
+left join edu_sec_sales.dbo.account e1 on 
+d1.value = e1.accountid
+left join edu_sec_sales.dbo.address f1 on 
+e1.addressid = f1.addressid
+)
+SELECT 
+SiteGUID,
+SiteName = cast(isnull(SiteName,'') as nvarchar(255)),
+SiteCity = cast(isnull(SiteCity,'') as nvarchar(100)),
+SiteRegion = cast(isnull(SiteRegion,'') as nvarchar(100)),
+SitePostalCode = cast(isnull(SitePostalCode,'') as nvarchar(25)),
+SiteCountryCode = cast(isnull(SiteCountryCode,'') as nvarchar(2)),
+SiteType = cast(isnull(SiteType,'') as nvarchar(100)),
+binary_Checksum(SiteGUID,SiteName,SiteCity,SiteRegion,SitePostalCode,SiteCountryCode,SiteType) as binaryChecksum
+FROM 
+base where rc = 1</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Data from Production\get site data.Connections[OleDbConnection]"
+                  connectionManagerID="{7F963D66-08E2-4415-B78A-04DFB9685588}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteGUID]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteGUID]"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteGUID]"
+                      name="SiteGUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteName]"
+                      length="255"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteName]"
+                      name="SiteName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteCity]"
+                      length="100"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteCity]"
+                      name="SiteCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteRegion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteRegion]"
+                      length="100"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteRegion]"
+                      name="SiteRegion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SitePostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SitePostalCode]"
+                      length="25"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SitePostalCode]"
+                      name="SitePostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteCountryCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteCountryCode]"
+                      length="2"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteCountryCode]"
+                      name="SiteCountryCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteType]"
+                      length="100"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteType]"
+                      name="SiteType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[binaryChecksum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[binaryChecksum]"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[binaryChecksum]"
+                      name="binaryChecksum"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteGUID]"
+                      dataType="guid"
+                      name="SiteGUID" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteName]"
+                      dataType="wstr"
+                      length="255"
+                      name="SiteName" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteCity]"
+                      dataType="wstr"
+                      length="100"
+                      name="SiteCity" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteRegion]"
+                      dataType="wstr"
+                      length="100"
+                      name="SiteRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SitePostalCode]"
+                      dataType="wstr"
+                      length="25"
+                      name="SitePostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteCountryCode]"
+                      dataType="wstr"
+                      length="2"
+                      name="SiteCountryCode" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[SiteType]"
+                      dataType="wstr"
+                      length="100"
+                      name="SiteType" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].ExternalColumns[binaryChecksum]"
+                      dataType="i4"
+                      name="binaryChecksum" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteGUID]"
+                      dataType="guid"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteGUID]"
+                      name="SiteGUID" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteName]"
+                      name="SiteName" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteCity]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteCity]"
+                      name="SiteCity" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteRegion]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteRegion]"
+                      name="SiteRegion" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SitePostalCode]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SitePostalCode]"
+                      name="SitePostalCode" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteCountryCode]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteCountryCode]"
+                      name="SiteCountryCode" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteType]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[SiteType]"
+                      name="SiteType" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[binaryChecksum]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[binaryChecksum]"
+                      name="binaryChecksum" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Data from Production\stage site data"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="stage site data"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dimSite_Stage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Data from Production\stage site data.Connections[OleDbConnection]"
+                  connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].Columns[SiteGUID]"
+                      cachedDataType="guid"
+                      cachedName="SiteGUID"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteGUID]"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteGUID]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].Columns[SiteName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SiteName"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteName]"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteName]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].Columns[SiteCity]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SiteCity"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteCity]"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteCity]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].Columns[SiteRegion]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SiteRegion"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteRegion]"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteRegion]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].Columns[SitePostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="SitePostalCode"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SitePostalCode]"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SitePostalCode]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].Columns[SiteCountryCode]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="SiteCountryCode"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteCountryCode]"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteCountryCode]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].Columns[SiteType]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SiteType"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteType]"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[SiteType]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].Columns[binaryChecksum]"
+                      cachedDataType="i4"
+                      cachedName="binaryChecksum"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[binaryChecksum]"
+                      lineageId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output].Columns[binaryChecksum]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].Columns[SourceSystem]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="SourceSystem"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystem]"
+                      lineageId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteGUID]"
+                      dataType="guid"
+                      name="SiteGUID" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteName]"
+                      dataType="wstr"
+                      length="255"
+                      name="SiteName" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteCity]"
+                      dataType="wstr"
+                      length="100"
+                      name="SiteCity" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteRegion]"
+                      dataType="wstr"
+                      length="100"
+                      name="SiteRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SitePostalCode]"
+                      dataType="wstr"
+                      length="25"
+                      name="SitePostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteCountryCode]"
+                      dataType="wstr"
+                      length="2"
+                      name="SiteCountryCode" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SiteType]"
+                      dataType="wstr"
+                      length="100"
+                      name="SiteType" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[binaryChecksum]"
+                      dataType="i4"
+                      name="binaryChecksum" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystem]"
+                      dataType="wstr"
+                      length="3"
+                      name="SourceSystem" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Data from Production\stage site data.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Data from Production\stage site data.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\stage site data.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\stage site data.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\stage site data.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stage Data from Production.Paths[Derived Column Output]"
+              endId="Package\Stage Data from Production\stage site data.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Stage Data from Production.Paths[OLE DB Source Output]"
+              endId="Package\Stage Data from Production\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Stage Data from Production\get site data.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{123B5957-5209-43D7-9B95-49C292F8978C}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dimSite_Stage&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F18AC81A-6480-4E86-AA99-D82A8BF5CFE3}"
+      DTS:From="Package\Truncate Staging Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Stage Data from Production" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{EC8125F1-EEA3-4596-8A1E-4EFF85B980BF}"
+      DTS:From="Package\Stage Data from Production"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Perform type 2 logic via stored proc" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="249,42"
+          Id="Package\Perform type 2 logic via stored proc"
+          TopLeft="192,196" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Stage Data from Production"
+          TopLeft="185,114" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Truncate Staging Table"
+          TopLeft="182,32" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="277,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14,40"
+              Start="0,0"
+              End="14,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="4,20" />
+                  <mssgle:LineSegment
+                    End="10,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10,20"
+                    Point2="14,20"
+                    Point3="14,24" />
+                  <mssgle:LineSegment
+                    End="14,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="291,156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25.5,40"
+              Start="0,0"
+              End="25.5,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="4,20" />
+                  <mssgle:LineSegment
+                    End="21.5,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.5,20"
+                    Point2="25.5,20"
+                    Point3="25.5,24" />
+                  <mssgle:LineSegment
+                    End="25.5,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="dimSite Processing:&#xA;dimSite is a Type 2 SCD &#xA;http://en.wikipedia.org/wiki/Slowly_changing_dimension&#xA;&#xA;So here we'll pull the data that has a changed or created date greater than the date of the last run&#xA;We'll compare binary_checksum's and if they differ, we'll mark the current row (iscurrent) as a 2, add &#xA;the new rows and then marks the 2's as 0's.  If we find any rows that were inferred by a process  (3) &#xA;we'll update those as a type 1 change and continue."
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="527,202"
+          Id="f30c94ae-773f-463e-9c55-855b6ea5093e"
+          TopLeft="477,55" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Stage Data from Production">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Stage Data from Production\get site data"
+          TopLeft="364,51" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Stage Data from Production\Derived Column"
+          TopLeft="346,145" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Stage Data from Production\stage site data"
+          TopLeft="341,251" />
+        <EdgeLayout
+          Id="Package\Stage Data from Production.Paths[OLE DB Source Output]"
+          TopLeft="433.5,93">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.5,52"
+              Start="0,0"
+              End="-9.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="-4,26" />
+                  <mssgle:LineSegment
+                    End="-5.5,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,26"
+                    Point2="-9.5,26"
+                    Point3="-9.5,30" />
+                  <mssgle:LineSegment
+                    End="-9.5,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Stage Data from Production.Paths[Derived Column Output]"
+          TopLeft="424,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.5,64"
+              Start="0,0"
+              End="-8.5,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28"
+                    Point2="0,32"
+                    Point3="-4,32" />
+                  <mssgle:LineSegment
+                    End="-4.5,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.5,32"
+                    Point2="-8.5,32"
+                    Point3="-8.5,36" />
+                  <mssgle:LineSegment
+                    End="-8.5,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Data from Production\get site data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Data from Production\stage site data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1919 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/20/2013 8:55:58 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MN-DE-WSQL-P3"
+  DTS:CreatorName="DATACENTER\mtassin"
+  DTS:DTSID="{C2A0F66E-26CB-4332-98B1-708997950D8F}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="dimUser"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{419A6588-366D-4943-87AD-63C8A46D32C9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{40B224EB-6FA1-4144-9304-6F4347FFE2BC}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::DaysBack]&lt;0? (DT_DBTIMESTAMP)&quot;2000-01-01 00:00:00&quot;: DATEADD( &quot;dd&quot;, - @[$Project::DaysBack] , (  DT_DBTIMESTAMP) (DT_DBDATE) GETDATE() )"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CalculatedDateFrom">
+      <DTS:VariableValue
+        DTS:DataType="7">5/16/2017</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{701D929B-470E-4B27-8ADF-60BFC4C47EE8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dayToFullPull">
+      <DTS:VariableValue
+        DTS:DataType="3">2</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{368AB58E-9AF2-4D7E-A4F8-7FE973116F72}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Deleted">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AE65986A-3909-4A65-A881-79CE41C542E1}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="endDate">
+      <DTS:VariableValue
+        DTS:DataType="7">1/20/2016 3:14:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{467BB6FD-0AE1-4B6E-B1C3-7AEC58C69C4F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Inserted">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{11FD1D11-A1A3-449E-9915-CCCAF9C3E6DB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="processingDuration">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B0B7E44F-45F8-4959-822C-E415A12B12B4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Pulled">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4F4C9DA5-3D35-4412-BF61-A17C908BAB95}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sourceTable">
+      <DTS:VariableValue
+        DTS:DataType="8">EduSec.app_user</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E4E0D86A-469C-4371-B505-F72DFEB2199A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="startDate">
+      <DTS:VariableValue
+        DTS:DataType="7">1/20/2016 3:14:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FB34FEB5-E2D9-4B74-A1C1-F21DE66A8D1D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Updated">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8A0B0649-AF78-4CA7-B499-07FBC970CAFE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vSourceQuery">
+      <DTS:VariableValue
+        DTS:DataType="8">SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED  declare @date datetime = getdate()   select 	 a.APP_USER_GUID 	,First_Name 	,Last_name 	,a.create_dt 	,a.update_dt 	,Title = isnull(a.TITLE,'') 	,grade = isnull(b.grade,'') 	,RoleDescription = c.Description 	,RoleCode = c.Code 	,isDenStar = cast(case when f.ROLE_GUID is null then 0 else 1 end as bit) 	,b.ESL 	,b.ETHNICITY 	,b.FRL 	,b.GENDER 	,b.PSCORE 	,b.RACE 	,b.SPECIAL_ED 	,binaryChecksum = binary_checksum(First_Name,Last_name,a.create_dt,a.update_dt,a.TITLE,b.grade,c.Description,c.Code,f.ROLE_GUID,b.GRADE,b.ESL,b.ETHNICITY,b.FRL,b.GENDER,b.PSCORE,b.RACE,b.SPECIAL_ED) 	,@date as PullDate, 0 as isDeleted  from EDU_SEC.dbo.app_user a   LEFT join EDU_SEC.dbo.app_user_ext b on a.APP_USER_GUID = b.APP_USER_GUID  left join ( 	select c.app_user_guid, d.description, d.code, rn = ROW_NUMBER() over(partition by c.app_user_guid order by c.create_dt desc)  	from EDU_SEC.dbo.user_role c  	join EDU_SEC.dbo.role d on c.ROLE_GUID = d.role_guid  and d.isExclusive = 1 	) c on a.app_user_guid = c.APP_USER_GUID and c.rn = 1 left join (EDU_SEC.dbo.user_role e join EDU_SEC.dbo.role f on e.role_guid = f.role_guid and f.code LIKE 'DENSTAR') on a.app_user_guid = e.APP_USER_GUID where 1 = 1</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Clear dw_stage"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{E1F05B97-2042-4E8D-B5C3-537967753E38}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear dw_stage"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+          SQLTask:SqlStatementSource="exec('truncate table ' + ? )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::sourceTable"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\exec EduSec usp_dimUser_Process"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{26738A7A-0E6A-43DE-A2AA-EA36106176D7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="exec EduSec usp_dimUser_Process"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB12EF12-BDAB-4255-9AD0-426A994C4C02}"
+          SQLTask:SqlStatementSource="exec [EduSec].[usp_dimUser_Process] " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fill dimUser_Stage"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{9AE5C92F-F4C9-44A9-96BA-DF7A21B0C22B}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fill dimUser_Stage"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Fill dimUser_Stage\Derived Column"
+              componentClassID="DTSTransform.DerivedColumn.3"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Fill dimUser_Stage\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Fill dimUser_Stage\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Fill dimUser_Stage\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Fill dimUser_Stage\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]"
+                      name="SourceSystem"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,3)"HUB"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,3)"HUB"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Fill dimUser_Stage\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Fill dimUser_Stage\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fill dimUser_Stage\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fill dimUser_Stage\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fill dimUser_Stage\edusec app_user"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="edusec app_user"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[EduSec].[app_User]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fill dimUser_Stage\edusec app_user.Connections[OleDbConnection]"
+                  connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[APP_USER_GUID]"
+                      cachedDataType="guid"
+                      cachedName="APP_USER_GUID"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[APP_USER_GUID]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[APP_USER_GUID]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[First_Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="First_Name"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[First_Name]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[First_Name]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[Last_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Last_name"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[Last_Name]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[Last_name]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[create_dt]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_dt"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[CREATE_DT]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[create_dt]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[update_dt]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="update_dt"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[UPDATE_DT]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[update_dt]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[Title]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Title"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[TITLE]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[Title]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[grade]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="grade"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[GRADE]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[grade]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[RoleDescription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="RoleDescription"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[RoleDescription]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[RoleDescription]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[RoleCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="RoleCode"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[RoleCode]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[RoleCode]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[binaryChecksum]"
+                      cachedDataType="i4"
+                      cachedName="binaryChecksum"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[binaryChecksum]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[binaryChecksum]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[isDenStar]"
+                      cachedDataType="bool"
+                      cachedName="isDenStar"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[isDenStar]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[isDenStar]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[SourceSystem]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="SourceSystem"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystem]"
+                      lineageId="Package\Fill dimUser_Stage\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[ESL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="ESL"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[ESL]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[ESL]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[ETHNICITY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="ETHNICITY"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[ETHNICITY]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[ETHNICITY]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[FRL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="FRL"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[FRL]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[FRL]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[GENDER]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="GENDER"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[GENDER]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[GENDER]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[PSCORE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="32"
+                      cachedName="PSCORE"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[PSCORE]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PSCORE]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[RACE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="RACE"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[RACE]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[RACE]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[SPECIAL_ED]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="SPECIAL_ED"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[SPECIAL_ED]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[SPECIAL_ED]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[PullDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="PullDate"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[PullDate]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PullDate]" />
+                    <inputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].Columns[isDeleted]"
+                      cachedDataType="i4"
+                      cachedName="isDeleted"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[isDeleted]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[isDeleted]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[APP_USER_GUID]"
+                      dataType="guid"
+                      name="APP_USER_GUID" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[First_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="First_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[Last_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Last_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[CREATE_DT]"
+                      dataType="dbTimeStamp"
+                      name="CREATE_DT" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[UPDATE_DT]"
+                      dataType="dbTimeStamp"
+                      name="UPDATE_DT" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[TITLE]"
+                      dataType="wstr"
+                      length="200"
+                      name="TITLE" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[GRADE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GRADE" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[RoleDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="RoleDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[RoleCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="RoleCode" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[binaryChecksum]"
+                      dataType="i4"
+                      name="binaryChecksum" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[isDenStar]"
+                      dataType="bool"
+                      name="isDenStar" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystem]"
+                      dataType="wstr"
+                      length="3"
+                      name="SourceSystem" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[ESL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ESL" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[ETHNICITY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ETHNICITY" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[FRL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="FRL" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[GENDER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GENDER" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[PSCORE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PSCORE" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[RACE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RACE" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[SPECIAL_ED]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SPECIAL_ED" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[PullDate]"
+                      dataType="dbTimeStamp"
+                      name="PullDate" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input].ExternalColumns[isDeleted]"
+                      dataType="i4"
+                      name="isDeleted" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Fill dimUser_Stage\edusec app_user.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fill dimUser_Stage\edusec app_user.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\edusec app_user.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fill dimUser_Stage\edusec app_user.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fill dimUser_Stage\OLE DB Source"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+
+select
+	 a.APP_USER_GUID
+	,First_Name
+	,Last_name
+	,a.create_dt
+	,a.update_dt
+	,Title = isnull(a.TITLE,'')
+	,grade = isnull(b.grade,'')
+	,RoleDescription = d.Description
+	,RoleCode = d.Code
+	,isDenStar = cast(case when f.ROLE_GUID is null then 0 else 1 end as bit)
+	,b.ESL
+	,b.ETHNICITY
+	,b.FRL--free reduced lunch
+	,b.GENDER
+	,b.PSCORE
+	,b.RACE
+	,b.SPECIAL_ED
+	,binaryChecksum = binary_checksum(First_Name,Last_name,a.create_dt,a.update_dt,a.TITLE,b.grade,d.Description,d.Code,f.ROLE_GUID,b.GRADE,b.ESL,b.ETHNICITY,b.FRL,b.GENDER,b.PSCORE,b.RACE,b.SPECIAL_ED)
+from EDU_SEC.dbo.app_user a 
+LEFT join EDU_SEC.dbo.app_user_ext b on a.APP_USER_GUID = b.APP_USER_GUID
+left join (EDU_SEC.dbo.user_role c join EDU_SEC.dbo.role d on c.ROLE_GUID = d.role_guid  and d.isExclusive = 1) on a.app_user_guid = c.APP_USER_GUID
+left join (EDU_SEC.dbo.user_role e join EDU_SEC.dbo.role f on e.role_guid = f.role_guid and f.code LIKE 'DENSTAR') on a.app_user_guid = e.APP_USER_GUID</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::vSourceQuery</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fill dimUser_Stage\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{7F963D66-08E2-4415-B78A-04DFB9685588}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[APP_USER_GUID]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[APP_USER_GUID]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[APP_USER_GUID]"
+                      name="APP_USER_GUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[First_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[First_Name]"
+                      length="255"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[First_Name]"
+                      name="First_Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[Last_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Last_name]"
+                      length="255"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[Last_name]"
+                      name="Last_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[create_dt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[create_dt]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[create_dt]"
+                      name="create_dt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[update_dt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[update_dt]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[update_dt]"
+                      name="update_dt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[Title]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                      length="200"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[Title]"
+                      name="Title"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[grade]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[grade]"
+                      length="50"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[grade]"
+                      name="grade"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[RoleDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RoleDescription]"
+                      length="100"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[RoleDescription]"
+                      name="RoleDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[RoleCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RoleCode]"
+                      length="20"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[RoleCode]"
+                      name="RoleCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[isDenStar]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[isDenStar]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[isDenStar]"
+                      name="isDenStar"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[ESL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ESL]"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[ESL]"
+                      name="ESL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[ETHNICITY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ETHNICITY]"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[ETHNICITY]"
+                      name="ETHNICITY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[FRL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FRL]"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[FRL]"
+                      name="FRL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[GENDER]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GENDER]"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[GENDER]"
+                      name="GENDER"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PSCORE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PSCORE]"
+                      length="32"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PSCORE]"
+                      name="PSCORE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[RACE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RACE]"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[RACE]"
+                      name="RACE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[SPECIAL_ED]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SPECIAL_ED]"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[SPECIAL_ED]"
+                      name="SPECIAL_ED"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[binaryChecksum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[binaryChecksum]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[binaryChecksum]"
+                      name="binaryChecksum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PullDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PullDate]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PullDate]"
+                      name="PullDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[isDeleted]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[isDeleted]"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[isDeleted]"
+                      name="isDeleted"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[APP_USER_GUID]"
+                      dataType="guid"
+                      name="APP_USER_GUID" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[First_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="First_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Last_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Last_name" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[create_dt]"
+                      dataType="dbTimeStamp"
+                      name="create_dt" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[update_dt]"
+                      dataType="dbTimeStamp"
+                      name="update_dt" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                      dataType="wstr"
+                      length="200"
+                      name="Title" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[grade]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="grade" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RoleDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="RoleDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RoleCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="RoleCode" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[isDenStar]"
+                      dataType="bool"
+                      name="isDenStar" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ESL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="ESL" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ETHNICITY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="ETHNICITY" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FRL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FRL" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GENDER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="GENDER" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PSCORE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="PSCORE" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RACE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="RACE" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SPECIAL_ED]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="SPECIAL_ED" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[binaryChecksum]"
+                      dataType="i4"
+                      name="binaryChecksum" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PullDate]"
+                      dataType="dbTimeStamp"
+                      name="PullDate" />
+                    <externalMetadataColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[isDeleted]"
+                      dataType="i4"
+                      name="isDeleted" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[APP_USER_GUID]"
+                      dataType="guid"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[APP_USER_GUID]"
+                      name="APP_USER_GUID" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[First_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[First_Name]"
+                      name="First_Name" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Last_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Last_name]"
+                      name="Last_name" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[create_dt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[create_dt]"
+                      name="create_dt" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[update_dt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[update_dt]"
+                      name="update_dt" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Title]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Title]"
+                      name="Title" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[grade]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[grade]"
+                      name="grade" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RoleDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RoleDescription]"
+                      name="RoleDescription" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RoleCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RoleCode]"
+                      name="RoleCode" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[isDenStar]"
+                      dataType="bool"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[isDenStar]"
+                      name="isDenStar" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ESL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ESL]"
+                      name="ESL" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ETHNICITY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ETHNICITY]"
+                      name="ETHNICITY" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FRL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FRL]"
+                      name="FRL" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GENDER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GENDER]"
+                      name="GENDER" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PSCORE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PSCORE]"
+                      name="PSCORE" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RACE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RACE]"
+                      name="RACE" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SPECIAL_ED]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SPECIAL_ED]"
+                      name="SPECIAL_ED" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[binaryChecksum]"
+                      dataType="i4"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[binaryChecksum]"
+                      name="binaryChecksum" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PullDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PullDate]"
+                      name="PullDate" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[isDeleted]"
+                      dataType="i4"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[isDeleted]"
+                      name="isDeleted" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fill dimUser_Stage\Row Count"
+              componentClassID="DTSTransform.RowCount.3"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::Pulled</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Fill dimUser_Stage\Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Fill dimUser_Stage\Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Fill dimUser_Stage\Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Fill dimUser_Stage.Paths[Derived Column Output]"
+              endId="Package\Fill dimUser_Stage\Row Count.Inputs[Row Count Input 1]"
+              name="Derived Column Output"
+              startId="Package\Fill dimUser_Stage\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Fill dimUser_Stage.Paths[OLE DB Source Output]"
+              endId="Package\Fill dimUser_Stage\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Fill dimUser_Stage\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Fill dimUser_Stage.Paths[Row Count Output 1]"
+              endId="Package\Fill dimUser_Stage\edusec app_user.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\Fill dimUser_Stage\Row Count.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\generate source query based on day of week"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Expression Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{599420D8-D636-486D-827E-F6C20A2134E1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="generate source query based on day of week"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::vSourceQuery] =&#xA;&quot;SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED &#xA;declare @date datetime = getdate()  &#xA;select &#x9; a.APP_USER_GUID &#x9;,First_Name &#x9;,Last_name &#x9;,a.create_dt &#x9;,a.update_dt &#x9;,Title = isnull(a.TITLE,'') &#x9;,grade = isnull(b.grade,'') &#x9;,RoleDescription = c.Description &#x9;,RoleCode = c.Code &#x9;,isDenStar = cast(case when f.ROLE_GUID is null then 0 else 1 end as bit) &#x9;,b.ESL &#x9;,b.ETHNICITY &#x9;,b.FRL &#x9;,b.GENDER &#x9;,b.PSCORE &#x9;,b.RACE &#x9;,b.SPECIAL_ED &#x9;,binaryChecksum = binary_checksum(First_Name,Last_name,a.create_dt,a.update_dt,a.TITLE,b.grade,c.Description,c.Code,f.ROLE_GUID,b.GRADE,b.ESL,b.ETHNICITY,b.FRL,b.GENDER,b.PSCORE,b.RACE,b.SPECIAL_ED,a.isDeleted) &#x9;,@date as PullDate, a.isDeleted &#xA;from EDU_SEC.dbo.app_user a  &#xA;LEFT join EDU_SEC.dbo.app_user_ext b on a.APP_USER_GUID = b.APP_USER_GUID &#xA;left join (&#xA;&#x9;select c.app_user_guid, d.description, d.code, rn = ROW_NUMBER() over(partition by c.app_user_guid order by c.create_dt desc) &#xA;&#x9;from EDU_SEC.dbo.user_role c &#xA;&#x9;join EDU_SEC.dbo.role d on c.ROLE_GUID = d.role_guid  and d.isExclusive = 1&#xA;&#x9;) c on a.app_user_guid = c.APP_USER_GUID and c.rn = 1&#xA;left join (EDU_SEC.dbo.user_role e join EDU_SEC.dbo.role f on e.role_guid = f.role_guid and f.code LIKE 'DENSTAR') on a.app_user_guid = e.APP_USER_GUID&#xA;&quot;&#xA;+( datepart(&quot;DW&quot;,getdate()) == @[User::dayToFullPull]  ? &quot;where 1 = 1&quot; : &#xA;&quot;where (a.CREATE_DT &gt;= '&quot; + (DT_WSTR,50)@[User::startDate] + &quot;' or a.CREATE_DT IS NULL or a.update_dt &gt;= '&quot; + (DT_WSTR,50)@[User::startDate] + &quot;')&quot;)" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\get end date for range"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Expression Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{1fa4f2b0-2e48-4ee9-8c7c-2412bae0fd8b}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="get end date for range"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::endDate] = getdate()" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\get start date"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{c0bf2899-ffe2-4c5e-b410-cd54a6e39482}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="get start date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB12EF12-BDAB-4255-9AD0-426A994C4C02}"
+          SQLTask:SqlStatementSource="select isnull(max(endDate),'01/01/1900') as lastEnd&#xA;from [Audit].[EduSec_PullAudit]&#xA;where [sourceTable] = ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="lastEnd"
+            SQLTask:DtsVariableName="User::startDate" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::sourceTable"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Hack to quickly add on archive_Dt without causing major work"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{41affc74-326a-4f52-9b3f-cb5f45592ec2}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Hack to quickly add on archive_Dt without causing major work"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CC19AA09-9B38-43CB-AC7C-7D8176F5E16B}"
+          SQLTask:SqlStatementSource="&#xA;&#xA;update U&#x9;&#xA;&#x9;set U.ArchiveDate = AU.ARCHIVE_DT&#xA;&#x9;from dbo.dimUser U&#xA;&#x9;&#x9;join edu_sec.dbo.APP_USER AU on U.UserGuid = AU.APP_USER_GUID&#xA;&#x9;where&#xA;&#x9;&#x9;isnull(U.ArchiveDate, '29991231') != isnull(AU.ARCHIVE_DT, '29991231')&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::dayToFullPull"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\populate ods audit"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{32027B2B-9ADB-4E8E-B987-97C91A518C29}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="populate ods audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB12EF12-BDAB-4255-9AD0-426A994C4C02}"
+          SQLTask:SqlStatementSource="insert [audit].[EduSec_PullAudit]([sourceTable],[startDate],[endDate],[pulledRows],[updatedRows],[insertedRows],[DurationInMinutes],[deletedRows])&#xA;values (?,?,?,?,?,?,?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::sourceTable"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::startDate"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::endDate"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::Pulled"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="User::Inserted"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="5"
+            SQLTask:DtsVariableName="User::Updated"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="6"
+            SQLTask:DtsVariableName="User::processingDuration"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="7"
+            SQLTask:DtsVariableName="User::Deleted"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Push to ODS"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{6B718906-E337-48DF-A522-1AA219F5FF3F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Push to ODS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+          SQLTask:SqlStatementSource="exec eduSec.usp_app_user_process ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Inserted"
+            SQLTask:DtsVariableName="User::Inserted" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Updated"
+            SQLTask:DtsVariableName="User::Updated" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Deleted"
+            SQLTask:DtsVariableName="User::Deleted" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::dayToFullPull"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\set process end time"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Expression Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{19B859F8-A2B5-4312-AC9A-3F6D3ECB90C9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="set process end time"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::processingDuration]  = DATEDIFF( &quot;MINUTE&quot;, @[User::endDate] , getdate())" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C7E3A4AA-D484-43C5-B412-1CF240F5E04D}"
+      DTS:From="Package\Clear dw_stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Fill dimUser_Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{CAC4AB6E-E5C3-4BBB-9F72-905789951B5A}"
+      DTS:From="Package\Fill dimUser_Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Push to ODS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{E36DC134-97F8-4402-9717-02A8DBE81936}"
+      DTS:From="Package\generate source query based on day of week"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Clear dw_stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{f2ad0721-a1c7-4d62-a59e-2d88bf060497}"
+      DTS:From="Package\get end date for range"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\get start date" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{74765D35-EE8E-48EA-91DA-7B10E4DC7772}"
+      DTS:From="Package\get start date"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\generate source query based on day of week" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{F4B243A7-7548-4F23-87D2-3625E23461D6}"
+      DTS:From="Package\Push to ODS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\set process end time" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{13B31729-B578-4577-B826-C3098198C327}"
+      DTS:From="Package\set process end time"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\populate ods audit" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{7C7D9B29-9D03-4312-98B3-ABFDCD89D458}"
+      DTS:From="Package\populate ods audit"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\exec EduSec usp_dimUser_Process" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{02D8EBB0-7AF4-4649-B05C-1F4CD92E6752}"
+      DTS:From="Package\exec EduSec usp_dimUser_Process"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Hack to quickly add on archive_Dt without causing major work" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Clear dw_stage"
+          TopLeft="184,285" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\exec EduSec usp_dimUser_Process"
+          TopLeft="179,627" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Fill dimUser_Stage"
+          TopLeft="178,352" />
+        <NodeLayout
+          Size="292,42"
+          Id="Package\generate source query based on day of week"
+          TopLeft="114,220" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\get end date for range"
+          TopLeft="161,62" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\get start date"
+          TopLeft="187,137" />
+        <NodeLayout
+          Size="376,42"
+          Id="Package\Hack to quickly add on archive_Dt without causing major work"
+          TopLeft="186,702" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\populate ods audit"
+          TopLeft="182,576" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Push to ODS"
+          TopLeft="176,425" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\set process end time"
+          TopLeft="181,508" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="261,327">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25"
+              Start="0,0"
+              End="0,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="264.5,394">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="260,262">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23"
+              Start="0,0"
+              End="0,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="256.5,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="259.5,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="268.5,467">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="267.75,550">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="349,597">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-6,51"
+              Start="0,0"
+              End="1.5,51">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,47" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,47"
+                    Point2="22.5,51"
+                    Point3="18.5,51" />
+                  <mssgle:LineSegment
+                    End="1.5,51" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="261,669">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="113,33"
+              Start="0,0"
+              End="113,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.5"
+                    Point2="0,16.5"
+                    Point3="4,16.5" />
+                  <mssgle:LineSegment
+                    End="109,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="109,16.5"
+                    Point2="113,16.5"
+                    Point3="113,20.5" />
+                  <mssgle:LineSegment
+                    End="113,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="dimUser Processing:&#xA;dimUser is a Type 2 SCD &#xA;http://en.wikipedia.org/wiki/Slowly_changing_dimension&#xA;&#xA;So here we'll pull the data that has a changed or created date greater than the date of the last run&#xA;We'll compare binary_checksum's and if they differ, we'll mark the current row (iscurrent) as a 2, add &#xA;the new rows and then marks the 2's as 0's.  If we find any rows that were inferred by a process  (3) &#xA;we'll update those as a type 1 change and continue."
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="527,202"
+          Id="50f8fb77-634c-4dbd-9647-384cfee36e34"
+          TopLeft="406,106" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Fill dimUser_Stage">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Fill dimUser_Stage\Row Count"
+          TopLeft="198,243" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Fill dimUser_Stage\edusec app_user"
+          TopLeft="198,363" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Fill dimUser_Stage\Derived Column"
+          TopLeft="195,153" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Fill dimUser_Stage\OLE DB Source"
+          TopLeft="200,66" />
+        <EdgeLayout
+          Id="Package\Fill dimUser_Stage.Paths[Row Count Output 1]"
+          TopLeft="263.5,285">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14,78"
+              Start="0,0"
+              End="14,70.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35"
+                    Point2="0,39"
+                    Point3="4,39" />
+                  <mssgle:LineSegment
+                    End="10,39" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10,39"
+                    Point2="14,39"
+                    Point3="14,43" />
+                  <mssgle:LineSegment
+                    End="14,70.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Fill dimUser_Stage.Paths[OLE DB Source Output]"
+          TopLeft="274,108">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Fill dimUser_Stage.Paths[Derived Column Output]"
+          TopLeft="272.5,195">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9,48"
+              Start="0,0"
+              End="-9,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="-4,24" />
+                  <mssgle:LineSegment
+                    End="-5,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5,24"
+                    Point2="-9,24"
+                    Point3="-9,28" />
+                  <mssgle:LineSegment
+                    End="-9,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Fill dimUser_Stage\edusec app_user">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Fill dimUser_Stage\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

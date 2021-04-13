@@ -1,0 +1,1118 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/28/2018 4:51:12 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="CHCL322687"
+  DTS:CreatorName="US\tgeer"
+  DTS:DTSID="{9A7C1ED5-2DEB-4B1F-B4CA-4C47F5CCF50F}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="GetTrialSchools"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{0DBBC106-5FEF-4B11-996F-558E8F2AFF79}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\execute etl ProcessTrialSchool"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{521AE555-7512-44B6-B492-992F7974B1CA}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="execute etl ProcessTrialSchool"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AECFF992-9B25-4470-858B-549D6C58BD4B}"
+          SQLTask:SqlStatementSource="execute stage.ProcessTrialSchool" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\execute etl ProcessTrialSchoolInactivation"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6CE2AD90-ADC0-4532-AB4C-E4EFAD3092B9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="execute etl ProcessTrialSchoolInactivation"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AECFF992-9B25-4470-858B-549D6C58BD4B}"
+          SQLTask:SqlStatementSource="execute dbo.ProcessTrialSchoolInactivation" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\pull EDU_SEC data for Trial School"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5D698405-9B93-45B6-82FF-E40EB145919D}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="pull EDU_SEC data for Trial School"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="source - edu_sec etl GetTrialSchools"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">execute etl.GetTrialSchools</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Connections[OleDbConnection]"
+                  connectionManagerID="{19810712-3AC7-461D-8944-200692871078}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EDU_SEC_read]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[AccountGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[AccountGuid]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[AccountGuid]"
+                      name="AccountGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[AccountName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[AccountName]"
+                      length="255"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[AccountName]"
+                      name="AccountName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SchoolGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SchoolGuid]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SchoolGuid]"
+                      name="SchoolGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SchoolSLXID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SchoolSLXID]"
+                      length="255"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SchoolSLXID]"
+                      name="SchoolSLXID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SchoolName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SchoolName]"
+                      length="100"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SchoolName]"
+                      name="SchoolName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StreamingTrial_IsActive]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StreamingTrial_IsActive]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StreamingTrial_IsActive]"
+                      name="StreamingTrial_IsActive"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StreamingTrial_StartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StreamingTrial_StartDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StreamingTrial_StartDate]"
+                      name="StreamingTrial_StartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StreamingTrial_EndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StreamingTrial_EndDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StreamingTrial_EndDate]"
+                      name="StreamingTrial_EndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[ScienceTBTrial_IsActive]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[ScienceTBTrial_IsActive]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[ScienceTBTrial_IsActive]"
+                      name="ScienceTBTrial_IsActive"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[ScienceTBTrial_StartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[ScienceTBTrial_StartDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[ScienceTBTrial_StartDate]"
+                      name="ScienceTBTrial_StartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[ScienceTBTrial_EndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[ScienceTBTrial_EndDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[ScienceTBTrial_EndDate]"
+                      name="ScienceTBTrial_EndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SocialStudiesTBTrial_IsActive]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SocialStudiesTBTrial_IsActive]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SocialStudiesTBTrial_IsActive]"
+                      name="SocialStudiesTBTrial_IsActive"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SocialStudiesTBTrial_StartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SocialStudiesTBTrial_StartDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SocialStudiesTBTrial_StartDate]"
+                      name="SocialStudiesTBTrial_StartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SocialStudiesTBTrial_EndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SocialStudiesTBTrial_EndDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SocialStudiesTBTrial_EndDate]"
+                      name="SocialStudiesTBTrial_EndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[MathTBTrial_IsActive]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[MathTBTrial_IsActive]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[MathTBTrial_IsActive]"
+                      name="MathTBTrial_IsActive"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[MathTBTrial_StartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[MathTBTrial_StartDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[MathTBTrial_StartDate]"
+                      name="MathTBTrial_StartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[MathTBTrial_EndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[MathTBTrial_EndDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[MathTBTrial_EndDate]"
+                      name="MathTBTrial_EndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StemConnectTrial_IsActive]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StemConnectTrial_IsActive]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StemConnectTrial_IsActive]"
+                      name="StemConnectTrial_IsActive"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StemConnectTrial_StartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StemConnectTrial_StartDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StemConnectTrial_StartDate]"
+                      name="StemConnectTrial_StartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StemConnectTrial_EndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StemConnectTrial_EndDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StemConnectTrial_EndDate]"
+                      name="StemConnectTrial_EndDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[AccountGuid]"
+                      dataType="guid"
+                      name="AccountGuid" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[AccountName]"
+                      dataType="wstr"
+                      length="255"
+                      name="AccountName" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SchoolGuid]"
+                      dataType="guid"
+                      name="SchoolGuid" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SchoolSLXID]"
+                      dataType="wstr"
+                      length="255"
+                      name="SchoolSLXID" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SchoolName]"
+                      dataType="wstr"
+                      length="100"
+                      name="SchoolName" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StreamingTrial_IsActive]"
+                      dataType="bool"
+                      name="StreamingTrial_IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StreamingTrial_StartDate]"
+                      dataType="dbDate"
+                      name="StreamingTrial_StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StreamingTrial_EndDate]"
+                      dataType="dbDate"
+                      name="StreamingTrial_EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[ScienceTBTrial_IsActive]"
+                      dataType="bool"
+                      name="ScienceTBTrial_IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[ScienceTBTrial_StartDate]"
+                      dataType="dbDate"
+                      name="ScienceTBTrial_StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[ScienceTBTrial_EndDate]"
+                      dataType="dbDate"
+                      name="ScienceTBTrial_EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SocialStudiesTBTrial_IsActive]"
+                      dataType="bool"
+                      name="SocialStudiesTBTrial_IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SocialStudiesTBTrial_StartDate]"
+                      dataType="dbDate"
+                      name="SocialStudiesTBTrial_StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[SocialStudiesTBTrial_EndDate]"
+                      dataType="dbDate"
+                      name="SocialStudiesTBTrial_EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[MathTBTrial_IsActive]"
+                      dataType="bool"
+                      name="MathTBTrial_IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[MathTBTrial_StartDate]"
+                      dataType="dbDate"
+                      name="MathTBTrial_StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[MathTBTrial_EndDate]"
+                      dataType="dbDate"
+                      name="MathTBTrial_EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StemConnectTrial_IsActive]"
+                      dataType="bool"
+                      name="StemConnectTrial_IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StemConnectTrial_StartDate]"
+                      dataType="dbDate"
+                      name="StemConnectTrial_StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].ExternalColumns[StemConnectTrial_EndDate]"
+                      dataType="dbDate"
+                      name="StemConnectTrial_EndDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[AccountGuid]"
+                      dataType="guid"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[AccountGuid]"
+                      name="AccountGuid" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[AccountName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[AccountName]"
+                      name="AccountName" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SchoolGuid]"
+                      dataType="guid"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SchoolGuid]"
+                      name="SchoolGuid" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SchoolSLXID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SchoolSLXID]"
+                      name="SchoolSLXID" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SchoolName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SchoolName]"
+                      name="SchoolName" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StreamingTrial_IsActive]"
+                      dataType="bool"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StreamingTrial_IsActive]"
+                      name="StreamingTrial_IsActive" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StreamingTrial_StartDate]"
+                      dataType="dbDate"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StreamingTrial_StartDate]"
+                      name="StreamingTrial_StartDate" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StreamingTrial_EndDate]"
+                      dataType="dbDate"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StreamingTrial_EndDate]"
+                      name="StreamingTrial_EndDate" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[ScienceTBTrial_IsActive]"
+                      dataType="bool"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[ScienceTBTrial_IsActive]"
+                      name="ScienceTBTrial_IsActive" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[ScienceTBTrial_StartDate]"
+                      dataType="dbDate"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[ScienceTBTrial_StartDate]"
+                      name="ScienceTBTrial_StartDate" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[ScienceTBTrial_EndDate]"
+                      dataType="dbDate"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[ScienceTBTrial_EndDate]"
+                      name="ScienceTBTrial_EndDate" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SocialStudiesTBTrial_IsActive]"
+                      dataType="bool"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SocialStudiesTBTrial_IsActive]"
+                      name="SocialStudiesTBTrial_IsActive" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SocialStudiesTBTrial_StartDate]"
+                      dataType="dbDate"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SocialStudiesTBTrial_StartDate]"
+                      name="SocialStudiesTBTrial_StartDate" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SocialStudiesTBTrial_EndDate]"
+                      dataType="dbDate"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[SocialStudiesTBTrial_EndDate]"
+                      name="SocialStudiesTBTrial_EndDate" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[MathTBTrial_IsActive]"
+                      dataType="bool"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[MathTBTrial_IsActive]"
+                      name="MathTBTrial_IsActive" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[MathTBTrial_StartDate]"
+                      dataType="dbDate"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[MathTBTrial_StartDate]"
+                      name="MathTBTrial_StartDate" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[MathTBTrial_EndDate]"
+                      dataType="dbDate"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[MathTBTrial_EndDate]"
+                      name="MathTBTrial_EndDate" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StemConnectTrial_IsActive]"
+                      dataType="bool"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StemConnectTrial_IsActive]"
+                      name="StemConnectTrial_IsActive" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StemConnectTrial_StartDate]"
+                      dataType="dbDate"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StemConnectTrial_StartDate]"
+                      name="StemConnectTrial_StartDate" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StemConnectTrial_EndDate]"
+                      dataType="dbDate"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[StemConnectTrial_EndDate]"
+                      name="StemConnectTrial_EndDate" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="stage TrialSchool"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage].[TrialSchool]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Connections[OleDbConnection]"
+                  connectionManagerID="{AECFF992-9B25-4470-858B-549D6C58BD4B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ExactTarget DB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[AccountGuid]"
+                      cachedDataType="guid"
+                      cachedName="AccountGuid"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[AccountGuid]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[AccountGuid]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[AccountName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AccountName"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[AccountName]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[AccountName]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[SchoolGuid]"
+                      cachedDataType="guid"
+                      cachedName="SchoolGuid"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolGuid]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SchoolGuid]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[SchoolSLXID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SchoolSLXID"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolSLXID]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SchoolSLXID]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[SchoolName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SchoolName"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolName]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SchoolName]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[StreamingTrial_IsActive]"
+                      cachedDataType="bool"
+                      cachedName="StreamingTrial_IsActive"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StreamingTrial_IsActive]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StreamingTrial_IsActive]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[StreamingTrial_StartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="StreamingTrial_StartDate"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StreamingTrial_StartDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StreamingTrial_StartDate]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[StreamingTrial_EndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="StreamingTrial_EndDate"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StreamingTrial_EndDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StreamingTrial_EndDate]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[ScienceTBTrial_IsActive]"
+                      cachedDataType="bool"
+                      cachedName="ScienceTBTrial_IsActive"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[ScienceTBTrial_IsActive]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[ScienceTBTrial_IsActive]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[ScienceTBTrial_StartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ScienceTBTrial_StartDate"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[ScienceTBTrial_StartDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[ScienceTBTrial_StartDate]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[ScienceTBTrial_EndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ScienceTBTrial_EndDate"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[ScienceTBTrial_EndDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[ScienceTBTrial_EndDate]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[SocialStudiesTBTrial_IsActive]"
+                      cachedDataType="bool"
+                      cachedName="SocialStudiesTBTrial_IsActive"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SocialStudiesTBTrial_IsActive]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SocialStudiesTBTrial_IsActive]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[SocialStudiesTBTrial_StartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="SocialStudiesTBTrial_StartDate"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SocialStudiesTBTrial_StartDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SocialStudiesTBTrial_StartDate]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[SocialStudiesTBTrial_EndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="SocialStudiesTBTrial_EndDate"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SocialStudiesTBTrial_EndDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[SocialStudiesTBTrial_EndDate]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[MathTBTrial_IsActive]"
+                      cachedDataType="bool"
+                      cachedName="MathTBTrial_IsActive"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[MathTBTrial_IsActive]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[MathTBTrial_IsActive]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[MathTBTrial_StartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="MathTBTrial_StartDate"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[MathTBTrial_StartDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[MathTBTrial_StartDate]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[MathTBTrial_EndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="MathTBTrial_EndDate"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[MathTBTrial_EndDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[MathTBTrial_EndDate]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[StemConnectTrial_IsActive]"
+                      cachedDataType="bool"
+                      cachedName="StemConnectTrial_IsActive"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StemConnectTrial_IsActive]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StemConnectTrial_IsActive]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[StemConnectTrial_StartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="StemConnectTrial_StartDate"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StemConnectTrial_StartDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StemConnectTrial_StartDate]" />
+                    <inputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].Columns[StemConnectTrial_EndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="StemConnectTrial_EndDate"
+                      externalMetadataColumnId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StemConnectTrial_EndDate]"
+                      lineageId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output].Columns[StemConnectTrial_EndDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[AccountGuid]"
+                      dataType="guid"
+                      name="AccountGuid" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[AccountName]"
+                      dataType="wstr"
+                      length="255"
+                      name="AccountName" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolGuid]"
+                      dataType="guid"
+                      name="SchoolGuid" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolSLXID]"
+                      dataType="wstr"
+                      length="255"
+                      name="SchoolSLXID" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolName]"
+                      dataType="wstr"
+                      length="100"
+                      name="SchoolName" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StreamingTrial_IsActive]"
+                      dataType="bool"
+                      name="StreamingTrial_IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StreamingTrial_StartDate]"
+                      dataType="dbDate"
+                      name="StreamingTrial_StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StreamingTrial_EndDate]"
+                      dataType="dbDate"
+                      name="StreamingTrial_EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[ScienceTBTrial_IsActive]"
+                      dataType="bool"
+                      name="ScienceTBTrial_IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[ScienceTBTrial_StartDate]"
+                      dataType="dbDate"
+                      name="ScienceTBTrial_StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[ScienceTBTrial_EndDate]"
+                      dataType="dbDate"
+                      name="ScienceTBTrial_EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SocialStudiesTBTrial_IsActive]"
+                      dataType="bool"
+                      name="SocialStudiesTBTrial_IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SocialStudiesTBTrial_StartDate]"
+                      dataType="dbDate"
+                      name="SocialStudiesTBTrial_StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SocialStudiesTBTrial_EndDate]"
+                      dataType="dbDate"
+                      name="SocialStudiesTBTrial_EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[MathTBTrial_IsActive]"
+                      dataType="bool"
+                      name="MathTBTrial_IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[MathTBTrial_StartDate]"
+                      dataType="dbDate"
+                      name="MathTBTrial_StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[MathTBTrial_EndDate]"
+                      dataType="dbDate"
+                      name="MathTBTrial_EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StemConnectTrial_IsActive]"
+                      dataType="bool"
+                      name="StemConnectTrial_IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StemConnectTrial_StartDate]"
+                      dataType="dbDate"
+                      name="StemConnectTrial_StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[StemConnectTrial_EndDate]"
+                      dataType="dbDate"
+                      name="StemConnectTrial_EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[HarvestDate]"
+                      dataType="dbTimeStamp"
+                      name="HarvestDate" />
+                    <externalMetadataColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[binaryChecksum]"
+                      dataType="i4"
+                      name="binaryChecksum" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\pull EDU_SEC data for Trial School.Paths[OLE DB Source Output]"
+              endId="Package\pull EDU_SEC data for Trial School\stage TrialSchool.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate stage TrialSchool"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{542C6DC9-5F01-46BB-A308-D5AEA8DEF5AC}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate stage TrialSchool"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AECFF992-9B25-4470-858B-549D6C58BD4B}"
+          SQLTask:SqlStatementSource="truncate table stage.TrialSchool" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{BDB03068-21FC-40E2-81B9-3FF0958D5B6E}"
+      DTS:From="Package\truncate stage TrialSchool"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\pull EDU_SEC data for Trial School" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{3A2A5CF4-062A-463B-BF62-7291B6805C56}"
+      DTS:From="Package\pull EDU_SEC data for Trial School"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\execute etl ProcessTrialSchool" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{D79DE72B-EF41-4E19-9F9A-5E7B1EDAF69D}"
+      DTS:From="Package\execute etl ProcessTrialSchool"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\execute etl ProcessTrialSchoolInactivation" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="221,42"
+          Id="Package\execute etl ProcessTrialSchool"
+          TopLeft="232,275" />
+        <NodeLayout
+          Size="242,42"
+          Id="Package\pull EDU_SEC data for Trial School"
+          TopLeft="180,174" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\truncate stage TrialSchool"
+          TopLeft="153,50" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="253.5,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47.5,82"
+              Start="0,0"
+              End="47.5,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37"
+                    Point2="0,41"
+                    Point3="4,41" />
+                  <mssgle:LineSegment
+                    End="43.5,41" />
+                  <mssgle:CubicBezierSegment
+                    Point1="43.5,41"
+                    Point2="47.5,41"
+                    Point3="47.5,45" />
+                  <mssgle:LineSegment
+                    End="47.5,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="301,216">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41.5,59"
+              Start="0,0"
+              End="41.5,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.5"
+                    Point2="0,29.5"
+                    Point3="4,29.5" />
+                  <mssgle:LineSegment
+                    End="37.5,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="37.5,29.5"
+                    Point2="41.5,29.5"
+                    Point3="41.5,33.5" />
+                  <mssgle:LineSegment
+                    End="41.5,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="276,42"
+          Id="Package\execute etl ProcessTrialSchoolInactivation"
+          TopLeft="256,379" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="342.5,317">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51.5,62"
+              Start="0,0"
+              End="51.5,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27"
+                    Point2="0,31"
+                    Point3="4,31" />
+                  <mssgle:LineSegment
+                    End="47.5,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="47.5,31"
+                    Point2="51.5,31"
+                    Point3="51.5,35" />
+                  <mssgle:LineSegment
+                    End="51.5,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="We don't get records from EDU_SEC after the trial has expired, so we will manually update the IsActive field of the trial whenever the getdate() is no longer inside the start and end dates of the trial&#xD;&#xA;&#xD;&#xA;"
+          ParentId="Package"
+          Size="362,144"
+          Id="09da1bfa-73ac-4a97-ac5d-93d25f4f7603"
+          TopLeft="566,346">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="14.25"
+              Color="#FF008000"
+              Weight="Bold">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\pull EDU_SEC data for Trial School">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="250,42"
+          Id="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools"
+          TopLeft="203,77" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\pull EDU_SEC data for Trial School\stage TrialSchool"
+          TopLeft="213,186" />
+        <EdgeLayout
+          Id="Package\pull EDU_SEC data for Trial School.Paths[OLE DB Source Output]"
+          TopLeft="328,119">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-35.5,67"
+              Start="0,0"
+              End="-35.5,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="-4,33.5" />
+                  <mssgle:LineSegment
+                    End="-31.5,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31.5,33.5"
+                    Point2="-35.5,33.5"
+                    Point3="-35.5,37.5" />
+                  <mssgle:LineSegment
+                    End="-35.5,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\pull EDU_SEC data for Trial School\source - edu_sec etl GetTrialSchools">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\pull EDU_SEC data for Trial School\stage TrialSchool">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

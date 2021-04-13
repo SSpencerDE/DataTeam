@@ -1,0 +1,112 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/12/2015 12:58:10 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MN-DE-WSQLJS-D1"
+  DTS:CreatorName="DATACENTER\tspagnoli"
+  DTS:DTSID="{E3076BB7-8BCA-4450-BA5D-2761A93D12B6}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="dimConcept"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{6439023F-DC61-41C6-9B92-3F3DAA3242B3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ConceptHierarchy"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a78ba1ce-12ed-4980-9a22-f206c9bbf994}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ConceptHierarchy"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CC19AA09-9B38-43CB-AC7C-7D8176F5E16B}"
+          SQLTask:SqlStatementSource=";with cteConceptHierarchy (OfficialConceptKey, CourseKey, SubdisciplineKey, UnitKey, ConceptKey) as (&#x9;&#xA;&#x9;select &#xA;&#x9;&#x9;OfficialConceptKey&#x9;= C.ConceptKey,&#xA;&#x9;&#x9;CourseKey&#x9;&#x9;&#x9;= CRS.ConceptKey,&#xA;&#x9;&#x9;SubDisciplineKey&#x9;= S.ConceptKey,&#xA;&#x9;&#x9;UnitKey&#x9;&#x9;&#x9;&#x9;= U.ConceptKey,&#xA;&#x9;&#x9;ConceptKey&#x9;&#x9;&#x9;= case when C.ConceptGuid is null then null else C.ConceptKey end&#xA;&#x9;&#x9;from dbo.dimConcept C&#xA;&#x9;&#x9;&#x9;left join dbo.dimConcept U&#xA;&#x9;&#x9;&#x9;&#x9;on C.CourseGuid = U.CourseGuid&#xA;&#x9;&#x9;&#x9;&#x9;and C.SubDisciplineGuid = U.SubDisciplineGuid&#xA;&#x9;&#x9;&#x9;&#x9;and C.UnitGuid = U.UnitGuid&#xA;&#x9;&#x9;&#x9;&#x9;and U.ConceptGuid is null&#xA;&#x9;&#x9;&#x9;left join dbo.dimConcept S&#xA;&#x9;&#x9;&#x9;&#x9;on C.CourseGuid = S.CourseGuid&#xA;&#x9;&#x9;&#x9;&#x9;and C.SubDisciplineGuid = S.SubDisciplineGuid&#xA;&#x9;&#x9;&#x9;&#x9;and S.UnitGuid is null&#xA;&#x9;&#x9;&#x9;&#x9;and S.ConceptGuid is null&#xA;&#x9;&#x9;&#x9;left join dbo.dimConcept CRS&#xA;&#x9;&#x9;&#x9;&#x9;on C.CourseGuid = CRS.CourseGuid&#xA;&#x9;&#x9;&#x9;&#x9;and CRS.SubDisciplineGuid is null&#xA;&#x9;&#x9;&#x9;&#x9;and CRS.UnitGuid is null&#xA;&#x9;&#x9;&#x9;&#x9;and CRS.ConceptGuid is null&#xA;&#x9;&#x9;)&#xA;&#x9;merge&#xA;&#x9;&#x9;summary.ConceptHierarchy as target&#xA;&#x9;&#x9;using&#xA;&#x9;&#x9;&#x9;cteConceptHierarchy as source&#xA;&#x9;&#x9;&#x9;&#x9;on target.OfficialConceptKey = source.OfficialConceptKey&#xA;&#xA;&#x9;&#x9;when matched then&#xA;&#x9;&#x9;&#x9;update&#xA;&#x9;&#x9;&#x9;&#x9;set&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;target.CourseKey&#x9;&#x9;&#x9;= source.CourseKey,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;target.SubDisciplineKey&#x9;&#x9;= source.SubDisciplineKey,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;target.UnitKey&#x9;&#x9;&#x9;&#x9;= source.UnitKey,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;target.ConceptKey&#x9;&#x9;&#x9;= source.ConceptKey&#xA;&#xA;&#x9;&#x9;when not matched by target then&#xA;&#x9;&#x9;&#x9;insert (OfficialConceptKey, CourseKey, SubDisciplineKey, UnitKey, ConceptKey)&#xA;&#x9;&#x9;&#x9;values (source.OfficialConceptKey, source.CourseKey, source.SubDisciplineKey, source.UnitKey, source.ConceptKey)&#xA;&#x9;&#x9;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{953B3FE3-13B9-4848-9DCC-9BCDC0EAEF16}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+          SQLTask:SqlStatementSource="exec dbo.usp_dimConcept_Process" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3044E514-7A84-48D7-9B22-ED611C691938}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\ConceptHierarchy" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="655,163" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\ConceptHierarchy"
+          TopLeft="655,265" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="737,205">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

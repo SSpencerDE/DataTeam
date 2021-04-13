@@ -1,0 +1,1869 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/2/2014 11:21:58 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MN-DE-WSQL-P3"
+  DTS:CreatorName="DATACENTER\mtassin"
+  DTS:DTSID="{E4131D3A-7904-4A13-85B7-31A6DBCA3B0E}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="dimProduct"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{433645E5-AD97-49FD-AE5B-4E2B988578D9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Push Product Dimension"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3B47E007-DF3D-40DB-A9E0-F6BCE17F0DF5}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Push Product Dimension"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Push Product Dimension\Changes?"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Changes?"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[dimProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[dimProduct]) [refTable]
+where [refTable].[ProductGUID] = ? and [refTable].[binarychecksum] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ProductKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ProductGUID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="isActive" dataType="DT_STR" length="1" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="isDemo" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductID1" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ProductID2" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="binarychecksum" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductGUID]};#{Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[binarychecksum]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Push Product Dimension\Changes?.Connections[OleDbConnection]"
+                  connectionManagerID="{CC19AA09-9B38-43CB-AC7C-7D8176F5E16B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Push Product Dimension\Changes?.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Push Product Dimension\Changes?.Inputs[Lookup Input].Columns[ProductGUID]"
+                      cachedDataType="guid"
+                      cachedName="ProductGUID"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductGUID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProductGUID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Push Product Dimension\Changes?.Inputs[Lookup Input].Columns[binarychecksum]"
+                      cachedDataType="i4"
+                      cachedName="binarychecksum"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[binarychecksum]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">binarychecksum</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Push Product Dimension\Changes?.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Push Product Dimension\Changes?.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Push Product Dimension\Changes?.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Push Product Dimension\Changes?.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Push Product Dimension\Changes?.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Push Product Dimension\Changes?.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Changes?.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Push Product Dimension\Changes?.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Changes?.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Push Product Dimension\Changes?.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Push Product Dimension\dimProduct"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="dimProduct"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dimProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Push Product Dimension\dimProduct.Connections[OleDbConnection]"
+                  connectionManagerID="{CC19AA09-9B38-43CB-AC7C-7D8176F5E16B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].Columns[ProductGUID]"
+                      cachedDataType="guid"
+                      cachedName="ProductGUID"
+                      externalMetadataColumnId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductGUID]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductGUID]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].Columns[isActive]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="isActive"
+                      externalMetadataColumnId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[isActive]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[isActive]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].Columns[isDemo]"
+                      cachedDataType="bool"
+                      cachedName="isDemo"
+                      externalMetadataColumnId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[isDemo]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[isDemo]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].Columns[ProductID1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ProductID1"
+                      externalMetadataColumnId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductID1]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductID1]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].Columns[ProductID2]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ProductID2"
+                      externalMetadataColumnId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductID2]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductID2]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].Columns[binarychecksum]"
+                      cachedDataType="i4"
+                      cachedName="binarychecksum"
+                      externalMetadataColumnId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[binarychecksum]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[binarychecksum]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="100"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductGUID]"
+                      dataType="guid"
+                      name="ProductGUID" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[isActive]"
+                      dataType="wstr"
+                      length="1"
+                      name="isActive" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[isDemo]"
+                      dataType="bool"
+                      name="isDemo" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductID1]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProductID1" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductID2]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProductID2" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input].ExternalColumns[binarychecksum]"
+                      dataType="i4"
+                      name="binarychecksum" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Push Product Dimension\dimProduct.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Push Product Dimension\dimProduct.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Push Product Dimension\dimProduct.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\dimProduct.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Push Product Dimension\dimProduct.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Push Product Dimension\Product Exist?"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Product Exist?"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[dimProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[dimProduct]) [refTable]
+where [refTable].[ProductGUID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ProductKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ProductGUID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="isActive" dataType="DT_STR" length="1" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="isDemo" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductID1" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ProductID2" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="binarychecksum" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductGUID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Push Product Dimension\Product Exist?.Connections[OleDbConnection]"
+                  connectionManagerID="{CC19AA09-9B38-43CB-AC7C-7D8176F5E16B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Push Product Dimension\Product Exist?.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Push Product Dimension\Product Exist?.Inputs[Lookup Input].Columns[ProductGUID]"
+                      cachedDataType="guid"
+                      cachedName="ProductGUID"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductGUID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProductGUID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Push Product Dimension\Product Exist?.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup Match Output].Columns[ProductKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup Match Output].Columns[ProductKey]"
+                      name="ProductKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProductKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Push Product Dimension\Product Exist?.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Push Product Dimension\Product Exist?.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Push Product Dimension\Retreive Products"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Retreive Products"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimProduct_Stage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+select 
+ProductGUID = Product_GUID
+,Name
+,isActive
+,isDemo
+,ProductID1
+,ProductID2
+,binarychecksum = binary_checksum(Product_GUID,Name,isActive,isDemo,ProductID1,ProductID2)
+from EDU_SEC.dbo.product a</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Push Product Dimension\Retreive Products.Connections[OleDbConnection]"
+                  connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      length="100"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductGUID]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[ProductGUID]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductGUID]"
+                      name="ProductGUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[isActive]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[isActive]"
+                      length="1"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[isActive]"
+                      name="isActive"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[isDemo]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[isDemo]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[isDemo]"
+                      name="isDemo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductID1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[ProductID1]"
+                      length="50"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductID1]"
+                      name="ProductID1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductID2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[ProductID2]"
+                      length="50"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductID2]"
+                      name="ProductID2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[binarychecksum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[binarychecksum]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[binarychecksum]"
+                      name="binarychecksum"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="100"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[ProductGUID]"
+                      dataType="guid"
+                      name="ProductGUID" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[isActive]"
+                      dataType="wstr"
+                      length="1"
+                      name="isActive" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[isDemo]"
+                      dataType="bool"
+                      name="isDemo" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[ProductID1]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProductID1" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[ProductID2]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProductID2" />
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].ExternalColumns[binarychecksum]"
+                      dataType="i4"
+                      name="binarychecksum" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[ProductGUID]"
+                      dataType="guid"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[ProductGUID]"
+                      name="ProductGUID" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[isActive]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[isActive]"
+                      name="isActive" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[isDemo]"
+                      dataType="bool"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[isDemo]"
+                      name="isDemo" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[ProductID1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[ProductID1]"
+                      name="ProductID1" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[ProductID2]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[ProductID2]"
+                      name="ProductID2" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[binarychecksum]"
+                      dataType="i4"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[binarychecksum]"
+                      name="binarychecksum" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Push Product Dimension\Update Product (type 1)"
+              componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update Product (type 1)"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[dimProduct]
+   SET [Name] = ?
+      ,[isActive] = ?
+      ,[isDemo] = ?
+      ,[ProductID1] = ?
+      ,[ProductID2] = ?
+      ,[binarychecksum] = ?
+ WHERE ProductKey = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Push Product Dimension\Update Product (type 1).Connections[OleDbConnection]"
+                  connectionManagerID="{CC19AA09-9B38-43CB-AC7C-7D8176F5E16B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].Columns[isActive]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="isActive"
+                      externalMetadataColumnId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[isActive]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].Columns[isDemo]"
+                      cachedDataType="bool"
+                      cachedName="isDemo"
+                      externalMetadataColumnId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[isDemo]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].Columns[ProductID1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ProductID1"
+                      externalMetadataColumnId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductID1]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].Columns[ProductID2]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ProductID2"
+                      externalMetadataColumnId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[ProductID2]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].Columns[binarychecksum]"
+                      cachedDataType="i4"
+                      cachedName="binarychecksum"
+                      externalMetadataColumnId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output].Columns[binarychecksum]" />
+                    <inputColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].Columns[ProductKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductKey"
+                      externalMetadataColumnId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup Match Output].Columns[ProductKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="100"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="1"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="bool"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="i4"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="i4"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Push Product Dimension\Update Product (type 1).Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Push Product Dimension\Update Product (type 1).Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Push Product Dimension\Update Product (type 1).Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Push Product Dimension\Update Product (type 1).Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Push Product Dimension\Update Product (type 1).Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Push Product Dimension.Paths[Lookup Match Output]"
+              endId="Package\Push Product Dimension\Changes?.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Push Product Dimension.Paths[Lookup No Match Output1]"
+              endId="Package\Push Product Dimension\dimProduct.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Push Product Dimension\Product Exist?.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Push Product Dimension.Paths[Lookup No Match Output]"
+              endId="Package\Push Product Dimension\Update Product (type 1).Inputs[OLE DB Command Input]"
+              name="Lookup No Match Output"
+              startId="Package\Push Product Dimension\Changes?.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Push Product Dimension.Paths[OLE DB Source Output]"
+              endId="Package\Push Product Dimension\Product Exist?.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Push Product Dimension\Retreive Products.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stage Product Dimension"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C44501D7-D5A5-4635-8F8E-081DCDA88060}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Product Dimension"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stage Product Dimension\dimProduct_Stage"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="dimProduct_Stage"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dimProduct_Stage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Product Dimension\dimProduct_Stage.Connections[OleDbConnection]"
+                  connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].Columns[ProductGUID]"
+                      cachedDataType="guid"
+                      cachedName="ProductGUID"
+                      externalMetadataColumnId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[ProductGUID]"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[ProductGUID]" />
+                    <inputColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].Columns[isActive]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="isActive"
+                      externalMetadataColumnId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[isActive]"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[isActive]" />
+                    <inputColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].Columns[isDemo]"
+                      cachedDataType="bool"
+                      cachedName="isDemo"
+                      externalMetadataColumnId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[isDemo]"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[isDemo]" />
+                    <inputColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].Columns[ProductID1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ProductID1"
+                      externalMetadataColumnId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[ProductID1]"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[ProductID1]" />
+                    <inputColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].Columns[ProductID2]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ProductID2"
+                      externalMetadataColumnId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[ProductID2]"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[ProductID2]" />
+                    <inputColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].Columns[binarychecksum]"
+                      cachedDataType="i4"
+                      cachedName="binarychecksum"
+                      externalMetadataColumnId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[binarychecksum]"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[binarychecksum]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[ProductGUID]"
+                      dataType="guid"
+                      name="ProductGUID" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="100"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[isActive]"
+                      dataType="wstr"
+                      length="1"
+                      name="isActive" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[isDemo]"
+                      dataType="bool"
+                      name="isDemo" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[ProductID1]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProductID1" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[ProductID2]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProductID2" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input].ExternalColumns[binarychecksum]"
+                      dataType="i4"
+                      name="binarychecksum" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Product Dimension\dimProduct_Stage.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Product Dimension\dimProduct_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\dimProduct_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Product Dimension\dimProduct_Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Product Dimension\Get Products and Attributes"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get Products and Attributes"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+select 
+ProductGUID = Product_GUID
+,Name=Cast(name as nvarchar(100))
+,isActive=cast(isActive as nvarchar(1))
+,isDemo
+,ProductID1=cast(ProductID1 as nvarchar(50))
+,ProductID2=cast(ProductID2 as nvarchar(50))
+,binarychecksum = binary_checksum(Product_GUID,Name,isActive,isDemo,ProductID1,ProductID2)
+from EDU_SEC.dbo.product a</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Product Dimension\Get Products and Attributes.Connections[OleDbConnection]"
+                  connectionManagerID="{7F963D66-08E2-4415-B78A-04DFB9685588}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[ProductGUID]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[ProductGUID]"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[ProductGUID]"
+                      name="ProductGUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      length="100"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[isActive]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[isActive]"
+                      length="1"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[isActive]"
+                      name="isActive"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[isDemo]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[isDemo]"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[isDemo]"
+                      name="isDemo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[ProductID1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[ProductID1]"
+                      length="50"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[ProductID1]"
+                      name="ProductID1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[ProductID2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[ProductID2]"
+                      length="50"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[ProductID2]"
+                      name="ProductID2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[binarychecksum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[binarychecksum]"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].Columns[binarychecksum]"
+                      name="binarychecksum"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[ProductGUID]"
+                      dataType="guid"
+                      name="ProductGUID" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="100"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[isActive]"
+                      dataType="wstr"
+                      length="1"
+                      name="isActive" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[isDemo]"
+                      dataType="bool"
+                      name="isDemo" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[ProductID1]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProductID1" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[ProductID2]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProductID2" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output].ExternalColumns[binarychecksum]"
+                      dataType="i4"
+                      name="binarychecksum" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[ProductGUID]"
+                      dataType="guid"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[ProductGUID]"
+                      name="ProductGUID" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[isActive]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[isActive]"
+                      name="isActive" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[isDemo]"
+                      dataType="bool"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[isDemo]"
+                      name="isDemo" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[ProductID1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[ProductID1]"
+                      name="ProductID1" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[ProductID2]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[ProductID2]"
+                      name="ProductID2" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[binarychecksum]"
+                      dataType="i4"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[binarychecksum]"
+                      name="binarychecksum" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stage Product Dimension.Paths[OLE DB Source Output]"
+              endId="Package\Stage Product Dimension\dimProduct_Stage.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Stage Product Dimension\Get Products and Attributes.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate dimProduct_Stage"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6F95FD39-4F4A-46C7-BD85-476F814D5DD0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate dimProduct_Stage"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dimProduct_Stage" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{383353D3-9C85-4769-A0BB-A9D9D99BD792}"
+      DTS:From="Package\Stage Product Dimension"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Push Product Dimension" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{CC7BAB73-9C7F-41CB-BD5A-0A4B6BDC6EE1}"
+      DTS:From="Package\Truncate dimProduct_Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Stage Product Dimension" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Push Product Dimension"
+          TopLeft="193,237" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Stage Product Dimension"
+          TopLeft="190,125" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Truncate dimProduct_Stage"
+          TopLeft="193,13" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="290,167">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70"
+              Start="0,0"
+              End="0,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="299,55">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.5,70"
+              Start="0,0"
+              End="-9.5,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31"
+                    Point2="0,35"
+                    Point3="-4,35" />
+                  <mssgle:LineSegment
+                    End="-5.5,35" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,35"
+                    Point2="-9.5,35"
+                    Point3="-9.5,39" />
+                  <mssgle:LineSegment
+                    End="-9.5,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Push Product Dimension">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="134,42"
+          Id="Package\Push Product Dimension\dimProduct"
+          TopLeft="101,236" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Push Product Dimension\Product Exist?"
+          TopLeft="215,125" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Push Product Dimension\Update Product (type 1)"
+          TopLeft="306,320" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Push Product Dimension\Changes?"
+          TopLeft="346,231" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Push Product Dimension\Retreive Products"
+          TopLeft="227,50" />
+        <EdgeLayout
+          Id="Package\Push Product Dimension.Paths[Lookup No Match Output]"
+          TopLeft="406.25,273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-54.80638671875,14.9453125,109.6127734375,9.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Push Product Dimension.Paths[Lookup Match Output]"
+          TopLeft="311.666666666667,167">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="97.3333333333334,64"
+              Start="0,0"
+              End="97.3333333333334,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.0134589502019" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.0134589502019"
+                    Point2="0,26.0134589502019"
+                    Point3="4,26.0134589502019" />
+                  <mssgle:LineSegment
+                    End="93.3333333333334,26.0134589502019" />
+                  <mssgle:CubicBezierSegment
+                    Point1="93.3333333333334,26.0134589502019"
+                    Point2="97.3333333333334,26.0134589502019"
+                    Point3="97.3333333333334,30.0134589502019" />
+                  <mssgle:LineSegment
+                    End="97.3333333333334,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="1.47527994791668,31.0134589502019,94.3827734375,9.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Push Product Dimension.Paths[OLE DB Source Output]"
+          TopLeft="309,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20.5,33"
+              Start="0,0"
+              End="-20.5,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.5"
+                    Point2="0,16.5"
+                    Point3="-4,16.5" />
+                  <mssgle:LineSegment
+                    End="-16.5,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16.5,16.5"
+                    Point2="-20.5,16.5"
+                    Point3="-20.5,20.5" />
+                  <mssgle:LineSegment
+                    End="-20.5,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Push Product Dimension.Paths[Lookup No Match Output1]"
+          TopLeft="288.5,167">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-120.5,69"
+              Start="0,0"
+              End="-120.5,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.5"
+                    Point2="0,34.5"
+                    Point3="-4,34.5" />
+                  <mssgle:LineSegment
+                    End="-116.5,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-116.5,34.5"
+                    Point2="-120.5,34.5"
+                    Point3="-120.5,38.5" />
+                  <mssgle:LineSegment
+                    End="-120.5,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-115.05638671875,39.5,109.6127734375,9.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Push Product Dimension\Product Exist?">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[dimProduct]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Push Product Dimension\Changes?">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[dimProduct]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Push Product Dimension\Retreive Products">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Push Product Dimension\dimProduct">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Stage Product Dimension">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="211,42"
+          Id="Package\Stage Product Dimension\Get Products and Attributes"
+          TopLeft="215,48" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Stage Product Dimension\dimProduct_Stage"
+          TopLeft="223,144" />
+        <EdgeLayout
+          Id="Package\Stage Product Dimension.Paths[OLE DB Source Output]"
+          TopLeft="320.5,90">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14,54"
+              Start="0,0"
+              End="-14,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23"
+                    Point2="0,27"
+                    Point3="-4,27" />
+                  <mssgle:LineSegment
+                    End="-10,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10,27"
+                    Point2="-14,27"
+                    Point3="-14,31" />
+                  <mssgle:LineSegment
+                    End="-14,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Product Dimension\dimProduct_Stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Product Dimension\Get Products and Attributes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

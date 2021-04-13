@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "DW", "DW\DW.dtproj", "{48105307-B024-4FC3-8252-D46389B9DD20}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "DW Core Dimensions", "DW Core Dimensions\DW Core Dimensions.dtproj", "{D605D16B-F4F0-4E76-86D8-80CCEB1997D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48105307-B024-4FC3-8252-D46389B9DD20}.Development|Default.ActiveCfg = Development
+		{48105307-B024-4FC3-8252-D46389B9DD20}.Development|Default.Build.0 = Development
+		{D605D16B-F4F0-4E76-86D8-80CCEB1997D4}.Development|Default.ActiveCfg = Development
+		{D605D16B-F4F0-4E76-86D8-80CCEB1997D4}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA2100D8-5D22-4333-99ED-9F49DE708034}
+	EndGlobalSection
+EndGlobal

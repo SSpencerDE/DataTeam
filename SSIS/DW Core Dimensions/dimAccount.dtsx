@@ -1,0 +1,879 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/19/2014 1:46:08 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MN-DE-WSQLJS-D1"
+  DTS:CreatorName="DATACENTER\tspagnoli"
+  DTS:DTSID="{939167AB-85CD-418F-9031-01F938FA69CA}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="dimAccount"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{0D3F3986-C8F1-4DEA-B03B-146D1C1D5550}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Perform type 2 logic via stored proc"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{f94d91e5-d0ba-4d2e-9808-68653efb772a}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Perform type 2 logic via stored proc"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+          SQLTask:SqlStatementSource="EXEC dbo.[usp_dimAccount_Type2SCD_Process]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stage Data from Production"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{10a76741-25f0-47a6-8a0a-3c45dc1a289b}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Data from Production"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stage Data from Production\Derived Column"
+              componentClassID="DTSTransform.DerivedColumn.3"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Stage Data from Production\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Stage Data from Production\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]"
+                      name="SourceSystem"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,3)"HUB"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,3)"HUB"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Stage Data from Production\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Data from Production\get accounts"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="get accounts"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">;with base as (
+select
+AccountGUID = a.ACCOUNT_GUID,
+AccountName = ISNULL(NULLIF(e.account,''),a.name),
+AccountCity = ISNULL(f.city,a.city),
+AccountRegion = ISNULL(left(f.state,2),c.REGION_CODE_ALPHA),
+AccountPostalCode = case ISNULL(LEFT(F.COUNTRY,2),LEFT(a.country_code,2)) when 'US' 
+                    then ISNULL(LEFT(F.POSTALCODE,5),left(a.Postal_code,5)) else ISNULL(F.POSTALCODE,a.postal_code) end,
+AccountCountryCode = ISNULL(LEFT(F.COUNTRY,2),LEFT(a.country_code,2)),
+AccountType = isnull(e.type,''),
+row_number() over (partition by ACCOUNT_GUID order by isnull(a.update_DT,a.create_DT) desc) as rn
+from 
+EDU_SEC.dbo.account a 
+left join EDU_SEC.dbo.SYSTEM_COUNTRY_REGION c on 
+a.REGION_CODE = c.REGION_CODE and 
+a.COUNTRY_CODE = c.COUNTRY_CODE
+left join EDU_SEC.dbo.entity_property_setting d on 
+a.ACCOUNT_GUID = d.ENTITY_GUID and
+d.entity_property_guid ='E93509F0-9C9B-4554-9C98-23E4361195A3'
+left join edu_sec_sales.dbo.account e on 
+d.value = e.ACCOUNTID
+left join edu_sec_sales.dbo.address f on 
+e.addressid = f.ADDRESSID
+)
+SELECT 
+AccountGUID,
+AccountName = cast(isnull(AccountName,'') as nvarchar(255)),
+AccountCity =  cast(isnull(AccountCity,'') as nvarchar(100)),
+AccountRegion =  cast(isnull(AccountRegion,'') as nvarchar(256)),
+AccountPostalCode =  cast(isnull(AccountPostalCode,'') as nvarchar(25)),
+AccountCountryCode =  cast(isnull(AccountCountryCode,'') as nvarchar(2)),
+AccountType =  cast(isnull(AccountType,'') as nvarchar(100)),
+binary_Checksum(AccountGUID,AccountName,AccountCity,AccountRegion,AccountPostalCode,AccountCountryCode,AccountType) as binaryChecksum
+FROM base
+where rn = 1</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Data from Production\get accounts.Connections[OleDbConnection]"
+                  connectionManagerID="{7F963D66-08E2-4415-B78A-04DFB9685588}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountGUID]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountGUID]"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountGUID]"
+                      name="AccountGUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountName]"
+                      length="255"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountName]"
+                      name="AccountName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountCity]"
+                      length="100"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountCity]"
+                      name="AccountCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountRegion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountRegion]"
+                      length="256"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountRegion]"
+                      name="AccountRegion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountPostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountPostalCode]"
+                      length="25"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountPostalCode]"
+                      name="AccountPostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountCountryCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountCountryCode]"
+                      length="2"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountCountryCode]"
+                      name="AccountCountryCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountType]"
+                      length="100"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountType]"
+                      name="AccountType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[binaryChecksum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[binaryChecksum]"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[binaryChecksum]"
+                      name="binaryChecksum"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountGUID]"
+                      dataType="guid"
+                      name="AccountGUID" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountName]"
+                      dataType="wstr"
+                      length="255"
+                      name="AccountName" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountCity]"
+                      dataType="wstr"
+                      length="100"
+                      name="AccountCity" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountRegion]"
+                      dataType="wstr"
+                      length="256"
+                      name="AccountRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountPostalCode]"
+                      dataType="wstr"
+                      length="25"
+                      name="AccountPostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountCountryCode]"
+                      dataType="wstr"
+                      length="2"
+                      name="AccountCountryCode" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[AccountType]"
+                      dataType="wstr"
+                      length="100"
+                      name="AccountType" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].ExternalColumns[binaryChecksum]"
+                      dataType="i4"
+                      name="binaryChecksum" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountGUID]"
+                      dataType="guid"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountGUID]"
+                      name="AccountGUID" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountName]"
+                      name="AccountName" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountCity]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountCity]"
+                      name="AccountCity" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountRegion]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountRegion]"
+                      name="AccountRegion" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountPostalCode]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountPostalCode]"
+                      name="AccountPostalCode" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountCountryCode]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountCountryCode]"
+                      name="AccountCountryCode" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountType]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[AccountType]"
+                      name="AccountType" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[binaryChecksum]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[binaryChecksum]"
+                      name="binaryChecksum" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Data from Production\stage accounts"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="stage accounts"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimAccount_Stage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Data from Production\stage accounts.Connections[OleDbConnection]"
+                  connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].Columns[AccountGUID]"
+                      cachedDataType="guid"
+                      cachedName="AccountGUID"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountGUID]"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountGUID]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].Columns[AccountName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AccountName"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountName]"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountName]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].Columns[AccountCity]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="AccountCity"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountCity]"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountCity]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].Columns[AccountRegion]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="AccountRegion"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountRegion]"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountRegion]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].Columns[AccountPostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="AccountPostalCode"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountPostalCode]"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountPostalCode]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].Columns[AccountCountryCode]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="AccountCountryCode"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountCountryCode]"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountCountryCode]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].Columns[AccountType]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="AccountType"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountType]"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[AccountType]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].Columns[binaryChecksum]"
+                      cachedDataType="i4"
+                      cachedName="binaryChecksum"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[binaryChecksum]"
+                      lineageId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output].Columns[binaryChecksum]" />
+                    <inputColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].Columns[SourceSystem]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="SourceSystem"
+                      externalMetadataColumnId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystem]"
+                      lineageId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountGUID]"
+                      dataType="guid"
+                      name="AccountGUID" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountName]"
+                      dataType="wstr"
+                      length="255"
+                      name="AccountName" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountCity]"
+                      dataType="wstr"
+                      length="100"
+                      name="AccountCity" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountRegion]"
+                      dataType="wstr"
+                      length="256"
+                      name="AccountRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountPostalCode]"
+                      dataType="wstr"
+                      length="25"
+                      name="AccountPostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountCountryCode]"
+                      dataType="wstr"
+                      length="2"
+                      name="AccountCountryCode" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[AccountType]"
+                      dataType="wstr"
+                      length="100"
+                      name="AccountType" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[binaryChecksum]"
+                      dataType="i4"
+                      name="binaryChecksum" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystem]"
+                      dataType="wstr"
+                      length="3"
+                      name="SourceSystem" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Data from Production\stage accounts.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Data from Production\stage accounts.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\stage accounts.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Data from Production\stage accounts.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Data from Production\stage accounts.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stage Data from Production.Paths[Derived Column Output]"
+              endId="Package\Stage Data from Production\stage accounts.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Stage Data from Production\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Stage Data from Production.Paths[OLE DB Source Output]"
+              endId="Package\Stage Data from Production\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Stage Data from Production\get accounts.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{e0245969-1b52-4c0e-b2f6-c36d95e728c9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dimAccount_Stage&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{d758587c-88f2-48c0-85cb-8da7d560c931}"
+      DTS:From="Package\Truncate Staging Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Stage Data from Production" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{04b40348-86f0-4526-8ebb-08bbc45df9d5}"
+      DTS:From="Package\Stage Data from Production"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Perform type 2 logic via stored proc" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="249,42"
+          Id="Package\Perform type 2 logic via stored proc"
+          TopLeft="70,224" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Stage Data from Production"
+          TopLeft="63,142" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Truncate Staging Table"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="155,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14,40"
+              Start="0,0"
+              End="14,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="4,20" />
+                  <mssgle:LineSegment
+                    End="10,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10,20"
+                    Point2="14,20"
+                    Point3="14,24" />
+                  <mssgle:LineSegment
+                    End="14,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="169,184">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25.5,40"
+              Start="0,0"
+              End="25.5,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="4,20" />
+                  <mssgle:LineSegment
+                    End="21.5,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.5,20"
+                    Point2="25.5,20"
+                    Point3="25.5,24" />
+                  <mssgle:LineSegment
+                    End="25.5,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="dimAccount Processing:&#xA;dimAccount is a Type 2 SCD &#xA;http://en.wikipedia.org/wiki/Slowly_changing_dimension&#xA;&#xA;So here we'll pull the data that has a changed or created date greater than the date of the last run&#xA;We'll compare binary_checksum's and if they differ, we'll mark the current row (iscurrent) as a 2, add &#xA;the new rows and then marks the 2's as 0's.  If we find any rows that were inferred by a process  (3) &#xA;we'll update those as a type 1 change and continue."
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="527,202"
+          Id="9d62994b-ef1b-4d76-98a8-e016af157cd5"
+          TopLeft="359,102" />
+        <AnnotationLayout
+          Text="This Package is deprecated and has been replaced by the dimAccount package in the DW project at SD\DW in Source Control -- related data structures in DW_STAGE have already&#xD;&#xA;been deleted in production&#xD;&#xA;"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="976,74"
+          Id="a267f04b-60ff-48f8-9b60-e55ec7f97aa5"
+          TopLeft="137,352" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Stage Data from Production">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Stage Data from Production\get accounts"
+          TopLeft="371,54" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Stage Data from Production\Derived Column"
+          TopLeft="367,145" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Stage Data from Production\stage accounts"
+          TopLeft="354,255" />
+        <EdgeLayout
+          Id="Package\Stage Data from Production.Paths[OLE DB Source Output]"
+          TopLeft="443,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Stage Data from Production.Paths[Derived Column Output]"
+          TopLeft="445,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16,68"
+              Start="0,0"
+              End="-16,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30"
+                    Point2="0,34"
+                    Point3="-4,34" />
+                  <mssgle:LineSegment
+                    End="-12,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12,34"
+                    Point2="-16,34"
+                    Point3="-16,38" />
+                  <mssgle:LineSegment
+                    End="-16,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Data from Production\get accounts">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Data from Production\stage accounts">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

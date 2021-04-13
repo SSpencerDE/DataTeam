@@ -1,0 +1,1141 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/6/2017 3:50:33 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="CHCL306944"
+  DTS:CreatorName="US\tgeer"
+  DTS:DTSID="{106FB614-88EB-412B-A1E1-F3AA91B09760}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="dimUser"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="81"
+  DTS:VersionGUID="{3C6151DF-60A0-4A0D-9896-BD0FDCD776EC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DFB13886-3B86-41D6-AFF6-BCE42B1D29AD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PartialRefresh">
+      <DTS:VariableValue
+        DTS:DataType="7">12:00:00 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FC55C447-C37D-4C9F-8AF5-C038A787982B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableToRefresh">
+      <DTS:VariableValue
+        DTS:DataType="8">dimUser</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Lookup the datetime value to use for refresh - if we are doing a full refresh this will be 1900 01 01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1B368BA5-BC91-4748-A7D3-7800C85292E9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Lookup the datetime value to use for refresh - if we are doing a full refresh this will be 1900 01 01"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6342CD49-AB69-471F-B80D-7854C9C3BFE5}"
+          SQLTask:SqlStatementSource="execute stage.GetRefreshStart ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="RefreshStart"
+            SQLTask:DtsVariableName="User::PartialRefresh" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::TableToRefresh"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process the staged data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EEB8375A-6E7B-4AC0-B9E7-7C996ECA9A2B}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process the staged data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6342CD49-AB69-471F-B80D-7854C9C3BFE5}"
+          SQLTask:SqlStatementSource="execute stage.ProcessDimUser" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\stage the data for dimSchool"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B32445F4-E219-4FFB-9422-1B6A5EA854DF}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="stage the data for dimSchool"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\stage the data for dimSchool\DW stage dimUser"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DW stage dimUser"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage].[dimUser]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\stage the data for dimSchool\DW stage dimUser.Connections[OleDbConnection]"
+                  connectionManagerID="{6342CD49-AB69-471F-B80D-7854C9C3BFE5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[SchoolGuid]"
+                      cachedDataType="guid"
+                      cachedName="SchoolGuid"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[SchoolGuid]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[SchoolGuid]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[AccountGuid]"
+                      cachedDataType="guid"
+                      cachedName="AccountGuid"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[AccountGuid]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[AccountGuid]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[LastModified]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastModified"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[LastModified]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[LastModified]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[IsDeleted]"
+                      cachedDataType="i4"
+                      cachedName="IsDeleted"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDeleted]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[UserGuid]"
+                      cachedDataType="guid"
+                      cachedName="UserGuid"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[UserGuid]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[UserGuid]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[UserTitle]"
+                      cachedDataType="wstr"
+                      cachedLength="400"
+                      cachedName="UserTitle"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[UserTitle]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[UserTitle]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[Grade]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Grade"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[Grade]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[Grade]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[GradeRange]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="GradeRange"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[GradeRange]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[GradeRange]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[RoleCode]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="RoleCode"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[RoleCode]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[RoleCode]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[RoleDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="RoleDescription"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[RoleDescription]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[RoleDescription]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[IsDenStar]"
+                      cachedDataType="bool"
+                      cachedName="IsDenStar"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsDenStar]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDenStar]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[ArchiveDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ArchiveDate"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[ArchiveDate]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[ArchiveDate]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[IsStudent]"
+                      cachedDataType="bool"
+                      cachedName="IsStudent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsStudent]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsStudent]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[IsTeacher]"
+                      cachedDataType="bool"
+                      cachedName="IsTeacher"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsTeacher]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsTeacher]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[IsDenCommunityMember]"
+                      cachedDataType="bool"
+                      cachedName="IsDenCommunityMember"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsDenCommunityMember]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDenCommunityMember]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[IsDenAmbassador]"
+                      cachedDataType="bool"
+                      cachedName="IsDenAmbassador"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsDenAmbassador]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDenAmbassador]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[IsDEEmployee]"
+                      cachedDataType="bool"
+                      cachedName="IsDEEmployee"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsDEEmployee]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDEEmployee]" />
+                    <inputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].Columns[ProfileCompletenessPercent]"
+                      cachedDataType="numeric"
+                      cachedName="ProfileCompletenessPercent"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[ProfileCompletenessPercent]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[ProfileCompletenessPercent]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[stageUserID]"
+                      dataType="i8"
+                      name="stageUserID" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[AccountGuid]"
+                      dataType="guid"
+                      name="AccountGuid" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[SchoolGuid]"
+                      dataType="guid"
+                      name="SchoolGuid" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[UserGuid]"
+                      dataType="guid"
+                      name="UserGuid" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[LastModified]"
+                      dataType="dbDate"
+                      name="LastModified" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[ArchiveDate]"
+                      dataType="dbDate"
+                      name="ArchiveDate" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="255"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[UserTitle]"
+                      dataType="wstr"
+                      length="400"
+                      name="UserTitle" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[Grade]"
+                      dataType="wstr"
+                      length="50"
+                      name="Grade" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[GradeRange]"
+                      dataType="wstr"
+                      length="4"
+                      name="GradeRange" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsStudent]"
+                      dataType="bool"
+                      name="IsStudent" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsTeacher]"
+                      dataType="bool"
+                      name="IsTeacher" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsDenStar]"
+                      dataType="bool"
+                      name="IsDenStar" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsDenCommunityMember]"
+                      dataType="bool"
+                      name="IsDenCommunityMember" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsDenAmbassador]"
+                      dataType="bool"
+                      name="IsDenAmbassador" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsDEEmployee]"
+                      dataType="bool"
+                      name="IsDEEmployee" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[ProfileCompletenessPercent]"
+                      dataType="numeric"
+                      name="ProfileCompletenessPercent"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[RoleDescription]"
+                      dataType="wstr"
+                      length="100"
+                      name="RoleDescription" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[RoleCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="RoleCode" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[UserKey]"
+                      dataType="i4"
+                      name="UserKey" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[AccountKey]"
+                      dataType="i4"
+                      name="AccountKey" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[SchoolKey]"
+                      dataType="i4"
+                      name="SchoolKey" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[UserName]"
+                      dataType="wstr"
+                      length="511"
+                      name="UserName" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[BinaryChecksum]"
+                      dataType="i4"
+                      name="BinaryChecksum" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input].ExternalColumns[IsOnHold]"
+                      dataType="bool"
+                      name="IsOnHold" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\stage the data for dimSchool\DW stage dimUser.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\stage the data for dimSchool\DW stage dimUser.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\DW stage dimUser.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\stage the data for dimSchool\DW stage dimUser.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\stage the data for dimSchool\get User data from etl GetUser"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="get User data from etl GetUser"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">execute etl.GetUser @PartialRefreshDatetime = ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@PartialRefreshDatetime:Input",{DFB13886-3B86-41D6-AFF6-BCE42B1D29AD};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\stage the data for dimSchool\get User data from etl GetUser.Connections[OleDbConnection]"
+                  connectionManagerID="{91A748AC-D8BA-48B0-8120-3ABC1677CA0F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EDU_SEC_ChangeTracking]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[SchoolGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[SchoolGuid]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[SchoolGuid]"
+                      name="SchoolGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[AccountGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[AccountGuid]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[AccountGuid]"
+                      name="AccountGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[LastModified]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[LastModified]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[LastModified]"
+                      name="LastModified"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                      name="IsDeleted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[UserGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[UserGuid]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[UserGuid]"
+                      name="UserGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      length="255"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      length="255"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[UserTitle]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[UserTitle]"
+                      length="400"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[UserTitle]"
+                      name="UserTitle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[Grade]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[Grade]"
+                      length="50"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[Grade]"
+                      name="Grade"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[GradeRange]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[GradeRange]"
+                      length="1"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[GradeRange]"
+                      name="GradeRange"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[RoleCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[RoleCode]"
+                      length="20"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[RoleCode]"
+                      name="RoleCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[RoleDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[RoleDescription]"
+                      length="100"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[RoleDescription]"
+                      name="RoleDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDenStar]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsDenStar]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDenStar]"
+                      name="IsDenStar"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[ArchiveDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[ArchiveDate]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[ArchiveDate]"
+                      name="ArchiveDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsStudent]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsStudent]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsStudent]"
+                      name="IsStudent"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsTeacher]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsTeacher]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsTeacher]"
+                      name="IsTeacher"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDenCommunityMember]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsDenCommunityMember]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDenCommunityMember]"
+                      name="IsDenCommunityMember"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDenAmbassador]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsDenAmbassador]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDenAmbassador]"
+                      name="IsDenAmbassador"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDEEmployee]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsDEEmployee]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[IsDEEmployee]"
+                      name="IsDEEmployee"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[ProfileCompletenessPercent]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[ProfileCompletenessPercent]"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].Columns[ProfileCompletenessPercent]"
+                      name="ProfileCompletenessPercent"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[SchoolGuid]"
+                      dataType="guid"
+                      name="SchoolGuid" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[AccountGuid]"
+                      dataType="guid"
+                      name="AccountGuid" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[LastModified]"
+                      dataType="dbTimeStamp"
+                      name="LastModified" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[UserGuid]"
+                      dataType="guid"
+                      name="UserGuid" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="255"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[UserTitle]"
+                      dataType="wstr"
+                      length="400"
+                      name="UserTitle" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[Grade]"
+                      dataType="wstr"
+                      length="50"
+                      name="Grade" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[GradeRange]"
+                      dataType="wstr"
+                      length="1"
+                      name="GradeRange" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[RoleCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="RoleCode" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[RoleDescription]"
+                      dataType="wstr"
+                      length="100"
+                      name="RoleDescription" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsDenStar]"
+                      dataType="bool"
+                      name="IsDenStar" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[ArchiveDate]"
+                      dataType="dbTimeStamp"
+                      name="ArchiveDate" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsStudent]"
+                      dataType="bool"
+                      name="IsStudent" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsTeacher]"
+                      dataType="bool"
+                      name="IsTeacher" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsDenCommunityMember]"
+                      dataType="bool"
+                      name="IsDenCommunityMember" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsDenAmbassador]"
+                      dataType="bool"
+                      name="IsDenAmbassador" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[IsDEEmployee]"
+                      dataType="bool"
+                      name="IsDEEmployee" />
+                    <externalMetadataColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output].ExternalColumns[ProfileCompletenessPercent]"
+                      dataType="numeric"
+                      name="ProfileCompletenessPercent"
+                      precision="9"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[SchoolGuid]"
+                      dataType="guid"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[SchoolGuid]"
+                      name="SchoolGuid" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[AccountGuid]"
+                      dataType="guid"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[AccountGuid]"
+                      name="AccountGuid" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[UserGuid]"
+                      dataType="guid"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[UserGuid]"
+                      name="UserGuid" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[ArchiveDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[ArchiveDate]"
+                      name="ArchiveDate" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[UserTitle]"
+                      dataType="wstr"
+                      length="400"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[UserTitle]"
+                      name="UserTitle" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[Grade]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[Grade]"
+                      name="Grade" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[GradeRange]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[GradeRange]"
+                      name="GradeRange" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[RoleCode]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[RoleCode]"
+                      name="RoleCode" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsStudent]"
+                      dataType="bool"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsStudent]"
+                      name="IsStudent" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsTeacher]"
+                      dataType="bool"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsTeacher]"
+                      name="IsTeacher" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[RoleDescription]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[RoleDescription]"
+                      name="RoleDescription" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsDenCommunityMember]"
+                      dataType="bool"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsDenCommunityMember]"
+                      name="IsDenCommunityMember" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsDenAmbassador]"
+                      dataType="bool"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsDenAmbassador]"
+                      name="IsDenAmbassador" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsDEEmployee]"
+                      dataType="bool"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsDEEmployee]"
+                      name="IsDEEmployee" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[ProfileCompletenessPercent]"
+                      dataType="numeric"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[ProfileCompletenessPercent]"
+                      name="ProfileCompletenessPercent"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsDenStar]"
+                      dataType="bool"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsDenStar]"
+                      name="IsDenStar" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[LastModified]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[LastModified]"
+                      name="LastModified" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                      name="IsDeleted" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\stage the data for dimSchool.Paths[OLE DB Source Output]"
+              endId="Package\stage the data for dimSchool\DW stage dimUser.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\stage the data for dimSchool\get User data from etl GetUser.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update the setting for LastRefresh"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{746073EE-D915-46AE-A6D4-8AFA640EBE17}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update the setting for LastRefresh"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6342CD49-AB69-471F-B80D-7854C9C3BFE5}"
+          SQLTask:SqlStatementSource="execute stage.SetPartialRefresh @TableToRefresh = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::TableToRefresh"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D931950D-A96B-4DD0-92D3-DD8F17B011F0}"
+      DTS:From="Package\stage the data for dimSchool"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Process the staged data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{AD90698F-EB0D-4ED5-88A1-9CB545BB343E}"
+      DTS:From="Package\Update the setting for LastRefresh"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\stage the data for dimSchool" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{D2E70134-DF02-4578-95A2-6E28860ADA13}"
+      DTS:From="Package\Lookup the datetime value to use for refresh - if we are doing a full refresh this will be 1900 01 01"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update the setting for LastRefresh" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="545,42"
+          Id="Package\Lookup the datetime value to use for refresh - if we are doing a full refresh this will be 1900 01 01"
+          TopLeft="67,151" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Process the staged data"
+          TopLeft="245,457" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\stage the data for dimSchool"
+          TopLeft="229,371" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\Update the setting for LastRefresh"
+          TopLeft="217,264" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="339.75,413">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="338,306">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65"
+              Start="0,0"
+              End="0,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="339,193">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\stage the data for dimSchool">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="226,42"
+          Id="Package\stage the data for dimSchool\get User data from etl GetUser"
+          TopLeft="154,62" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\stage the data for dimSchool\DW stage dimUser"
+          TopLeft="179,177" />
+        <EdgeLayout
+          Id="Package\stage the data for dimSchool.Paths[OLE DB Source Output]"
+          TopLeft="264.5,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\stage the data for dimSchool\get User data from etl GetUser">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\stage the data for dimSchool\DW stage dimUser">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

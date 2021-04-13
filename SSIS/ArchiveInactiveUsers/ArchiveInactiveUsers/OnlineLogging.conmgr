@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="OnlineLogging"
+  DTS:DTSID="{15E8DF08-8668-4E25-BA0A-26BC3940BE21}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=mn-de-wsql-l-d;Initial Catalog=OnlineLogging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Intent=READWRITE;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

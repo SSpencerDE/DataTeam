@@ -1,0 +1,2519 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/19/2013 11:25:55 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MN-DE-WSQLJS-D1"
+  DTS:CreatorName="DATACENTER\tspagnoli"
+  DTS:DTSID="{93FC4E16-15D3-478B-832D-FE431B8B13B8}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="dimAsset_deprecated"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{FEE355FD-D97F-4D0F-8DD7-4161A3D958DD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load CEP Data to staging"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{5F956479-0AAA-421B-A2BB-9BC1FB71DABD}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load CEP Data to staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DW_Scratch dbo cepAssetList"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  [GuidAssetId]
+      ,[Term of current contract]
+      ,[Program]
+      ,[Key Words]
+      ,[Asset Title]
+      ,[Asset type]
+      ,[Author/Owner]
+      ,[Distributor]
+      ,[Copyright]
+      ,[Subject]
+      ,cast([Grade Level] as nvarchar(7)) as [Grade Level]
+      ,[Asset URL]
+      ,[Asset URL 2]
+      ,[Thumbnail URL]
+      ,[Description]
+      ,[Notes]
+      ,[GUID (Videos only)]
+	  ,1 as [status]
+	  ,cast(null as nvarchar(max)) as vocabulary
+	  ,0 as userCreated
+	  ,1 as Prelogin
+	  ,0 as Deleted
+	  ,cast(substring(replace([Grade Level],'K','0'),1,CHARINDEX('-',[Grade Level]) - 1) as int) as minGradeLevel
+	  ,cast(substring(replace([Grade Level],'K','0'),CHARINDEX('-',[Grade Level])+1,2) as int) as maxGradeLevel
+	  ,cast(NULL as bit) as blnPrimary
+	  ,cast(NULL as bit) as blnStudentAccess
+	  ,cast(NULL as nvarchar(3)) as language_code
+	  ,cast(NULL as uniqueidentifier) as producer_id
+	  ,[Description] as title_description_child
+	  ,cast(0 as bit) as blnCanHaveChildren
+	  ,cast(NULL as nvarchar(50)) as strIconName
+	  ,cast(NULL as nvarchar(100)) as actionName
+	  ,cast(NULL as nvarchar(200)) as actionDisplayName
+	  ,[Asset type] as templateType
+	  ,cast(NULL as nvarchar(1000)) as concepts
+	  ,BINARY_CHECKSUM([Term of current contract],[Program],[Key Words],[Asset Title],[Asset type],[Author/Owner],[Distributor],[Copyright],[Subject],[Grade Level],[Asset URL],[Asset URL 2],[Thumbnail URL],[Description],[Notes],[GUID (Videos only)]) as binaryChecksum
+  FROM [DW_Scratch].[dbo].[cepAssetList]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Connections[OleDbConnection]"
+                  connectionManagerID="{CC19AA09-9B38-43CB-AC7C-7D8176F5E16B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[GuidAssetId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[GuidAssetId]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[GuidAssetId]"
+                      name="GuidAssetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Term of current contract]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Term of current contract]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Term of current contract]"
+                      name="Term of current contract"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Program]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Program]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Program]"
+                      name="Program"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Key Words]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Key Words]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Key Words]"
+                      name="Key Words"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Asset Title]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Asset Title]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Asset Title]"
+                      name="Asset Title"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Asset type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Asset type]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Asset type]"
+                      name="Asset type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Author/Owner]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Author/Owner]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Author/Owner]"
+                      name="Author/Owner"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Distributor]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Distributor]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Distributor]"
+                      name="Distributor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Copyright]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Copyright]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Copyright]"
+                      name="Copyright"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Subject]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Subject]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Subject]"
+                      name="Subject"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Grade Level]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Grade Level]"
+                      length="7"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Grade Level]"
+                      name="Grade Level"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Asset URL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Asset URL]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Asset URL]"
+                      name="Asset URL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Asset URL 2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Asset URL 2]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Asset URL 2]"
+                      name="Asset URL 2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Thumbnail URL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Thumbnail URL]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Thumbnail URL]"
+                      name="Thumbnail URL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Notes]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Notes]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Notes]"
+                      name="Notes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[GUID (Videos only)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[GUID (Videos only)]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[GUID (Videos only)]"
+                      name="GUID (Videos only)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[status]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[status]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[status]"
+                      name="status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[vocabulary]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[vocabulary]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[vocabulary]"
+                      name="vocabulary"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[userCreated]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[userCreated]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[userCreated]"
+                      name="userCreated"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Prelogin]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Prelogin]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Prelogin]"
+                      name="Prelogin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Deleted]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Deleted]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Deleted]"
+                      name="Deleted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[minGradeLevel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[minGradeLevel]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[minGradeLevel]"
+                      name="minGradeLevel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[maxGradeLevel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[maxGradeLevel]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[maxGradeLevel]"
+                      name="maxGradeLevel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[blnPrimary]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[blnPrimary]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[blnPrimary]"
+                      name="blnPrimary"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[blnStudentAccess]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[blnStudentAccess]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[blnStudentAccess]"
+                      name="blnStudentAccess"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[language_code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[language_code]"
+                      length="3"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[language_code]"
+                      name="language_code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[producer_id]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[producer_id]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[producer_id]"
+                      name="producer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[title_description_child]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[title_description_child]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[title_description_child]"
+                      name="title_description_child"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[blnCanHaveChildren]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[blnCanHaveChildren]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[blnCanHaveChildren]"
+                      name="blnCanHaveChildren"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[strIconName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[strIconName]"
+                      length="50"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[strIconName]"
+                      name="strIconName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[actionName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[actionName]"
+                      length="100"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[actionName]"
+                      name="actionName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[templateType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[templateType]"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[templateType]"
+                      name="templateType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[binaryChecksum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[binaryChecksum]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[binaryChecksum]"
+                      name="binaryChecksum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[actionDisplayName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[actionDisplayName]"
+                      length="200"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[actionDisplayName]"
+                      name="actionDisplayName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[concepts]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[concepts]"
+                      length="1000"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[concepts]"
+                      name="concepts"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[GuidAssetId]"
+                      dataType="guid"
+                      name="GuidAssetId" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Term of current contract]"
+                      dataType="dbTimeStamp"
+                      name="Term of current contract" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Program]"
+                      dataType="wstr"
+                      length="255"
+                      name="Program" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Key Words]"
+                      dataType="wstr"
+                      length="255"
+                      name="Key Words" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Asset Title]"
+                      dataType="wstr"
+                      length="255"
+                      name="Asset Title" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Asset type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Asset type" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Author/Owner]"
+                      dataType="wstr"
+                      length="255"
+                      name="Author/Owner" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Distributor]"
+                      dataType="wstr"
+                      length="255"
+                      name="Distributor" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Copyright]"
+                      dataType="r8"
+                      name="Copyright" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Subject]"
+                      dataType="wstr"
+                      length="255"
+                      name="Subject" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Grade Level]"
+                      dataType="wstr"
+                      length="7"
+                      name="Grade Level" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Asset URL]"
+                      dataType="wstr"
+                      length="255"
+                      name="Asset URL" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Asset URL 2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Asset URL 2" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Thumbnail URL]"
+                      dataType="wstr"
+                      length="255"
+                      name="Thumbnail URL" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="255"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Notes]"
+                      dataType="wstr"
+                      length="255"
+                      name="Notes" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[GUID (Videos only)]"
+                      dataType="wstr"
+                      length="255"
+                      name="GUID (Videos only)" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[status]"
+                      dataType="i4"
+                      name="status" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[vocabulary]"
+                      dataType="nText"
+                      name="vocabulary" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[userCreated]"
+                      dataType="i4"
+                      name="userCreated" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Prelogin]"
+                      dataType="i4"
+                      name="Prelogin" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[Deleted]"
+                      dataType="i4"
+                      name="Deleted" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[minGradeLevel]"
+                      dataType="i4"
+                      name="minGradeLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[maxGradeLevel]"
+                      dataType="i4"
+                      name="maxGradeLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[blnPrimary]"
+                      dataType="bool"
+                      name="blnPrimary" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[blnStudentAccess]"
+                      dataType="bool"
+                      name="blnStudentAccess" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[language_code]"
+                      dataType="wstr"
+                      length="3"
+                      name="language_code" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[producer_id]"
+                      dataType="guid"
+                      name="producer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[title_description_child]"
+                      dataType="wstr"
+                      length="255"
+                      name="title_description_child" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[blnCanHaveChildren]"
+                      dataType="bool"
+                      name="blnCanHaveChildren" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[strIconName]"
+                      dataType="wstr"
+                      length="50"
+                      name="strIconName" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[actionName]"
+                      dataType="wstr"
+                      length="100"
+                      name="actionName" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[templateType]"
+                      dataType="wstr"
+                      length="255"
+                      name="templateType" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[binaryChecksum]"
+                      dataType="i4"
+                      name="binaryChecksum" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[actionDisplayName]"
+                      dataType="wstr"
+                      length="200"
+                      name="actionDisplayName" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].ExternalColumns[concepts]"
+                      dataType="wstr"
+                      length="1000"
+                      name="concepts" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[GuidAssetId]"
+                      dataType="guid"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[GuidAssetId]"
+                      name="GuidAssetId" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Term of current contract]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Term of current contract]"
+                      name="Term of current contract" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Program]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Program]"
+                      name="Program" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Key Words]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Key Words]"
+                      name="Key Words" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Asset Title]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Asset Title]"
+                      name="Asset Title" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Asset type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Asset type]"
+                      name="Asset type" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Author/Owner]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Author/Owner]"
+                      name="Author/Owner" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Distributor]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Distributor]"
+                      name="Distributor" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Copyright]"
+                      dataType="r8"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Copyright]"
+                      name="Copyright" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Subject]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Subject]"
+                      name="Subject" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Grade Level]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Grade Level]"
+                      name="Grade Level" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Asset URL]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Asset URL]"
+                      name="Asset URL" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Asset URL 2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Asset URL 2]"
+                      name="Asset URL 2" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Thumbnail URL]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Thumbnail URL]"
+                      name="Thumbnail URL" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Notes]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Notes]"
+                      name="Notes" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[GUID (Videos only)]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[GUID (Videos only)]"
+                      name="GUID (Videos only)" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[status]"
+                      dataType="i4"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[status]"
+                      name="status" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[vocabulary]"
+                      dataType="nText"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[vocabulary]"
+                      name="vocabulary" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[userCreated]"
+                      dataType="i4"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[userCreated]"
+                      name="userCreated" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Prelogin]"
+                      dataType="i4"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Prelogin]"
+                      name="Prelogin" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Deleted]"
+                      dataType="i4"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[Deleted]"
+                      name="Deleted" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[minGradeLevel]"
+                      dataType="i4"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[minGradeLevel]"
+                      name="minGradeLevel" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[maxGradeLevel]"
+                      dataType="i4"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[maxGradeLevel]"
+                      name="maxGradeLevel" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[blnPrimary]"
+                      dataType="bool"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[blnPrimary]"
+                      name="blnPrimary" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[blnStudentAccess]"
+                      dataType="bool"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[blnStudentAccess]"
+                      name="blnStudentAccess" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[language_code]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[language_code]"
+                      name="language_code" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[producer_id]"
+                      dataType="guid"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[producer_id]"
+                      name="producer_id" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[title_description_child]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[title_description_child]"
+                      name="title_description_child" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[blnCanHaveChildren]"
+                      dataType="bool"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[blnCanHaveChildren]"
+                      name="blnCanHaveChildren" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[strIconName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[strIconName]"
+                      name="strIconName" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[actionName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[actionName]"
+                      name="actionName" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[actionDisplayName]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[actionDisplayName]"
+                      name="actionDisplayName" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[templateType]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[templateType]"
+                      name="templateType" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[concepts]"
+                      dataType="wstr"
+                      length="1000"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[concepts]"
+                      name="concepts" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[binaryChecksum]"
+                      dataType="i4"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[binaryChecksum]"
+                      name="binaryChecksum" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CEP Data to staging\OLE DB Destination"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimAsset_Stage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load CEP Data to staging\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GuidAssetId]"
+                      cachedDataType="guid"
+                      cachedName="GuidAssetId"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[guidAssetId]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[GuidAssetId]" />
+                    <inputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copyright]"
+                      cachedDataType="r8"
+                      cachedName="Copyright"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Copyright]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Copyright]" />
+                    <inputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[status]"
+                      cachedDataType="i4"
+                      cachedName="status"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[status]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[status]" />
+                    <inputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[userCreated]"
+                      cachedDataType="i4"
+                      cachedName="userCreated"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[userCreated]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[userCreated]" />
+                    <inputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[binaryChecksum]"
+                      cachedDataType="i4"
+                      cachedName="binaryChecksum"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[binaryChecksum]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[binaryChecksum]" />
+                    <inputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Asset type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Asset type"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssetType]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Asset type]" />
+                    <inputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Description"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[title_description]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Description]" />
+                    <inputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Asset Title]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Asset Title"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[title]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Asset Title]" />
+                    <inputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Key Words]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Key Words"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Keywords]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Key Words]" />
+                    <inputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Deleted]"
+                      cachedDataType="i4"
+                      cachedName="Deleted"
+                      externalMetadataColumnId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[isDeleted]"
+                      lineageId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output].Columns[Deleted]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[guidAssetId]"
+                      dataType="guid"
+                      name="guidAssetId" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssetType]"
+                      dataType="wstr"
+                      length="255"
+                      name="AssetType" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[title]"
+                      dataType="wstr"
+                      length="500"
+                      name="title" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[title_description]"
+                      dataType="nText"
+                      name="title_description" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Keywords]"
+                      dataType="wstr"
+                      length="2000"
+                      name="Keywords" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Copyright]"
+                      dataType="i4"
+                      name="Copyright" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[status]"
+                      dataType="i4"
+                      name="status" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[userCreated]"
+                      dataType="bool"
+                      name="userCreated" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[isDeleted]"
+                      dataType="i4"
+                      name="isDeleted" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[binaryChecksum]"
+                      dataType="i4"
+                      name="binaryChecksum" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="100"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssetGradeBit]"
+                      dataType="i4"
+                      name="AssetGradeBit" />
+                    <externalMetadataColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssetSubjectBit]"
+                      dataType="i4"
+                      name="AssetSubjectBit" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CEP Data to staging\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CEP Data to staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CEP Data to staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CEP Data to staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load CEP Data to staging.Paths[OLE DB Source Output]"
+              endId="Package\Load CEP Data to staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Perform type 1 logic via stored proc"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{9fdefd25-cfe6-4c8c-984d-204489382d21}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Perform type 1 logic via stored proc"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+          SQLTask:SqlStatementSource="EXEC dbo.usp_dimAsset_Type1_Process" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stage data from AllProductAsset"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5b63c1fc-9c54-47e2-bdf6-bea57000daa4}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage data from AllProductAsset"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stage data from AllProductAsset\AllProductAssets source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="AllProductAssets source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">declare @MaxCalendarKey int
+select @MaxCalendarKey = max(CalendarKey) from dw.dbo.dimCalendar
+
+;with assetGrades (AssetGuid, AssetGradeBit) as (
+	select 
+		aa.AssetGuid,
+		AssetGradeBit = sum(dAg.AssetGradeBit)
+		from 
+					AllProductAssets.dbo.AudienceAsset aa
+		left join	AllProductAssets.dbo.Audience au on aa.AudienceGuid = au.AudienceGuid
+		left join	dw.dbo.dimAssetGrade dAg on au.legacy_id = dAg.AssetGradeId
+		group by 
+			aa.AssetGuid
+),
+curves (lvl0Guid, lvl0Name, lvl1guid, lvl1name, rotatingguid) as (
+	select 
+		lvl0Guid = lvl0.guidtaxid,
+		lvl0Name = lvl0.Name,
+		lvl1Guid = lvl1.guidtaxid,
+		lvl1Name = lvl1.Name,
+		RotatingGuid = lvl1.guidtaxid
+		from 
+					AllProductAssets.dbo.tblTaxonomyTreeData lvl0
+			join	AllProductAssets.dbo.tblTaxonomyTreeData lvl1 on lvl0.guidtaxid = lvl1.guidParentId
+	where lvl0.intLevel = 0
+
+	union all
+
+	select 
+		lvl0Guid		= c.lvl0Guid,
+		lvl0Name		= c.lvl0Name,
+		lvl1Guid		= c.lvl1Guid,
+		lvl1Name		= c.lvl1Name,
+		RotatingGuid	= t.guidTaxId
+		from 
+					curves c
+			join	AllProductAssets.dbo.tblTaxonomyTreeData t on c.rotatingguid = t.guidParentId
+),
+/* create subject groups */
+assetSubjectGroups (guidTaxId, SubjectGroup) as (
+	select 
+		guidTaxID		= rotatingguid,
+		SubjectGroup	= case curves.lvl0Guid
+							when 'F8605638-6F30-4C05-90CF-485CEC9158EF' 
+								then 'Science'
+
+							when '2930086F-27B4-467E-A584-4629A11A618E' 
+								then 'Mathematics'
+
+							when '4E15C3C2-457C-404E-AA65-039D661A7CED' 
+								then replace(curves.lvl1name,'English Language Arts','English/Language Arts')
+
+							when '9DB55F15-E8EB-4561-9B74-502FD781A0AB' 
+								then 'Social Studies'
+
+							when '81196A5D-AE45-4F50-86F0-636D994D1FC0' 
+								then case 
+										when curves.lvl1guid != '5A15B784-98EE-4615-8FC4-2EAB63C81DE4' then curves.lvl1name
+										when curves.lvl1guid = '5A15B784-98EE-4615-8FC4-2EAB63C81DE4' then 'Visual and Performing Arts'
+										end
+
+							when '41597B98-D1C7-4142-90BF-660F35F5AF21' 
+								then case
+									when curves.lvl1guid = '62F0D3BF-4463-4AB3-B274-200216FAFC0F'
+										then 'Visual and Performing Arts'
+
+									when curves.lvl1guid in (	'616A559D-5346-474F-B1AD-24D7494B5F09',
+																'71DAAE7E-6651-4DD6-9BF7-62598B977F93',
+																'1F03C528-3534-11E4-9D73-F3245E297E11')
+										then 'World Languages'
+
+									when curves.lvl1guid in (	'0A444C86-8B2B-4129-A4B6-36AD13B43D86',
+																'40692D6A-5894-11E4-AA39-AA375E297E11')
+										then 'Social Studies'
+
+									when curves.lvl1guid = 'F98267C2-642A-4583-8F05-6F2C589DE8FC' 
+										then 'English/Language Arts' 
+
+									when curves.lvl1guid = '2DF6F7F8-63D9-4F4B-97B9-7B78F3F9A66B' 
+										then 'Visual and Performing Arts'
+
+									when curves.lvl1guid in (	'9A8D2EA9-A56B-4997-B7D4-C4784752EF8F',
+																'AC78D9CC-0701-428F-BF81-9ADA7A8C4AE9',
+																'F5974E55-1090-4CEE-B4E4-EB187115F026') 
+										then 'Careers/Work Place Skills'
+
+									when curves.lvl1guid in (	'B6C01845-C866-4B3F-A317-FDFED57EFF17',
+																'3A20DD0B-A2CD-4E16-AF8A-A904F604C781')
+										then 'Science'
+
+									when curves.lvl1guid = '07325986-547F-11E4-B9A8-B10D5E297E11'
+										then 'Mathematics'
+
+									when curves.lvl1guid = 'B97EF7C6-3DCC-11E4-933C-9F275E297E11'
+										then 'Health'
+
+									when curves.lvl1guid = 'A7AB911E-5085-11E4-AC96-D8385E297E11' 
+										then 'English/Language Arts'
+									end
+
+							when  '6AADC39C-BCC0-40BE-8546-97FD474EFE79'
+								then 'Science'
+
+							when  'FDB26C6A-43EA-4F18-A13F-80DC1A4FFD88'
+								then 'Science'
+
+							when '9EFF39DB-FC62-43B3-B312-C6F854B239CE' 
+								then case 
+									when curves.lvl1guid in (	'686422F0-82C3-4CAB-9104-79D9511C5B69',
+																'B021AC49-1A2C-4DAA-B2B8-A110BADF49DB') 
+										then 'Careers/Work Place Skills'
+										else curves.lvl1name
+									end
+
+							when '56735AAD-B6C3-4991-BDD9-CFD8CB472D8C' 
+								then 'Health'
+		end
+	from curves
+),
+/*retrieve asset Subject Bit */
+assetSubjectBits (AssetGuid, AssetSubjectBit) as (
+	select 
+		AssetGuid		= ti.guidAssetId, 
+		AssetSubjectBit	= sum(dAs.AssetSubjectBit)
+	from 
+					AllProductAssets.dbo.tblXREF_assetTaxonomyIndex ti
+		left join	assetSubjectGroups asG on ti.guidtaxid = asG.guidTaxId
+		left join	dw.dbo.dimAssetSubject dAs on asG.SubjectGroup = dAs.AssetSubjectGroup
+	group by 
+		ti.guidAssetId
+),
+/*retrieve all assets*/
+cteProducer as (
+	select 
+		pa.AssetGuid, 
+		p.Name, 
+		rn = row_number() over (partition by pa.assetguid order by pa.partnerGuid desc)
+		from		
+					AllProductAssets.dbo.PartnerAsset pa
+			join	AllProductAssets.dbo.[Partner] p on pa.PartnerGuid = p.PartnerGuid
+		where 
+			pa.PartnerRoleGuid = 'EB94271C-3D54-4159-960F-4DC58024A750'
+			-- What does this Guid Mean?
+),
+cteAsset (AssetGuid, AssetType, InternalAssetType, SubType, Category, Title, TitleDescription, Keywords, Copyright, CreateDate, [Status], UserCreated, AssetGradeBit, AssetSubjectBit, AssetProducer) as (
+	select
+		AssetGuid			= A.guidAssetId,
+		AssetType			= AT.strFriendlyAssetType,
+		InternalAssetType	= AT.strAssetTypeName,
+		SubType				= AST.name,
+		Category			= g.Name,
+		Title				= case AT.strFriendlyAssetType when 'Folder' then FAMD.title				else AMD.title end,
+		TitleDescription	= case AT.strFriendlyAssetType when 'Folder' then FAMD.title_description	else AMD.title_description end,
+		Keywords			= case AT.strFriendlyAssetType when 'Folder' then FAMD.Keywords				else AMD.Keywords end,
+		Copyright			= case AT.strFriendlyAssetType when 'Folder' then FAMD.Copyright			else AMD.Copyright end,
+		CreateDate			= case AT.strFriendlyAssetType when 'Folder' then FAMD.create_date			else AMD.create_date end,
+		[Status]			= case AT.strFriendlyAssetType when 'Folder' then FAMD.[Status]				else AMD.[Status] end,
+		UserCreated			= case AT.strFriendlyAssetType when 'Folder' then FAMD.UserCreated			else AMD.UserCreated end,
+		AssetGradeBit		= GRD.AssetGradeBit,
+		AssetSubjectBit		= SUB.AssetSubjectBit,
+		AssetProducer		= P.Name
+		from
+						AllProductAssets.dbo.tblAssets A
+			left join	AllProductAssets.dbo.tblAssetTypes AT				on A.guidAssetTypeId	= AT.guidAssetTypeId
+			left join	AllProductAssets.dbo.tblAssetSubType AST			on A.guidAssetSubTypeId	= AST.guidAssetSubTypeId
+			left join	AllProductAssets.dbo.tblAssetTypeGroupings ATG		on A.guidAssetTypeId	= ATG.guidAssetTypeId
+			left join	AllProductAssets.dbo.tblGroupings G					on ATG.GroupingId		= G.GroupingId
+			left join	AllProductAssets.dbo.tblAssetMetaData AMD			on A.guidAssetID		= AMD.guidAssetMetaDataId
+			left join	AllProductAssets.dbo.tblFolderAssetMetaData FAMD	on A.guidAssetID		= FAMD.guidAssetMetaDataId
+			left join	assetGrades GRD										on A.guidAssetId		= GRD.AssetGuid
+			left join	assetSubjectBits SUB								on A.guidAssetId		= SUB.AssetGuid
+			left join	cteProducer P
+						on	A.guidAssetId = P.AssetGuid 
+						and	P.rn = 1		
+),
+cteUnit (UnitGuid, CreateDate, AssetGradeBit, AssetSubjectBit, AssetProducer) as (
+	select 
+		UnitGuid		= A.AssetGuid,
+		CreateDate		= A.CreateDate,
+		AssetGradeBit	= A.AssetGradeBit,
+		AssetSubjectBit	= A.AssetSubjectBit,
+		AssetProducer	= A.AssetProducer
+		from 
+			cteAsset A
+		where 
+			A.AssetType = 'Techbook Unit'
+),
+cteConcept (AssetGuid, AssetType, InternalAssetType, SubType, Category, Title, TitleDescription, Keywords, Copyright, CreateDate, [Status], UserCreated, AssetGradeBit, AssetSubjectBit, AssetProducer) as (
+	--(guidAssetId, Category, AssetTitle, [Status], UserCreated, IsDeleted, AssetType, AssetGradeBit, AssetSubjectBit, CreatedCalendarKey, AssetProducer, IsSOSAsset, InternalAssetType, SubType) as (
+	select
+		AssetGuid			= TD.guidTaxId,
+		AssetType			= 'Concept',
+		InternalAssetType	= 'Concept',
+		SubType				= '',
+		Category			= 'Techbook Content',
+		Title				= TD.Name,
+		TitleDescription	= null,
+		Keywords			= null,
+		Copyright			= null,
+		CreateDate			= min(U.CreateDate),
+		[Status]			= 1,
+		UserCreated			= 0,
+		AssetGradeBit		= sum(distinct AG.AssetGradeBit),
+		AssetSubjectBit		= sum(distinct ASB.AssetSubjectBit),
+		AssetProducer		= min(U.AssetProducer)
+
+		from 
+					cteUnit U
+			join	allproductassets.dbo.tblxref_assettaxonomyindex ti on U.UnitGuid = ti.GuidAssetID			--on u.UnitGuid = ti.guidAssetId and ti.guidAssetRelationshipTypeId = '1446A6E0-A855-48C0-B5C2-8348D8B7523C'
+			join	allproductassets.dbo.tbltaxonomytreedata td on ti.guidtaxid = td.guidTaxId
+			-- Join back to units which use this concept to determine the Grade and Subject bit flags. Break out the bitflag and then recombine using sum(distinct)
+			left join	dw.dbo.dimAssetGrade AG on U.AssetGradeBit &amp; AG.AssetGradeBit = AG.AssetGradeBit
+			left join	dw.dbo.dimAssetSubject ASB on U.AssetSubjectBit &amp; ASB.AssetSubjectBit = ASB.AssetSubjectBit
+		where 
+				td.intLevel = 5
+			and ti.guidAssetRelationshipTypeId = '1446A6E0-A855-48C0-B5C2-8348D8B7523C'
+		group by
+			td.guidTaxID,
+			td.Name
+), 
+cteAll (AssetGuid, AssetType, InternalAssetType, SubType, Category, Title, TitleDescription, Keywords, Copyright, CreateDate, [Status], UserCreated, AssetGradeBit, AssetSubjectBit, AssetProducer) as (
+	select
+		AssetGuid, 
+		A.AssetType, 
+		InternalAssetType, 
+		SubType, 
+		Category = isnull(ACM.Category, A.Category), 
+		Title, 
+		TitleDescription, 
+		Keywords, 
+		Copyright, 
+		CreateDate, 
+		[Status], 
+		UserCreated, 
+		AssetGradeBit, 
+		AssetSubjectBit, 
+		AssetProducer
+		from 
+						cteAsset A
+			left join	dw_stage.dbo.AssetCategoryMapping ACM on A.AssetType = ACM.AssetType
+	union all
+	select
+		AssetGuid, 
+		C.AssetType, 
+		InternalAssetType, 
+		SubType, 
+		Category = isnull(ACM.Category, C.Category), 
+		Title, 
+		TitleDescription, 
+		Keywords, 
+		Copyright, 
+		CreateDate, 
+		[Status], 
+		UserCreated, 
+		AssetGradeBit, 
+		AssetSubjectBit, 
+		AssetProducer
+		from 
+						cteConcept C
+			left join	dw_stage.dbo.AssetCategoryMapping ACM on C.AssetType = ACM.AssetType
+),
+cteConverted (	guidAssetId, AssetType, Category, title, title_description, Keywords, Copyright, 
+				[status], userCreated, AssetGradeBit, AssetSubjectBit, isDeleted, createdCalendarKey, AssetProducer, InternalAssetType, subType) as (
+	select	
+		guidAssetId				= A.AssetGuid,
+		AssetType				= isnull(convert(nvarchar(255), A.AssetType), ''),
+		Category				= convert(nvarchar(100), A.Category),
+		title					= convert(nvarchar(500), A.Title),
+		title_description		= convert(nvarchar(max), A.TitleDescription),
+		Keywords				= convert(nvarchar(2000), A.Keywords),
+		Copyright				= A.Copyright,
+		[status]				= A.[Status],
+		userCreated				= A.UserCreated,
+		AssetGradeBit			= isnull(A.AssetGradeBit, 0),
+		AssetSubjectBit			= isnull(A.AssetSubjectBit, 0),
+		isDeleted				= 0,
+		createdCalendarKey		= case
+										when datediff(dd, '19991231', A.CreateDate) &gt; @MaxCalendarKey	then -1
+										when datediff(dd, '19991231', A.CreateDate) &lt; 1					then -2
+										when A.CreateDate is null										then -3
+										else datediff(dd, '19991231', A.CreateDate) 
+									end,
+		AssetProducer			= isnull(A.AssetProducer, ''),		
+		InternalAssetType		= isnull(A.InternalAssetType, ''),
+		subType					= isnull(A.SubType, '')
+		from
+			cteAll A
+)
+	select	
+		guidAssetId,
+		C.AssetType,
+		C.Category,
+		C.title,
+		C.title_description,
+		C.Keywords,
+		C.Copyright,
+		C.[status],
+		C.userCreated,
+		C.AssetGradeBit,
+		C.AssetSubjectBit,
+		C.isDeleted,
+		C.createdCalendarKey,
+		C.AssetProducer,
+		binaryChecksum = binary_checksum(
+										C.AssetType,
+										C.InternalAssetType,
+										C.subType,
+										C.Category,
+										C.title,
+										C.title_description,
+										C.Keywords,
+										C.Copyright,
+										C.[status],
+										C.userCreated,
+										C.AssetGradeBit,
+										C.AssetSubjectBit,
+										C.isDeleted,
+										C.createdCalendarKey,
+										C.AssetProducer
+										),
+		C.InternalAssetType,
+		C.subType
+	from 
+		cteConverted C</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage data from AllProductAsset\AllProductAssets source.Connections[OleDbConnection]"
+                  connectionManagerID="{7F963D66-08E2-4415-B78A-04DFB9685588}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[guidAssetId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[guidAssetId]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[guidAssetId]"
+                      name="guidAssetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[AssetType]"
+                      length="255"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetType]"
+                      name="AssetType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[title]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[title]"
+                      length="500"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[title]"
+                      name="title"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[title_description]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[title_description]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[title_description]"
+                      name="title_description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[Keywords]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[Keywords]"
+                      length="2000"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[Keywords]"
+                      name="Keywords"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[Copyright]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[Copyright]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[Copyright]"
+                      name="Copyright"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[status]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[status]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[status]"
+                      name="status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[userCreated]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[userCreated]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[userCreated]"
+                      name="userCreated"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[isDeleted]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[isDeleted]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[isDeleted]"
+                      name="isDeleted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[binaryChecksum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[binaryChecksum]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[binaryChecksum]"
+                      name="binaryChecksum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[Category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[Category]"
+                      length="100"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[Category]"
+                      name="Category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetGradeBit]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[AssetGradeBit]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetGradeBit]"
+                      name="AssetGradeBit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetSubjectBit]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[AssetSubjectBit]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetSubjectBit]"
+                      name="AssetSubjectBit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[createdCalendarKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[createdCalendarKey]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[createdCalendarKey]"
+                      name="createdCalendarKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetProducer]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[AssetProducer]"
+                      length="255"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetProducer]"
+                      name="AssetProducer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[InternalAssetType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[InternalAssetType]"
+                      length="255"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[InternalAssetType]"
+                      name="InternalAssetType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[subType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[subType]"
+                      length="50"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[subType]"
+                      name="subType"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[guidAssetId]"
+                      dataType="guid"
+                      name="guidAssetId" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[AssetType]"
+                      dataType="wstr"
+                      length="255"
+                      name="AssetType" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[title]"
+                      dataType="wstr"
+                      length="500"
+                      name="title" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[title_description]"
+                      dataType="nText"
+                      name="title_description" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[Keywords]"
+                      dataType="wstr"
+                      length="2000"
+                      name="Keywords" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[Copyright]"
+                      dataType="i4"
+                      name="Copyright" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[status]"
+                      dataType="i4"
+                      name="status" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[userCreated]"
+                      dataType="i4"
+                      name="userCreated" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[isDeleted]"
+                      dataType="i4"
+                      name="isDeleted" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[binaryChecksum]"
+                      dataType="i4"
+                      name="binaryChecksum" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="100"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[AssetGradeBit]"
+                      dataType="i4"
+                      name="AssetGradeBit" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[AssetSubjectBit]"
+                      dataType="i4"
+                      name="AssetSubjectBit" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[createdCalendarKey]"
+                      dataType="i4"
+                      name="createdCalendarKey" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[AssetProducer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="AssetProducer" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[InternalAssetType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="InternalAssetType" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].ExternalColumns[subType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="subType" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[guidAssetId]"
+                      dataType="guid"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[guidAssetId]"
+                      name="guidAssetId" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[AssetType]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[AssetType]"
+                      name="AssetType" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[Category]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[Category]"
+                      name="Category" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[title]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[title]"
+                      name="title" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[title_description]"
+                      dataType="nText"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[title_description]"
+                      name="title_description" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[Keywords]"
+                      dataType="wstr"
+                      length="2000"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[Keywords]"
+                      name="Keywords" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[Copyright]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[Copyright]"
+                      name="Copyright" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[status]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[status]"
+                      name="status" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[userCreated]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[userCreated]"
+                      name="userCreated" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[isDeleted]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[isDeleted]"
+                      name="isDeleted" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[AssetGradeBit]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[AssetGradeBit]"
+                      name="AssetGradeBit" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[AssetSubjectBit]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[AssetSubjectBit]"
+                      name="AssetSubjectBit" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[createdCalendarKey]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[createdCalendarKey]"
+                      name="createdCalendarKey" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[AssetProducer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[AssetProducer]"
+                      name="AssetProducer" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[binaryChecksum]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[binaryChecksum]"
+                      name="binaryChecksum" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[InternalAssetType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[InternalAssetType]"
+                      name="InternalAssetType" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[subType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[subType]"
+                      name="subType" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage data from AllProductAsset\Stage dimAsset"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Stage dimAsset"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimAsset_stage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage data from AllProductAsset\Stage dimAsset.Connections[OleDbConnection]"
+                  connectionManagerID="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[guidAssetId]"
+                      cachedDataType="guid"
+                      cachedName="guidAssetId"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[guidAssetId]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[guidAssetId]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[title]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="title"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[title]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[title]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[title_description]"
+                      cachedDataType="nText"
+                      cachedName="title_description"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[title_description]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[title_description]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[Keywords]"
+                      cachedDataType="wstr"
+                      cachedLength="2000"
+                      cachedName="Keywords"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Keywords]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[Keywords]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[Copyright]"
+                      cachedDataType="i4"
+                      cachedName="Copyright"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Copyright]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[Copyright]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[status]"
+                      cachedDataType="i4"
+                      cachedName="status"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[status]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[status]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[userCreated]"
+                      cachedDataType="bool"
+                      cachedName="userCreated"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[userCreated]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[userCreated]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[isDeleted]"
+                      cachedDataType="i4"
+                      cachedName="isDeleted"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[isDeleted]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[isDeleted]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[binaryChecksum]"
+                      cachedDataType="i4"
+                      cachedName="binaryChecksum"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[binaryChecksum]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[binaryChecksum]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[AssetType]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AssetType"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetType]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetType]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[AssetGradeBit]"
+                      cachedDataType="i4"
+                      cachedName="AssetGradeBit"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetGradeBit]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetGradeBit]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[AssetSubjectBit]"
+                      cachedDataType="i4"
+                      cachedName="AssetSubjectBit"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetSubjectBit]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetSubjectBit]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[Category]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Category"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[Category]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[createdCalendarKey]"
+                      cachedDataType="i4"
+                      cachedName="createdCalendarKey"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[createdCalendarKey]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[createdCalendarKey]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[AssetProducer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="AssetProducer"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetProducer]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[AssetProducer]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[subType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="subType"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[subType]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[subType]" />
+                    <inputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].Columns[InternalAssetType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="InternalAssetType"
+                      externalMetadataColumnId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[InternalAssetType]"
+                      lineageId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output].Columns[InternalAssetType]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[guidAssetId]"
+                      dataType="guid"
+                      name="guidAssetId" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[title]"
+                      dataType="wstr"
+                      length="500"
+                      name="title" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[title_description]"
+                      dataType="nText"
+                      name="title_description" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Keywords]"
+                      dataType="wstr"
+                      length="2000"
+                      name="Keywords" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Copyright]"
+                      dataType="i4"
+                      name="Copyright" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[status]"
+                      dataType="i4"
+                      name="status" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[userCreated]"
+                      dataType="bool"
+                      name="userCreated" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[isDeleted]"
+                      dataType="i4"
+                      name="isDeleted" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[binaryChecksum]"
+                      dataType="i4"
+                      name="binaryChecksum" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetType]"
+                      dataType="wstr"
+                      length="255"
+                      name="AssetType" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="100"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetGradeBit]"
+                      dataType="i4"
+                      name="AssetGradeBit" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetSubjectBit]"
+                      dataType="i4"
+                      name="AssetSubjectBit" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[createdCalendarKey]"
+                      dataType="i4"
+                      name="createdCalendarKey" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetProducer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="AssetProducer" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[subType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="subType" />
+                    <externalMetadataColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input].ExternalColumns[InternalAssetType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="InternalAssetType" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage data from AllProductAsset\Stage dimAsset.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\Stage dimAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage data from AllProductAsset\Stage dimAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage data from AllProductAsset\Stage dimAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stage data from AllProductAsset.Paths[OLE DB Source Output]"
+              endId="Package\Stage data from AllProductAsset\Stage dimAsset.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Stage data from AllProductAsset\AllProductAssets source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{300c7a0c-fb4c-488f-bb0b-1311252d31b1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC82E1D0-E66D-47EA-8157-BA47E3E68464}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dimAsset_Stage&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{BBF778C2-F263-4557-85ED-456EC566AEC7}"
+      DTS:From="Package\Truncate Staging Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Stage data from AllProductAsset" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{EDD00971-3F6E-49E4-A2E7-A33AB133ADA6}"
+      DTS:From="Package\Stage data from AllProductAsset"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load CEP Data to staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{2B383758-AE11-4278-A55A-23BF6A131B04}"
+      DTS:From="Package\Load CEP Data to staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Perform type 1 logic via stored proc" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Load CEP Data to staging"
+          TopLeft="413,231" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\Perform type 1 logic via stored proc"
+          TopLeft="401,319" />
+        <NodeLayout
+          Size="231,42"
+          Id="Package\Stage data from AllProductAsset"
+          TopLeft="408,146" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Truncate Staging Table"
+          TopLeft="406,68" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="501,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.5,36"
+              Start="0,0"
+              End="22.5,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="4,18" />
+                  <mssgle:LineSegment
+                    End="18.5,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,18"
+                    Point2="22.5,18"
+                    Point3="22.5,22" />
+                  <mssgle:LineSegment
+                    End="22.5,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="523.5,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10.5,43"
+              Start="0,0"
+              End="-10.5,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="-4,21.5" />
+                  <mssgle:LineSegment
+                    End="-6.5,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6.5,21.5"
+                    Point2="-10.5,21.5"
+                    Point3="-10.5,25.5" />
+                  <mssgle:LineSegment
+                    End="-10.5,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="513,273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12,46"
+              Start="0,0"
+              End="12,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="4,23" />
+                  <mssgle:LineSegment
+                    End="8,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8,23"
+                    Point2="12,23"
+                    Point3="12,27" />
+                  <mssgle:LineSegment
+                    End="12,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="this is information used by blackboards extract"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="256,53"
+          Id="b8cac75b-0984-49cf-bb17-3a27812d4a78"
+          TopLeft="640,237" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load CEP Data to staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Load CEP Data to staging\OLE DB Destination"
+          TopLeft="526,242" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList"
+          TopLeft="487,50" />
+        <EdgeLayout
+          Id="Package\Load CEP Data to staging.Paths[OLE DB Source Output]"
+          TopLeft="596.5,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.5,150"
+              Start="0,0"
+              End="15.5,142.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,71"
+                    Point2="0,75"
+                    Point3="4,75" />
+                  <mssgle:LineSegment
+                    End="11.5,75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.5,75"
+                    Point2="15.5,75"
+                    Point3="15.5,79" />
+                  <mssgle:LineSegment
+                    End="15.5,142.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load CEP Data to staging\DW_Scratch dbo cepAssetList">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load CEP Data to staging\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Stage data from AllProductAsset">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Stage data from AllProductAsset\Stage dimAsset"
+          TopLeft="413,191" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Stage data from AllProductAsset\AllProductAssets source"
+          TopLeft="413,80" />
+        <EdgeLayout
+          Id="Package\Stage data from AllProductAsset.Paths[OLE DB Source Output]"
+          TopLeft="508.5,122">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19.5,69"
+              Start="0,0"
+              End="-19.5,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.5"
+                    Point2="0,34.5"
+                    Point3="-4,34.5" />
+                  <mssgle:LineSegment
+                    End="-15.5,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.5,34.5"
+                    Point2="-19.5,34.5"
+                    Point3="-19.5,38.5" />
+                  <mssgle:LineSegment
+                    End="-19.5,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage data from AllProductAsset\AllProductAssets source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage data from AllProductAsset\Stage dimAsset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

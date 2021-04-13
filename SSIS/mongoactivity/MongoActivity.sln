@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "MongoActivity", "MongoActivity\MongoActivity.dtproj", "{D4C447A9-85A9-42B2-BDB1-0C165808D4F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4C447A9-85A9-42B2-BDB1-0C165808D4F4}.Development|Default.ActiveCfg = Development
+		{D4C447A9-85A9-42B2-BDB1-0C165808D4F4}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F42E4947-C2EF-4F6C-B2F4-42B5EC323407}
+	EndGlobalSection
+EndGlobal

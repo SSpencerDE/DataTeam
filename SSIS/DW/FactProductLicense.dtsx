@@ -1,0 +1,913 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/6/2017 3:50:33 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="CHCL306944"
+  DTS:CreatorName="US\tgeer"
+  DTS:DTSID="{713C4B22-823D-42D7-9095-38979315D163}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FactProductLicense"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{5CDEBA37-4F3F-40E8-BA80-CFAE76771708}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B0650D77-9D8C-49D1-81B4-782A7DCECA30}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ChangeVersion">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CC3125F2-A24E-4EBA-B2A8-9B93E4E40BF4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableToRefresh">
+      <DTS:VariableValue
+        DTS:DataType="8">FactProductLicense</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute stage ProcessFactProductLicense"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{10215D85-2CAE-402C-97C1-D103152B2B89}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute stage ProcessFactProductLicense"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6342CD49-AB69-471F-B80D-7854C9C3BFE5}"
+          SQLTask:SqlStatementSource="execute stage.ProcessFactProductLicense " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Product Licenses from EDU_SEC"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DD106098-6ABD-4136-BB14-077421398502}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Product Licenses from EDU_SEC"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="dw stage FactProductLicense"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage].[FactProductLicense]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Connections[OleDbConnection]"
+                  connectionManagerID="{6342CD49-AB69-471F-B80D-7854C9C3BFE5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[ProductLicenseGuid]"
+                      cachedDataType="guid"
+                      cachedName="ProductLicenseGuid"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[ProductLicenseGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ProductLicenseGuid]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[AccountGuid]"
+                      cachedDataType="guid"
+                      cachedName="AccountGuid"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[AccountGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[AccountGuid]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[SchoolGuid]"
+                      cachedDataType="guid"
+                      cachedName="SchoolGuid"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[SchoolGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[SchoolGuid]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[UserGuid]"
+                      cachedDataType="guid"
+                      cachedName="UserGuid"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[UserGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[UserGuid]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[ProductGuid]"
+                      cachedDataType="guid"
+                      cachedName="ProductGuid"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[ProductGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ProductGuid]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[StartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="StartDate"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[StartDate]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[StartDate]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[EndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="EndDate"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[EndDate]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[EndDate]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[CreateDate]"
+                      cachedDataType="dbDate"
+                      cachedName="CreateDate"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[CreateDate]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[UpdateDate]"
+                      cachedDataType="dbDate"
+                      cachedName="UpdateDate"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[UpdateDate]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[LicenseCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LicenseCode"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[LicenseCode]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[LicenseCode]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[LicenseGuid]"
+                      cachedDataType="guid"
+                      cachedName="LicenseGuid"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[LicenseGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[LicenseGuid]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[OpportunityNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="OpportunityNumber"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[OpportunityNumber]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[OpportunityNumber]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[ContractNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ContractNumber"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[ContractNumber]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ContractNumber]" />
+                    <inputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].Columns[ChangeVersion]"
+                      cachedDataType="i8"
+                      cachedName="ChangeVersion"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[ChangeVersion]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ChangeVersion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[StageID]"
+                      dataType="i8"
+                      name="StageID" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[ProductLicenseGuid]"
+                      dataType="guid"
+                      name="ProductLicenseGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[AccountGuid]"
+                      dataType="guid"
+                      name="AccountGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[SchoolGuid]"
+                      dataType="guid"
+                      name="SchoolGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[UserGuid]"
+                      dataType="guid"
+                      name="UserGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[ProductGuid]"
+                      dataType="guid"
+                      name="ProductGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[StartDate]"
+                      dataType="dbDate"
+                      name="StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[EndDate]"
+                      dataType="dbDate"
+                      name="EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
+                      dataType="dbDate"
+                      name="CreateDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
+                      dataType="dbDate"
+                      name="UpdateDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[LicenseCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="LicenseCode" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[LicenseGuid]"
+                      dataType="guid"
+                      name="LicenseGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[OpportunityNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="OpportunityNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[ContractNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="ContractNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[IsOnHold]"
+                      dataType="bool"
+                      name="IsOnHold" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[ChangeVersion]"
+                      dataType="i8"
+                      name="ChangeVersion" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[AccountKey]"
+                      dataType="i4"
+                      name="AccountKey" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[SchoolKey]"
+                      dataType="i4"
+                      name="SchoolKey" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[UserKey]"
+                      dataType="i8"
+                      name="UserKey" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[StartCalendarKey]"
+                      dataType="i4"
+                      name="StartCalendarKey" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[EndCalendarKey]"
+                      dataType="i4"
+                      name="EndCalendarKey" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[CreateCalendarKey]"
+                      dataType="i4"
+                      name="CreateCalendarKey" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[UpdateCalendarKey]"
+                      dataType="i4"
+                      name="UpdateCalendarKey" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input].ExternalColumns[EDU_SECChecksum]"
+                      dataType="i4"
+                      name="EDU_SECChecksum" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="edu_sec read etl GetProductLicense"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">execute etl.GetProductLicense 
+	@ChangeVersion = ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@ChangeVersion:Input",{B0650D77-9D8C-49D1-81B4-782A7DCECA30};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Connections[OleDbConnection]"
+                  connectionManagerID="{91A748AC-D8BA-48B0-8120-3ABC1677CA0F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EDU_SEC_ChangeTracking]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ProductLicenseGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[ProductLicenseGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ProductLicenseGuid]"
+                      name="ProductLicenseGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[AccountGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[AccountGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[AccountGuid]"
+                      name="AccountGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[SchoolGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[SchoolGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[SchoolGuid]"
+                      name="SchoolGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[UserGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[UserGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[UserGuid]"
+                      name="UserGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ProductGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[ProductGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ProductGuid]"
+                      name="ProductGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[StartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[StartDate]"
+                      name="StartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[EndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[EndDate]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[EndDate]"
+                      name="EndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[CreateDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[CreateDate]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[CreateDate]"
+                      name="CreateDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[UpdateDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[UpdateDate]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[UpdateDate]"
+                      name="UpdateDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[LicenseCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[LicenseCode]"
+                      length="255"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[LicenseCode]"
+                      name="LicenseCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[LicenseGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[LicenseGuid]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[LicenseGuid]"
+                      name="LicenseGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[OpportunityNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[OpportunityNumber]"
+                      length="50"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[OpportunityNumber]"
+                      name="OpportunityNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ContractNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[ContractNumber]"
+                      length="50"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ContractNumber]"
+                      name="ContractNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ChangeVersion]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[ChangeVersion]"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].Columns[ChangeVersion]"
+                      name="ChangeVersion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[ProductLicenseGuid]"
+                      dataType="guid"
+                      name="ProductLicenseGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[AccountGuid]"
+                      dataType="guid"
+                      name="AccountGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[SchoolGuid]"
+                      dataType="guid"
+                      name="SchoolGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[UserGuid]"
+                      dataType="guid"
+                      name="UserGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[ProductGuid]"
+                      dataType="guid"
+                      name="ProductGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
+                      dataType="dbDate"
+                      name="StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[EndDate]"
+                      dataType="dbDate"
+                      name="EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[CreateDate]"
+                      dataType="dbDate"
+                      name="CreateDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[UpdateDate]"
+                      dataType="dbDate"
+                      name="UpdateDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[LicenseCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="LicenseCode" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[LicenseGuid]"
+                      dataType="guid"
+                      name="LicenseGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[OpportunityNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="OpportunityNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[ContractNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="ContractNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output].ExternalColumns[ChangeVersion]"
+                      dataType="i8"
+                      name="ChangeVersion" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ProductLicenseGuid]"
+                      dataType="guid"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ProductLicenseGuid]"
+                      name="ProductLicenseGuid" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[AccountGuid]"
+                      dataType="guid"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[AccountGuid]"
+                      name="AccountGuid" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[SchoolGuid]"
+                      dataType="guid"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[SchoolGuid]"
+                      name="SchoolGuid" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[UserGuid]"
+                      dataType="guid"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[UserGuid]"
+                      name="UserGuid" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ProductGuid]"
+                      dataType="guid"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ProductGuid]"
+                      name="ProductGuid" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[StartDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[StartDate]"
+                      name="StartDate" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[EndDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[EndDate]"
+                      name="EndDate" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[CreateDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[CreateDate]"
+                      name="CreateDate" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[UpdateDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[UpdateDate]"
+                      name="UpdateDate" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[LicenseCode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[LicenseCode]"
+                      name="LicenseCode" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[LicenseGuid]"
+                      dataType="guid"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[LicenseGuid]"
+                      name="LicenseGuid" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[OpportunityNumber]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[OpportunityNumber]"
+                      name="OpportunityNumber" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ContractNumber]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ContractNumber]"
+                      name="ContractNumber" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ChangeVersion]"
+                      dataType="i8"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ChangeVersion]"
+                      name="ChangeVersion" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Product Licenses from EDU_SEC.Paths[OLE DB Source Output]"
+              endId="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get the Change Version from the DW Database"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5a94324a-06e2-4fc3-bee3-069d6f4cd9b9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get the Change Version from the DW Database"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6342CD49-AB69-471F-B80D-7854C9C3BFE5}"
+          SQLTask:SqlStatementSource="execute stage.GetRefreshStart&#xA;&#x9;@TableToRefresh = ?,&#xA;&#x9;@RefreshType = 'changeversion'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="ChangeVersion"
+            SQLTask:DtsVariableName="User::ChangeVersion" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::TableToRefresh"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FC213C14-D605-4BB9-AEC2-8E73D6C4D3F3}"
+      DTS:From="Package\Get the Change Version from the DW Database"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get Product Licenses from EDU_SEC" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{96EE1544-262C-4211-98F6-C58627C69AFD}"
+      DTS:From="Package\Get Product Licenses from EDU_SEC"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Execute stage ProcessFactProductLicense" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="274,42"
+          Id="Package\Execute stage ProcessFactProductLicense"
+          TopLeft="110,236" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\Get Product Licenses from EDU_SEC"
+          TopLeft="71,139" />
+        <NodeLayout
+          Size="302,42"
+          Id="Package\Get the Change Version from the DW Database"
+          TopLeft="48,45" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="197.5,87">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="196,181">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51,55"
+              Start="0,0"
+              End="51,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="4,27.5" />
+                  <mssgle:LineSegment
+                    End="47,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="47,27.5"
+                    Point2="51,27.5"
+                    Point3="51,31.5" />
+                  <mssgle:LineSegment
+                    End="51,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Get Product Licenses from EDU_SEC">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="247,42"
+          Id="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense"
+          TopLeft="188,46" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense"
+          TopLeft="198,164" />
+        <EdgeLayout
+          Id="Package\Get Product Licenses from EDU_SEC.Paths[OLE DB Source Output]"
+          TopLeft="308.5,88">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76"
+              Start="0,0"
+              End="0,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Product Licenses from EDU_SEC\dw stage FactProductLicense">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Product Licenses from EDU_SEC\edu_sec read etl GetProductLicense">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

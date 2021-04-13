@@ -1,0 +1,1735 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/13/2017 10:53:21 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="CHCL306944"
+  DTS:CreatorName="US\tgeer"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{1254F6F4-D4AD-4345-986B-F2538F372F4E}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="14.0.3002.113"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="AssetDeletionRequest"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="282"
+  DTS:VersionGUID="{73AA4A24-3272-4040-8343-24DF80ACB03D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{22CF9665-914E-4BD8-B32D-CC75C587C0DE}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::BatchSize_UsersForAssetRequest]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchSize_UsersForAssetRequest">
+      <DTS:VariableValue
+        DTS:DataType="3">10</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{573DEFF1-957A-4578-B673-61E801496410}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExecutionID">
+      <DTS:VariableValue
+        DTS:DataType="3">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C15031D0-BFBB-4BCF-B4E5-25AF91A112D1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ForEach_UserGuid">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{73D8F085-0FF7-47B7-A858-853E99F2FEBA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ProcessName">
+      <DTS:VariableValue
+        DTS:DataType="8">AssetDeletionRequest</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{836C2FD6-2555-4899-9911-D3225728849A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UCCCreatedSearchDate">
+      <DTS:VariableValue
+        DTS:DataType="7">1/1/2000</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5BA2BCD9-BC42-4025-AEB8-A628641DFA1F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UserRecordset">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Create A Table for Users to Search"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0AD2C386-0FD1-45EC-98E0-ACD181B178A6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create A Table for Users to Search"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{ADF7CC8B-FB23-4542-BD43-DEE57E6DEA47}"
+          SQLTask:SqlStatementSource="&#xA;&#x9;if object_id('dbo.UCC_User_Search') is not null drop table dbo.UCC_User_Search&#xA;go&#xA;&#xA;&#x9;create table dbo.UCC_User_Search (&#xA;&#x9;&#x9;UserGuid uniqueidentifier, &#xA;&#x9;&#x9;primary key (UserGuid)&#xA;&#x9;)&#xA;go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\End"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{25A1E68F-D7DE-42C1-A691-4B40D34B9105}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="End">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\End\Complete the Execution"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{43D22C19-87B5-4505-8698-B82FBE9D20BC}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Complete the Execution"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare @ExecutionID int = ? &#xA;execute process.CompleteExecution @ExecutionID = @ExecutionID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ExecutionID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\End\LOG - Ended"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7D30546D-08CD-484C-9366-0B35BB9DEB9E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOG - Ended"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare&#xA; @ExecutionID int = ?,&#xA; @LogType varchar(100) = 'Info',&#xA; @Message varchar(max) = 'Ended'&#xA;&#xA;execute process.WriteLog &#xA; @ExecutionID = @ExecutionID, &#xA; @LogType = @LogType, &#xA; @Message = @Message, &#xA; @Data = null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ExecutionID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Assets from AllProductAssets"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{04a94b8c-fb83-424e-8963-47f4c0407688}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Assets from AllProductAssets"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Assets from AllProductAssets\PII stage TempAsset"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PII stage TempAsset"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage].[TempAsset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Connections[OleDbConnection]"
+                  connectionManagerID="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[PII]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Inputs[OLE DB Destination Input].Columns[AssetGuid]"
+                      cachedDataType="guid"
+                      cachedName="AssetGuid"
+                      externalMetadataColumnId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetGuid]"
+                      lineageId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[AssetGuid]" />
+                    <inputColumn
+                      refId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Inputs[OLE DB Destination Input].Columns[UserGuid]"
+                      cachedDataType="guid"
+                      cachedName="UserGuid"
+                      externalMetadataColumnId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Inputs[OLE DB Destination Input].ExternalColumns[UserGuid]"
+                      lineageId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[UserGuid]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Inputs[OLE DB Destination Input].ExternalColumns[TempAssetID]"
+                      dataType="i4"
+                      name="TempAssetID" />
+                    <externalMetadataColumn
+                      refId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Inputs[OLE DB Destination Input].ExternalColumns[UserGuid]"
+                      dataType="guid"
+                      name="UserGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetGuid]"
+                      dataType="guid"
+                      name="AssetGuid" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Select Asset Guids from APA"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">declare
+	@UCCCreatedSearchDate date = ?
+	
+ select 
+	AssetGuid	= AMD.guidAssetMetaDataId,
+	UserGuid	= S.UserGuid
+	from
+				dbo.UCC_User_Search S
+		join	dbo.tblAssetMetaData AMD on S.UserGuid = AMD.created_by
+	where
+			AMD.userCreated = 1
+		and AMD.create_date &gt;= @UCCCreatedSearchDate</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0:Input",{836C2FD6-2555-4899-9911-D3225728849A};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Connections[OleDbConnection]"
+                  connectionManagerID="{E676CF0C-345B-41A1-9725-625F90347A64}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AllProductAssets]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                      lineageId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                      name="AssetGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[UserGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output].ExternalColumns[UserGuid]"
+                      lineageId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[UserGuid]"
+                      name="UserGuid"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                      dataType="guid"
+                      name="AssetGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output].ExternalColumns[UserGuid]"
+                      dataType="guid"
+                      name="UserGuid" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                      dataType="guid"
+                      lineageId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                      name="AssetGuid" />
+                    <outputColumn
+                      refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[UserGuid]"
+                      dataType="guid"
+                      lineageId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[UserGuid]"
+                      name="UserGuid" />
+                    <outputColumn
+                      refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Assets from AllProductAssets.Paths[OLE DB Source Output]"
+              endId="Package\Get Assets from AllProductAssets\PII stage TempAsset.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Assets from AllProductAssets\Select Asset Guids from APA.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get UCCCreatedSearchDate Setting"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A81765B8-C609-4D89-AED3-F773825E0073}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get UCCCreatedSearchDate Setting"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+          SQLTask:SqlStatementSource="&#xA;declare @SettingValue varchar(1000)&#xA;execute process.Get_Setting @SettingKey = 'UCCCreatedSearchDate', @SettingValue = @SettingValue out&#xA;select UCCCreatedSearchDate = convert(date, @SettingValue)"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="UCCCreatedSearchDate"
+            SQLTask:DtsVariableName="User::UCCCreatedSearchDate" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Users that were processed for TempUserStatusTransition"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6005f674-6232-4847-a713-4e9f99cb5140}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Users that were processed for TempUserStatusTransition"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PII stage TempUserStatusTransition"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage].[TempUserStatusTransition]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Connections[OleDbConnection]"
+                  connectionManagerID="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[PII]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Inputs[OLE DB Destination Input].Columns[UserGuid]"
+                      cachedDataType="guid"
+                      cachedName="UserGuid"
+                      externalMetadataColumnId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Inputs[OLE DB Destination Input].ExternalColumns[UserGuid]"
+                      lineageId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[UserGuid]" />
+                    <inputColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Inputs[OLE DB Destination Input].Columns[NewStatus]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="NewStatus"
+                      externalMetadataColumnId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Inputs[OLE DB Destination Input].ExternalColumns[NewStatus]"
+                      lineageId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[NewStatus]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Inputs[OLE DB Destination Input].ExternalColumns[TempUserStatusTransitionID]"
+                      dataType="i4"
+                      name="TempUserStatusTransitionID" />
+                    <externalMetadataColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Inputs[OLE DB Destination Input].ExternalColumns[UserGuid]"
+                      dataType="guid"
+                      name="UserGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Inputs[OLE DB Destination Input].ExternalColumns[NewStatus]"
+                      dataType="wstr"
+                      length="50"
+                      name="NewStatus" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Select Asset Guids from APA"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select 	
+	UserGuid	= S.UserGuid,
+	NewStatus	= N'Asset Deletion Requested'
+	from
+		dbo.UCC_User_Search S</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0:Input",{836C2FD6-2555-4899-9911-D3225728849A};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Connections[OleDbConnection]"
+                  connectionManagerID="{E676CF0C-345B-41A1-9725-625F90347A64}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AllProductAssets]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[UserGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output].ExternalColumns[UserGuid]"
+                      lineageId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[UserGuid]"
+                      name="UserGuid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[NewStatus]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output].ExternalColumns[NewStatus]"
+                      length="50"
+                      lineageId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output].Columns[NewStatus]"
+                      name="NewStatus"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output].ExternalColumns[UserGuid]"
+                      dataType="guid"
+                      name="UserGuid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output].ExternalColumns[NewStatus]"
+                      dataType="wstr"
+                      length="24"
+                      name="NewStatus" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[UserGuid]"
+                      dataType="guid"
+                      lineageId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[UserGuid]"
+                      name="UserGuid" />
+                    <outputColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[NewStatus]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[NewStatus]"
+                      name="NewStatus" />
+                    <outputColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Users that were processed for TempUserStatusTransition.Paths[OLE DB Source Output]"
+              endId="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process stage TempAsset"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8620DEAB-2B09-4F13-99F2-8B1264B28407}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process stage TempAsset"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+          SQLTask:SqlStatementSource="execute stage.ProcessTempAsset @ExecutionID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process User Status Update from Unrecoverably Deleted to Asset Deletion Requested"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A6C39F97-1C52-41FF-87AB-8FC2CA00001E}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process User Status Update from Unrecoverably Deleted to Asset Deletion Requested"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+          SQLTask:SqlStatementSource="execute stage.ProcessTempUserStatusTransition @ExecutionID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Push a user-list into a APA"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C07B78ED-3224-4239-9AD8-E0BED74C5D6D}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Push a user-list into a APA"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="APA Write dbo UCC_USER_SEARCH"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[UCC_User_Search]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Connections[OleDbConnection]"
+                  connectionManagerID="{ADF7CC8B-FB23-4542-BD43-DEE57E6DEA47}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AllProductAssets_WRITE]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Inputs[OLE DB Destination Input].Columns[UserGuid]"
+                      cachedDataType="guid"
+                      cachedName="UserGuid"
+                      externalMetadataColumnId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Inputs[OLE DB Destination Input].ExternalColumns[UserGuid]"
+                      lineageId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Output].Columns[UserGuid]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Inputs[OLE DB Destination Input].ExternalColumns[UserGuid]"
+                      dataType="guid"
+                      name="UserGuid" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get a batch of users to Request Asset Deletion"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">declare
+	@NumberOfUsers int = ?,
+	@Status nvarchar(50) = 'Unrecoverably Deleted'
+
+execute dbo.GetUsers @NumberOfUsers, @Status</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{22CF9665-914E-4BD8-B32D-CC75C587C0DE};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Connections[OleDbConnection]"
+                  connectionManagerID="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[PII]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Output].Columns[UserGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Output].ExternalColumns[UserGuid]"
+                      lineageId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Output].Columns[UserGuid]"
+                      name="UserGuid"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Output].ExternalColumns[UserGuid]"
+                      dataType="guid"
+                      name="UserGuid" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Error Output].Columns[UserGuid]"
+                      dataType="guid"
+                      lineageId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Error Output].Columns[UserGuid]"
+                      name="UserGuid" />
+                    <outputColumn
+                      refId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Push a user-list into a APA.Paths[OLE DB Source Output]"
+              endId="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{02E58BA7-901D-4679-B998-8E9D9247709A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Start\Create an Execution ID"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{326F66D9-A4B9-4EB9-9A1D-BF1C7F03FBA4}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create an Execution ID"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare &#xA; @ProcessName varchar(100) = ?,&#xA; @ExecutionID int&#xA;&#xA;execute process.CreateExecution&#xA; @ProcessName = @ProcessName,&#xA; @ExecutionID = @ExecutionID output&#xA;&#xA;select ExecutionID = @ExecutionID"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ExecutionID"
+                SQLTask:DtsVariableName="User::ExecutionID" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ProcessName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Start\LOG - Started"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{21FD5723-5B0A-472A-8F77-749A90758E94}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOG - Started"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare&#xA; @ExecutionID int = ?,&#xA; @LogType varchar(100) = 'Info',&#xA; @Message varchar(max) = 'Started'&#xA;&#xA;execute process.WriteLog &#xA; @ExecutionID = @ExecutionID, &#xA; @LogType = @LogType, &#xA; @Message = @Message, &#xA; @Data = null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ExecutionID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Start.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{201CBC19-0EC7-4895-ACB0-3BB18BF48FC2}"
+          DTS:From="Package\Start\Create an Execution ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Start\LOG - Started" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging Tables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0ECF37BF-B0D9-42A3-BDC3-6368D16EC17D}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging Tables"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+          SQLTask:SqlStatementSource="truncate table stage.tempuserstatustransition&#xA;truncate table stage.tempAsset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{88CBF5AA-3A29-4B06-AD05-F113E4FA3A4A}"
+      DTS:From="Package\Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Truncate Staging Tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D236BE47-6C28-44C4-BEBA-C26B805DAFFA}"
+      DTS:From="Package\Truncate Staging Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Get UCCCreatedSearchDate Setting" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{1EA88B60-8829-462D-84BB-E2BED9BD7151}"
+      DTS:From="Package\Get Users that were processed for TempUserStatusTransition"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Process stage TempAsset" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{0A4E8DFC-8C6E-4127-B8B9-D4AC67AF02C0}"
+      DTS:From="Package\Process stage TempAsset"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Process User Status Update from Unrecoverably Deleted to Asset Deletion Requested" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{4066A48A-0FD2-41F7-94AA-BE3635EF9143}"
+      DTS:From="Package\Process User Status Update from Unrecoverably Deleted to Asset Deletion Requested"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\End" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{B216D4CA-F049-4534-ADBF-210DAE4F0855}"
+      DTS:From="Package\Get UCCCreatedSearchDate Setting"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Create A Table for Users to Search" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{A3582D6A-614E-4C09-A6DE-A1B19FB304F9}"
+      DTS:From="Package\Create A Table for Users to Search"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Push a user-list into a APA" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{EA9A7EA1-15A4-4DFB-A4CA-61910EE6A816}"
+      DTS:From="Package\Push a user-list into a APA"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Get Assets from AllProductAssets" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{92AB91DE-6475-49BF-A157-D67CCC3B4A0B}"
+      DTS:From="Package\Get Assets from AllProductAssets"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Get Users that were processed for TempUserStatusTransition" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="242,42"
+          Id="Package\Create A Table for Users to Search"
+          TopLeft="896,20" />
+        <NodeLayout
+          Size="193.333333333334,42"
+          Id="Package\End\Complete the Execution"
+          TopLeft="20,17" />
+        <NodeLayout
+          Size="141.333333333334,42"
+          Id="Package\End\LOG - Ended"
+          TopLeft="27,87" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="254.666666666667,168"
+          Size="254.666666666667,210.666666666667"
+          Id="Package\End"
+          TopLeft="454,146" />
+        <NodeLayout
+          Size="234,42"
+          Id="Package\Get Assets from AllProductAssets"
+          TopLeft="847,206" />
+        <NodeLayout
+          Size="245.333333333334,42"
+          Id="Package\Get UCCCreatedSearchDate Setting"
+          TopLeft="594,21" />
+        <NodeLayout
+          Size="366.666666666667,42"
+          Id="Package\Get Users that were processed for TempUserStatusTransition"
+          TopLeft="842,301" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Process stage TempAsset"
+          TopLeft="928,426" />
+        <NodeLayout
+          Size="482,42"
+          Id="Package\Process User Status Update from Unrecoverably Deleted to Asset Deletion Requested"
+          TopLeft="391,433" />
+        <NodeLayout
+          Size="202.666666666667,42"
+          Id="Package\Push a user-list into a APA"
+          TopLeft="847,112" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Start\Create an Execution ID"
+          TopLeft="35,24" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Start\LOG - Started"
+          TopLeft="53,127" />
+        <EdgeLayout
+          Id="Package\Start.PrecedenceConstraints[Constraint]"
+          TopLeft="128,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="246,222.666666666667"
+          Size="246,266"
+          Id="Package\Start"
+          TopLeft="66,6" />
+        <NodeLayout
+          Size="193.333333333334,46.6666666666667"
+          Id="Package\Truncate Staging Tables"
+          TopLeft="349,18" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="312,139">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="37,-97.5"
+              Start="0,0"
+              End="29.5,-97.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="14.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.5,0"
+                    Point2="18.5,0"
+                    Point3="18.5,-4" />
+                  <mssgle:LineSegment
+                    End="18.5,-93.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,-93.5"
+                    Point2="18.5,-97.5"
+                    Point3="22.5,-97.5" />
+                  <mssgle:LineSegment
+                    End="29.5,-97.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="542,41.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52,0"
+              Start="0,0"
+              End="44.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="44.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="1026.75,343">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,83"
+              Start="0,0"
+              End="0,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="928,450.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-55,0"
+              Start="0,0"
+              End="-47.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-47.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="632,433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-50.5,-76"
+              Start="0,0"
+              End="-50.5,-68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-34"
+                    Point2="0,-38"
+                    Point3="-4,-38" />
+                  <mssgle:LineSegment
+                    End="-46.5,-38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-46.5,-38"
+                    Point2="-50.5,-38"
+                    Point3="-50.5,-42" />
+                  <mssgle:LineSegment
+                    End="-50.5,-68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="839,41.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57,0"
+              Start="0,0"
+              End="49.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="1017,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-68.5,50"
+              Start="0,0"
+              End="-68.5,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="-4,25" />
+                  <mssgle:LineSegment
+                    End="-64.5,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-64.5,25"
+                    Point2="-68.5,25"
+                    Point3="-68.5,29" />
+                  <mssgle:LineSegment
+                    End="-68.5,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="948.5,154">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.5,52"
+              Start="0,0"
+              End="15.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="4,26" />
+                  <mssgle:LineSegment
+                    End="11.5,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.5,26"
+                    Point2="15.5,26"
+                    Point3="15.5,30" />
+                  <mssgle:LineSegment
+                    End="15.5,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="964,248">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61.5,53"
+              Start="0,0"
+              End="61.5,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.5"
+                    Point2="0,26.5"
+                    Point3="4,26.5" />
+                  <mssgle:LineSegment
+                    End="57.5,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="57.5,26.5"
+                    Point2="61.5,26.5"
+                    Point3="61.5,30.5" />
+                  <mssgle:LineSegment
+                    End="61.5,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Get Assets from AllProductAssets">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="214,42"
+          Id="Package\Get Assets from AllProductAssets\Select Asset Guids from APA"
+          TopLeft="201.666666666667,62.3333333333333" />
+        <NodeLayout
+          Size="178.666666666667,42"
+          Id="Package\Get Assets from AllProductAssets\PII stage TempAsset"
+          TopLeft="213.5,173.5" />
+        <EdgeLayout
+          Id="Package\Get Assets from AllProductAssets.Paths[OLE DB Source Output]"
+          TopLeft="305.75,104.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69.1666666666667"
+              Start="0,0"
+              End="0,61.6666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.6666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Assets from AllProductAssets\Select Asset Guids from APA">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Get Users that were processed for TempUserStatusTransition">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="214,42"
+          Id="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA"
+          TopLeft="199,63" />
+        <NodeLayout
+          Size="252,42.6666666666667"
+          Id="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition"
+          TopLeft="185.333333333333,175.666666666667" />
+        <EdgeLayout
+          Id="Package\Get Users that were processed for TempUserStatusTransition.Paths[OLE DB Source Output]"
+          TopLeft="308.666666666667,105">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70.6666666666667"
+              Start="0,0"
+              End="0,63.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Users that were processed for TempUserStatusTransition\PII stage TempUserStatusTransition">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Users that were processed for TempUserStatusTransition\Select Asset Guids from APA">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Push a user-list into a APA">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="261.333333333334,42.6666666666667"
+          Id="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH"
+          TopLeft="125.166666083038,170.087719281074" />
+        <NodeLayout
+          Size="301.333333333334,42.6666666666667"
+          Id="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion"
+          TopLeft="104.58333266899,58.6315789216113" />
+        <EdgeLayout
+          Id="Package\Push a user-list into a APA.Paths[OLE DB Source Output]"
+          TopLeft="255.541666042681,101.298245588278">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68.7894736927963"
+              Start="0,0"
+              End="0,61.2894736927963">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.2894736927963" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Push a user-list into a APA\APA Write dbo UCC_USER_SEARCH">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Push a user-list into a APA\Get a batch of users to Request Asset Deletion">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

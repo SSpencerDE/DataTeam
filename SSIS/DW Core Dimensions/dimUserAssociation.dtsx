@@ -1,0 +1,161 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/20/2013 8:55:58 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MN-DE-WSQL-P3"
+  DTS:CreatorName="DATACENTER\mtassin"
+  DTS:DTSID="{A46AE0D8-0784-4A1B-B86E-181A3AB2A694}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="dimUserAssociation"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{AD6DDC06-C91A-4585-AF19-408D0D37788A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A6B1EBA9-8183-4416-B89B-6BF235882B12}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::DaysBack]&lt;0? (DT_DBTIMESTAMP)&quot;2000-01-01 00:00:00&quot;: DATEADD( &quot;dd&quot;, - @[$Project::DaysBack] , (  DT_DBTIMESTAMP) (DT_DBDATE) GETDATE() )"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CalculatedDateFrom">
+      <DTS:VariableValue
+        DTS:DataType="7">12/10/2016</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8235ABC6-B2E5-416C-85F0-1BCCC5A1A470}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dayToFullPull">
+      <DTS:VariableValue
+        DTS:DataType="3">2</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{906A364C-CA6C-42BE-AE66-1172BF88A6EF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Deleted">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A5494242-09AD-4926-8666-288BEC63DD96}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="endDate">
+      <DTS:VariableValue
+        DTS:DataType="7">1/20/2016 3:14:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8D59C04D-4ED5-4DFA-925D-9E20A6AED80D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Inserted">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2778AAD9-2828-4786-85DB-2E411A0B26C4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="processingDuration">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{17587BAA-9EE2-4E94-AC71-FE51423CB588}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Pulled">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CFDB6FC8-543D-4462-B27C-ADAF37658B04}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sourceTable">
+      <DTS:VariableValue
+        DTS:DataType="8">EduSec.app_user</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{538E53B5-9B0A-4B3C-9546-8BB2D6702486}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="startDate">
+      <DTS:VariableValue
+        DTS:DataType="7">1/20/2016 3:14:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A30B1991-4F07-402C-BFCB-9D0EC8AD22E0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Updated">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{808251DA-2628-455A-98D6-A8A18D2E7232}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vSourceQuery">
+      <DTS:VariableValue
+        DTS:DataType="8">SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED  declare @date datetime = getdate()   select 	 a.APP_USER_GUID 	,First_Name 	,Last_name 	,a.create_dt 	,a.update_dt 	,Title = isnull(a.TITLE,'') 	,grade = isnull(b.grade,'') 	,RoleDescription = c.Description 	,RoleCode = c.Code 	,isDenStar = cast(case when f.ROLE_GUID is null then 0 else 1 end as bit) 	,b.ESL 	,b.ETHNICITY 	,b.FRL 	,b.GENDER 	,b.PSCORE 	,b.RACE 	,b.SPECIAL_ED 	,binaryChecksum = binary_checksum(First_Name,Last_name,a.create_dt,a.update_dt,a.TITLE,b.grade,c.Description,c.Code,f.ROLE_GUID,b.GRADE,b.ESL,b.ETHNICITY,b.FRL,b.GENDER,b.PSCORE,b.RACE,b.SPECIAL_ED) 	,@date as PullDate, 0 as isDeleted  from EDU_SEC.dbo.app_user a   LEFT join EDU_SEC.dbo.app_user_ext b on a.APP_USER_GUID = b.APP_USER_GUID  left join ( 	select c.app_user_guid, d.description, d.code, rn = ROW_NUMBER() over(partition by c.app_user_guid order by c.create_dt desc)  	from EDU_SEC.dbo.user_role c  	join EDU_SEC.dbo.role d on c.ROLE_GUID = d.role_guid  and d.isExclusive = 1 	) c on a.app_user_guid = c.APP_USER_GUID and c.rn = 1 left join (EDU_SEC.dbo.user_role e join EDU_SEC.dbo.role f on e.role_guid = f.role_guid and f.code LIKE 'DENSTAR') on a.app_user_guid = e.APP_USER_GUID where 1 = 1</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Push to ODS"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0068618C-3F7C-404C-BCD7-B9E831C4EEB0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Push to ODS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CC19AA09-9B38-43CB-AC7C-7D8176F5E16B}"
+          SQLTask:SqlStatementSource=";with cteUserAssociation (UserKey, SchoolKey, AccountKey) as (&#xA;&#x9;select &#xA;&#x9;&#x9;U.UserKey,&#xA;&#x9;&#x9;S.SchoolKey,&#xA;&#x9;&#x9;S.AccountKey&#xA;&#x9;&#x9;from dbo.dimUser U&#xA;&#x9;&#x9;&#x9;left join edu_sec.dbo.APP_USER AU on U.UserGuid = AU.APP_USER_GUID&#xA;&#x9;&#x9;&#x9;left join dbo.dimSchool S on AU.SITE_GUID = S.SchoolGuid&#xA;&#x9;)&#xA;&#xA;&#x9;merge dbo.dimUserAssociation as target&#xA;&#x9;&#x9;using cteUserAssociation as source&#xA;&#x9;&#x9;&#x9;on target.UserKey = source.UserKey&#xA;&#x9;&#x9;when not matched by target then&#xA;&#x9;&#x9;&#x9;insert &#xA;&#x9;&#x9;&#x9;&#x9;(UserKey, SchoolKey, AccountKey)&#xA;&#x9;&#x9;&#x9;values &#xA;&#x9;&#x9;&#x9;&#x9;(source.UserKey, source.SchoolKey, source.AccountKey)&#xA;&#x9;&#x9;when matched and (isnull(target.SchoolKey, -100) != isnull(source.SchoolKey, -100) or isnull(target.AccountKey, -100) != isnull(source.AccountKey, -100)) then&#xA;&#x9;&#x9;&#x9;update &#xA;&#x9;&#x9;&#x9;&#x9;set &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;target.SchoolKey = source.SchoolKey,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;target.AccountKey = source.AccountKey&#xA;&#x9;&#x9;when not matched by source then&#xA;&#x9;&#x9;&#x9;delete&#xA;&#x9;&#x9;&#x9;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Push to ODS"
+          TopLeft="55,39" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

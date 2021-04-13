@@ -1,0 +1,1393 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/13/2017 10:53:21 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="CHCL306944"
+  DTS:CreatorName="US\tgeer"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{0248A0B3-859C-4EFF-8D40-26B2320E0855}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="14.0.0800.60"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FileDeletionRequest"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="305"
+  DTS:VersionGUID="{297C2363-595C-49FB-88C3-E4BE7783202A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4FA13BA6-D591-45DE-B2DB-92583A0FA02F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AssetRecordset">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{263BC1B7-0E43-4D1F-9492-918BD02CDDC9}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::BatchSize_AssetsForFileDeletionRequest]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchSize_AssetsForFileDeletionRequest">
+      <DTS:VariableValue
+        DTS:DataType="3">10</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4BE2349F-4C01-4C48-B5C8-F4A6179D4E32}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExecutionID">
+      <DTS:VariableValue
+        DTS:DataType="3">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BA9B2DD8-55D4-4E50-8DEE-743F41230A8C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ForEach_AssetGuid">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7915F0DA-9E18-4FF7-813D-D1CEFC3AEB83}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ProcessName">
+      <DTS:VariableValue
+        DTS:DataType="8">FileDeletionRequest</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\End"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{6B7393B7-B49C-42D1-BCCE-A3186A4A3AA1}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="End">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\End\Complete the Execution"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{16476CE4-9A2E-4CFA-9E4E-B821A04F3334}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Complete the Execution"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare @ExecutionID int = ? &#xA;execute process.CompleteExecution @ExecutionID = @ExecutionID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ExecutionID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\End\LOG - Ended"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{493D2376-B651-4D1A-AEDA-96E2B7EB4D64}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOG - Ended"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare&#xA; @ExecutionID int = ?,&#xA; @LogType varchar(100) = 'Info',&#xA; @Message varchar(max) = 'Ended'&#xA;&#xA;execute process.WriteLog &#xA; @ExecutionID = @ExecutionID, &#xA; @LogType = @LogType, &#xA; @Message = @Message, &#xA; @Data = null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ExecutionID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Each Asset Found"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{2A99B678-0F34-421D-B4EC-F019A4D89236}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="For Each Asset Found">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+        DTS:DTSID="{1662118F-BB82-474C-811F-AA1AD58750B4}"
+        DTS:ObjectName="{1662118F-BB82-474C-811F-AA1AD58750B4}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::AssetRecordset" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Each Asset Found\Get all Files associated with the asset"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{0D994FE6-091E-4E86-B426-C87C1216D39C}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get all Files associated with the asset"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset"
+                  componentClassID="DTSAdapter.OLEDBSource.3"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Read from APA all Files associated with the asset"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">declare
+	@AssetGuid	uniqueidentifier = ?
+
+
+select 	
+	AssetGuid		= @AssetGuid,
+	FileGuid		= MF.guidAssetMediaFileId,
+	FileTypeName	= N'MediaFile',
+	[Path]			= convert(nvarchar(400), MF.strFilePath),
+	[Name]			= convert(nvarchar(255), MF.strFileName)
+	from	dbo.tblAssetMediaFiles MF
+	where	MF.guidAssetId = @AssetGuid
+	
+union all
+
+select
+	AssetGuid		= @AssetGuid,
+	FileGuid		= T.THUMBNAIL_GUID,
+	FileTypeName	= N'Thumbnail',
+	[Path]			= convert(nvarchar(400), T.FILE_PATH),
+	[Name]			= convert(nvarchar(255), T.[FILE_NAME])
+	from	dbo.THUMBNAIL T
+	where	T.ASSET_TAX_GUID = @AssetGuid</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{BA9B2DD8-55D4-4E50-8DEE-743F41230A8C};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Connections[OleDbConnection]"
+                      connectionManagerID="{E676CF0C-345B-41A1-9725-625F90347A64}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[AllProductAssets]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                          name="AssetGuid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[FileGuid]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].ExternalColumns[FileGuid]"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[FileGuid]"
+                          name="FileGuid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[FileTypeName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].ExternalColumns[FileTypeName]"
+                          length="9"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[FileTypeName]"
+                          name="FileTypeName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[Path]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].ExternalColumns[Path]"
+                          length="400"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[Path]"
+                          name="Path"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="255"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                          dataType="guid"
+                          name="AssetGuid" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].ExternalColumns[FileGuid]"
+                          dataType="guid"
+                          name="FileGuid" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].ExternalColumns[FileTypeName]"
+                          dataType="wstr"
+                          length="9"
+                          name="FileTypeName" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].ExternalColumns[Path]"
+                          dataType="wstr"
+                          length="400"
+                          name="Path" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Name" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                          dataType="guid"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                          name="AssetGuid" />
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[FileGuid]"
+                          dataType="guid"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[FileGuid]"
+                          name="FileGuid" />
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[FileTypeName]"
+                          dataType="wstr"
+                          length="9"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[FileTypeName]"
+                          name="FileTypeName" />
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[Path]"
+                          dataType="wstr"
+                          length="400"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[Path]"
+                          name="Path" />
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="stage Temp File"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[stage].[TempFile]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Connections[OleDbConnection]"
+                      connectionManagerID="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[PII]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].Columns[AssetGuid]"
+                          cachedDataType="guid"
+                          cachedName="AssetGuid"
+                          externalMetadataColumnId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].ExternalColumns[AssetGuid]"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[AssetGuid]" />
+                        <inputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].Columns[FileGuid]"
+                          cachedDataType="guid"
+                          cachedName="FileGuid"
+                          externalMetadataColumnId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].ExternalColumns[FileGuid]"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[FileGuid]" />
+                        <inputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].Columns[FileTypeName]"
+                          cachedDataType="wstr"
+                          cachedLength="9"
+                          cachedName="FileTypeName"
+                          externalMetadataColumnId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].ExternalColumns[FileTypeName]"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[FileTypeName]" />
+                        <inputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].Columns[Path]"
+                          cachedDataType="wstr"
+                          cachedLength="400"
+                          cachedName="Path"
+                          externalMetadataColumnId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].ExternalColumns[Path]"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[Path]" />
+                        <inputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output].Columns[Name]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].ExternalColumns[TempFileID]"
+                          dataType="i4"
+                          name="TempFileID" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].ExternalColumns[AssetGuid]"
+                          dataType="guid"
+                          name="AssetGuid" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].ExternalColumns[FileGuid]"
+                          dataType="guid"
+                          name="FileGuid" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].ExternalColumns[FileTypeName]"
+                          dataType="wstr"
+                          length="20"
+                          name="FileTypeName" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].ExternalColumns[Path]"
+                          dataType="wstr"
+                          length="400"
+                          name="Path" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Name" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\For Each Asset Found\Get all Files associated with the asset.Paths[OLE DB Source Output]"
+                  endId="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Each Asset Found\Insert the Asset into stage tempassetstatustransition"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6B56F9BF-89C6-4AA3-8CE1-FD48B389BB0B}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert the Asset into stage tempassetstatustransition"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="insert into stage.TempAssetStatusTransition (AssetGuid, NewStatus)&#xA;values (?, 'Files Found')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ForEach_AssetGuid"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Each Asset Found.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{84817384-59FE-4C99-9869-C277DF33C13F}"
+          DTS:From="Package\For Each Asset Found\Get all Files associated with the asset"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\For Each Asset Found\Insert the Asset into stage tempassetstatustransition" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{0C96BDD2-CB63-4A79-A273-A0D409487630}"
+          DTS:ObjectName="{0C96BDD2-CB63-4A79-A273-A0D409487630}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::ForEach_AssetGuid" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Assets for File Search"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5A657024-AC66-4CBF-996C-8A79BA098F52}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Assets for File Search"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="asset getAssets NumberOfAssets Status"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">declare
+@NumberOfAssets int = ?
+
+execute asset.GetAssets @NumberOfAssets = @NumberOfAssets, @Status = 'File Deletion Requested'</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{263BC1B7-0E43-4D1F-9492-918BD02CDDC9};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Connections[OleDbConnection]"
+                  connectionManagerID="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[PII]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                      lineageId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Output].Columns[AssetGuid]"
+                      name="AssetGuid"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Output].ExternalColumns[AssetGuid]"
+                      dataType="guid"
+                      name="AssetGuid" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                      dataType="guid"
+                      lineageId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Error Output].Columns[AssetGuid]"
+                      name="AssetGuid" />
+                    <outputColumn
+                      refId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Assets for File Search\AssetRecordset"
+              componentClassID="DTSAdapter.RecordsetDestination.3"
+              contactInfo="Recordset Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates and populates an in-memory ADO recordset that is available outside of the data flow. Scripts and other package elements can use the recordset. For example, use a recordset to store the names of files that will be loaded into the data warehouse."
+              name="AssetRecordset">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the recordset."
+                  name="VariableName">User::AssetRecordset</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Get Assets for File Search\AssetRecordset.Inputs[Recordset Destination Input]"
+                  hasSideEffects="true"
+                  name="Recordset Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Assets for File Search\AssetRecordset.Inputs[Recordset Destination Input].Columns[AssetGuid]"
+                      cachedDataType="guid"
+                      cachedName="AssetGuid"
+                      lineageId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Output].Columns[AssetGuid]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Assets for File Search.Paths[OLE DB Source Output]"
+              endId="Package\Get Assets for File Search\AssetRecordset.Inputs[Recordset Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process stage TempAssetStatusTransition"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{21d80a11-b2ce-4fa9-b0ea-e381fcc2541d}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process stage TempAssetStatusTransition"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+          SQLTask:SqlStatementSource="execute stage.ProcessTempAssetStatusTransition @ExecutionID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process stage TempFile"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{AD7847CE-C62D-4EC5-8CC9-C3F5F70CFD91}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process stage TempFile"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+          SQLTask:SqlStatementSource="execute stage.ProcessTempFile @ExecutionID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{01911152-8B5F-4ACF-BA4C-9C0DD02CBE89}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Start\Create an Execution ID"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FCA755BC-E60D-480B-B147-969CDDB98B38}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create an Execution ID"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare &#xA; @ProcessName varchar(100) = ?,&#xA; @ExecutionID int&#xA;&#xA;execute process.CreateExecution&#xA; @ProcessName = @ProcessName,&#xA; @ExecutionID = @ExecutionID output&#xA;&#xA;select ExecutionID = @ExecutionID"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ExecutionID"
+                SQLTask:DtsVariableName="User::ExecutionID" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ProcessName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Start\LOG - Started"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0EE5D20D-5E05-4C19-81A0-9B54B0DEFA44}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOG - Started"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+              SQLTask:SqlStatementSource="declare&#xA; @ExecutionID int = ?,&#xA; @LogType varchar(100) = 'Info',&#xA; @Message varchar(max) = 'Started'&#xA;&#xA;execute process.WriteLog &#xA; @ExecutionID = @ExecutionID, &#xA; @LogType = @LogType, &#xA; @Message = @Message, &#xA; @Data = null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ExecutionID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Start.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F6AA3DC8-78E5-46AF-B1F9-611D1490A3D7}"
+          DTS:From="Package\Start\Create an Execution ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Start\LOG - Started" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging Tables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{858d8226-7ea2-48d7-b4ff-7ff9a790ec87}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging Tables"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D47CFC28-4DA8-4533-9776-F9A60F5A2A02}"
+          SQLTask:SqlStatementSource="&#xA;truncate table stage.TempAssetStatusTransition&#xA;truncate table stage.tempfile" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{612AAF7A-0892-45C9-BA30-F3AF1D712091}"
+      DTS:From="Package\Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Truncate Staging Tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{4AD35F6B-8E96-4D8D-9347-D21CEA4578BF}"
+      DTS:From="Package\Get Assets for File Search"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\For Each Asset Found" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{E0699421-B7EB-4CC5-95D7-41EF86B8DE0D}"
+      DTS:From="Package\Process stage TempFile"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Process stage TempAssetStatusTransition" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{ECB9BE10-E277-4EDB-AEA7-3F2693729535}"
+      DTS:From="Package\For Each Asset Found"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Process stage TempFile" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{DD952FB4-7683-4471-871B-3FCF3B706CF0}"
+      DTS:From="Package\Process stage TempAssetStatusTransition"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\End" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{A7481CF5-CFC4-44A0-A350-4DC656C3AE5C}"
+      DTS:From="Package\Truncate Staging Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Get Assets for File Search" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\End\Complete the Execution"
+          TopLeft="20,17" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\End\LOG - Ended"
+          TopLeft="27,87" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="255,168"
+          Size="255,211"
+          Id="Package\End"
+          TopLeft="192,379" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\For Each Asset Found\Get all Files associated with the asset"
+          TopLeft="34,16" />
+        <NodeLayout
+          Size="327,42"
+          Id="Package\For Each Asset Found\Insert the Asset into stage tempassetstatustransition"
+          TopLeft="37,105" />
+        <EdgeLayout
+          Id="Package\For Each Asset Found.PrecedenceConstraints[Constraint]"
+          TopLeft="161.5,58">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39,47"
+              Start="0,0"
+              End="39,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5"
+                    Point2="0,23.5"
+                    Point3="4,23.5" />
+                  <mssgle:LineSegment
+                    End="35,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35,23.5"
+                    Point2="39,23.5"
+                    Point3="39,27.5" />
+                  <mssgle:LineSegment
+                    End="39,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="427,203"
+          Size="427,246"
+          Id="Package\For Each Asset Found"
+          TopLeft="599,164" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Get Assets for File Search"
+          TopLeft="590,102" />
+        <NodeLayout
+          Size="274,42"
+          Id="Package\Process stage TempAssetStatusTransition"
+          TopLeft="618,529" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Process stage TempFile"
+          TopLeft="641,459" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Start\Create an Execution ID"
+          TopLeft="35,24" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Start\LOG - Started"
+          TopLeft="53,127" />
+        <EdgeLayout
+          Id="Package\Start.PrecedenceConstraints[Constraint]"
+          TopLeft="128,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="246,223"
+          Size="246,266"
+          Id="Package\Start"
+          TopLeft="221,78" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="789,123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="23.5,41"
+              Start="0,0"
+              End="23.5,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="19.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.5,0"
+                    Point2="23.5,0"
+                    Point3="23.5,4" />
+                  <mssgle:LineSegment
+                    End="23.5,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="735.5,501">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5,28"
+              Start="0,0"
+              End="19.5,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10"
+                    Point2="0,14"
+                    Point3="4,14" />
+                  <mssgle:LineSegment
+                    End="15.5,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5,14"
+                    Point2="19.5,14"
+                    Point3="19.5,18" />
+                  <mssgle:LineSegment
+                    End="19.5,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="812.5,410">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-77,49"
+              Start="0,0"
+              End="-77,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="-4,24.5" />
+                  <mssgle:LineSegment
+                    End="-73,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-73,24.5"
+                    Point2="-77,24.5"
+                    Point3="-77,28.5" />
+                  <mssgle:LineSegment
+                    End="-77,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="618,550">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-171,-65.5"
+              Start="0,0"
+              End="-163.5,-65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-81.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-81.5,0"
+                    Point2="-85.5,0"
+                    Point3="-85.5,-4" />
+                  <mssgle:LineSegment
+                    End="-85.5,-61.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-85.5,-61.5"
+                    Point2="-85.5,-65.5"
+                    Point3="-89.5,-65.5" />
+                  <mssgle:LineSegment
+                    End="-163.5,-65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Truncate Staging Tables"
+          TopLeft="485,54" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="344,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="141,-3"
+              Start="0,0"
+              End="133.5,-3">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,1" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,1"
+                    Point2="0,-3"
+                    Point3="4,-3" />
+                  <mssgle:LineSegment
+                    End="133.5,-3" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="678,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.5,27"
+              Start="0,0"
+              End="11.5,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="7.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.5,0"
+                    Point2="11.5,0"
+                    Point3="11.5,4" />
+                  <mssgle:LineSegment
+                    End="11.5,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\For Each Asset Found\Get all Files associated with the asset">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="154,42"
+          Id="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File"
+          TopLeft="172,141" />
+        <NodeLayout
+          Size="310,42"
+          Id="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset"
+          TopLeft="117,31" />
+        <EdgeLayout
+          Id="Package\For Each Asset Found\Get all Files associated with the asset.Paths[OLE DB Source Output]"
+          TopLeft="272,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23,68"
+              Start="0,0"
+              End="-23,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30"
+                    Point2="0,34"
+                    Point3="-4,34" />
+                  <mssgle:LineSegment
+                    End="-19,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19,34"
+                    Point2="-23,34"
+                    Point3="-23,38" />
+                  <mssgle:LineSegment
+                    End="-23,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\For Each Asset Found\Get all Files associated with the asset\Read from APA all Files associated with the asset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\For Each Asset Found\Get all Files associated with the asset\stage Temp File">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Get Assets for File Search">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status"
+          TopLeft="241,28" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Get Assets for File Search\AssetRecordset"
+          TopLeft="276,188" />
+        <EdgeLayout
+          Id="Package\Get Assets for File Search.Paths[OLE DB Source Output]"
+          TopLeft="374,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-22.5,118"
+              Start="0,0"
+              End="-22.5,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,55"
+                    Point2="0,59"
+                    Point3="-4,59" />
+                  <mssgle:LineSegment
+                    End="-18.5,59" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,59"
+                    Point2="-22.5,59"
+                    Point3="-22.5,63" />
+                  <mssgle:LineSegment
+                    End="-22.5,110.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Assets for File Search\asset getAssets NumberOfAssets Status">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1394 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/28/2018 4:51:12 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="CHCL322687"
+  DTS:CreatorName="US\tgeer"
+  DTS:DTSID="{8E3776D9-6F53-4918-BC1F-5AF61BA4F790}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="14.0.0800.60"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PushTrialSchools"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{2D630FF4-EDCE-41AF-99D7-71FC9A653A16}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FAFCEF65-171E-49E5-8FD2-A3A5F67A2966}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;execute dbo.SF_TableLoader 'Update', '&quot; + @[$Project::SalesforceLinkServerName] + &quot;', 'Account_LoadTrialSchool'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Salesforce_SF_TableLoader_SQLStatement">
+      <DTS:VariableValue
+        DTS:DataType="8">execute dbo.SF_TableLoader 'Update', 'SALESFORCE_UAT', 'Account_LoadTrialSchool'</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Create dbamp dbo Account_loadtrialschool"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6F420695-3679-4446-AB7B-B4D751C21D17}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create dbamp dbo Account_loadtrialschool"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC905563-BE8C-4FC5-80FA-618CE2EB249D}"
+          SQLTask:SqlStatementSource="&#xA;if object_id('dbo.Account_LoadTrialSchool') is not null drop table dbo.Account_LoadTrialSchool&#xA;&#xA;create table dbo.Account_LoadTrialSchool (&#xA;&#x9;ID&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;nchar(18),&#xA;&#x9;SLX_ID__C&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;nvarchar(24),&#xA;&#xA;&#x9;DES_Plus_Trial__c&#x9;&#x9;&#x9;&#x9;&#x9;bit not null default 0,&#xA;&#x9;DES_Plus_Trial_Start_Date__c&#x9;&#x9;datetime2,&#xA;&#x9;DES_Plus_Trial_End_Date__c&#x9;&#x9;&#x9;datetime2,&#xA;&#x9;&#xA;&#x9;Science_TB_Trial__c&#x9;&#x9;&#x9;&#x9;&#x9;bit not null default 0,&#xA;&#x9;Science_TB_Trial_Start_Date__c&#x9;&#x9;datetime2,&#xA;&#x9;Science_TB_Trial_End_Date__c&#x9;&#x9;datetime2,&#xA;&#xA;&#x9;SS_TB_Trial__c&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;bit not null default 0,&#xA;&#x9;SS_TB_Trial_Start_Date__c&#x9;&#x9;&#x9;datetime2,&#xA;&#x9;SS_TB_Trial_End_Date__c&#x9;&#x9;&#x9;&#x9;datetime2,&#xA;&#xA;&#x9;Math_TB_Trial__c&#x9;&#x9;&#x9;&#x9;&#x9;bit not null default 0,&#xA;&#x9;Math_TB_Trial_Start_Date__c&#x9;&#x9;&#x9;datetime2,&#xA;&#x9;Math_TB_Trial_End_Date__c&#x9;&#x9;&#x9;datetime2,&#xA;&#xA;&#x9;STEM_Connect_Trial__c&#x9;&#x9;&#x9;&#x9;bit not null default 0,&#xA;&#x9;STEM_Connect_Trial_Start_Date__c&#x9;datetime2,&#xA;&#x9;STEM_Connect_Trial_End_Date__c&#x9;&#x9;datetime2,&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete records in Load table that have no SalesForce ID (SLX ID is either incorrect or not set in SF yet)"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{72ECAC16-512F-4308-BA67-3B60BB4DA781}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete records in Load table that have no SalesForce ID (SLX ID is either incorrect or not set in SF yet)"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC905563-BE8C-4FC5-80FA-618CE2EB249D}"
+          SQLTask:SqlStatementSource="delete dbo.Account_LoadTrialSchool where ID is null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\execute dbamp dbo SF_TableLoader to process records to SF"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2D807835-4F8D-4810-A0D7-D804869767F0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="execute dbamp dbo SF_TableLoader to process records to SF"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC905563-BE8C-4FC5-80FA-618CE2EB249D}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::Salesforce_SF_TableLoader_SQLStatement" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\execute exacttarget stage processTrialSchoolUpdate"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6AA33A10-4879-42BE-8A7B-85726D1AF328}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="execute exacttarget stage processTrialSchoolUpdate"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AECFF992-9B25-4470-858B-549D6C58BD4B}"
+          SQLTask:SqlStatementSource="execute stage.ProcessTrialSchoolUpdate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get the Salesforce ID into the Load Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{41C47330-A863-47D6-85A3-965F13CDC091}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get the Salesforce ID into the Load Table"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EC905563-BE8C-4FC5-80FA-618CE2EB249D}"
+          SQLTask:SqlStatementSource="update TS &#xA;&#x9;set&#x9;&#x9;TS.ID = A.ID &#xA;&#x9;from&#x9;dbo.Account A &#xA;&#x9;join&#x9;dbo.Account_LoadTrialSchool TS on A.SLX_ID__C = TS.SLX_ID__C" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{911ED054-BA14-4E5B-A988-23998DB9BFB8}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DBAMP dbo Account_LoadTrialSchool from ExactTarget"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DBAMP dbo Account_LoadTrialSchool"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Account_LoadTrialSchool]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Connections[OleDbConnection]"
+                  connectionManagerID="{EC905563-BE8C-4FC5-80FA-618CE2EB249D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DBAMP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[SLX_ID__C]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="SLX_ID__C"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SLX_ID__C]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SLX_ID__C]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[DES_Plus_Trial__c]"
+                      cachedDataType="bool"
+                      cachedName="DES_Plus_Trial__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[DES_Plus_Trial__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[DES_Plus_Trial__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[DES_Plus_Trial_Start_Date__c]"
+                      cachedDataType="dbDate"
+                      cachedName="DES_Plus_Trial_Start_Date__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[DES_Plus_Trial_Start_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[DES_Plus_Trial_Start_Date__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[DES_Plus_Trial_End_Date__c]"
+                      cachedDataType="dbDate"
+                      cachedName="DES_Plus_Trial_End_Date__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[DES_Plus_Trial_End_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[DES_Plus_Trial_End_Date__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[Science_TB_Trial__c]"
+                      cachedDataType="bool"
+                      cachedName="Science_TB_Trial__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Science_TB_Trial__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Science_TB_Trial__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[Science_TB_Trial_Start_Date__c]"
+                      cachedDataType="dbDate"
+                      cachedName="Science_TB_Trial_Start_Date__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Science_TB_Trial_Start_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Science_TB_Trial_Start_Date__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[Science_TB_Trial_End_Date__c]"
+                      cachedDataType="dbDate"
+                      cachedName="Science_TB_Trial_End_Date__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Science_TB_Trial_End_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Science_TB_Trial_End_Date__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[SS_TB_Trial__c]"
+                      cachedDataType="bool"
+                      cachedName="SS_TB_Trial__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SS_TB_Trial__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SS_TB_Trial__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[SS_TB_Trial_Start_Date__c]"
+                      cachedDataType="dbDate"
+                      cachedName="SS_TB_Trial_Start_Date__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SS_TB_Trial_Start_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SS_TB_Trial_Start_Date__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[SS_TB_Trial_End_Date__c]"
+                      cachedDataType="dbDate"
+                      cachedName="SS_TB_Trial_End_Date__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SS_TB_Trial_End_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SS_TB_Trial_End_Date__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[Math_TB_Trial__c]"
+                      cachedDataType="bool"
+                      cachedName="Math_TB_Trial__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Math_TB_Trial__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Math_TB_Trial__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[Math_TB_Trial_Start_Date__c]"
+                      cachedDataType="dbDate"
+                      cachedName="Math_TB_Trial_Start_Date__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Math_TB_Trial_Start_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Math_TB_Trial_Start_Date__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[Math_TB_Trial_End_Date__c]"
+                      cachedDataType="dbDate"
+                      cachedName="Math_TB_Trial_End_Date__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Math_TB_Trial_End_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Math_TB_Trial_End_Date__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[STEM_Connect_Trial__c]"
+                      cachedDataType="bool"
+                      cachedName="STEM_Connect_Trial__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[STEM_Connect_Trial__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[STEM_Connect_Trial__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[STEM_Connect_Trial_Start_Date__c]"
+                      cachedDataType="dbDate"
+                      cachedName="STEM_Connect_Trial_Start_Date__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[STEM_Connect_Trial_Start_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[STEM_Connect_Trial_Start_Date__c]" />
+                    <inputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].Columns[STEM_Connect_Trial_End_Date__c]"
+                      cachedDataType="dbDate"
+                      cachedName="STEM_Connect_Trial_End_Date__c"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[STEM_Connect_Trial_End_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[STEM_Connect_Trial_End_Date__c]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="wstr"
+                      length="18"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SLX_ID__C]"
+                      dataType="wstr"
+                      length="24"
+                      name="SLX_ID__C" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[DES_Plus_Trial__c]"
+                      dataType="bool"
+                      name="DES_Plus_Trial__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[DES_Plus_Trial_Start_Date__c]"
+                      dataType="dbTimeStamp2"
+                      name="DES_Plus_Trial_Start_Date__c"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[DES_Plus_Trial_End_Date__c]"
+                      dataType="dbTimeStamp2"
+                      name="DES_Plus_Trial_End_Date__c"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Science_TB_Trial__c]"
+                      dataType="bool"
+                      name="Science_TB_Trial__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Science_TB_Trial_Start_Date__c]"
+                      dataType="dbTimeStamp2"
+                      name="Science_TB_Trial_Start_Date__c"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Science_TB_Trial_End_Date__c]"
+                      dataType="dbTimeStamp2"
+                      name="Science_TB_Trial_End_Date__c"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SS_TB_Trial__c]"
+                      dataType="bool"
+                      name="SS_TB_Trial__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SS_TB_Trial_Start_Date__c]"
+                      dataType="dbTimeStamp2"
+                      name="SS_TB_Trial_Start_Date__c"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[SS_TB_Trial_End_Date__c]"
+                      dataType="dbTimeStamp2"
+                      name="SS_TB_Trial_End_Date__c"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Math_TB_Trial__c]"
+                      dataType="bool"
+                      name="Math_TB_Trial__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Math_TB_Trial_Start_Date__c]"
+                      dataType="dbTimeStamp2"
+                      name="Math_TB_Trial_Start_Date__c"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[Math_TB_Trial_End_Date__c]"
+                      dataType="dbTimeStamp2"
+                      name="Math_TB_Trial_End_Date__c"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[STEM_Connect_Trial__c]"
+                      dataType="bool"
+                      name="STEM_Connect_Trial__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[STEM_Connect_Trial_Start_Date__c]"
+                      dataType="dbTimeStamp2"
+                      name="STEM_Connect_Trial_Start_Date__c"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input].ExternalColumns[STEM_Connect_Trial_End_Date__c]"
+                      dataType="dbTimeStamp2"
+                      name="STEM_Connect_Trial_End_Date__c"
+                      scale="7" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Exact Target dbo GetTrialSchool"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">execute dbo.GetTrialSchool</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Connections[OleDbConnection]"
+                  connectionManagerID="{AECFF992-9B25-4470-858B-549D6C58BD4B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ExactTarget DB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SLX_ID__C]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[SLX_ID__C]"
+                      length="24"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SLX_ID__C]"
+                      name="SLX_ID__C"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[DES_Plus_Trial__c]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[DES_Plus_Trial__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[DES_Plus_Trial__c]"
+                      name="DES_Plus_Trial__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[DES_Plus_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[DES_Plus_Trial_Start_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[DES_Plus_Trial_Start_Date__c]"
+                      name="DES_Plus_Trial_Start_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[DES_Plus_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[DES_Plus_Trial_End_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[DES_Plus_Trial_End_Date__c]"
+                      name="DES_Plus_Trial_End_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Science_TB_Trial__c]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Science_TB_Trial__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Science_TB_Trial__c]"
+                      name="Science_TB_Trial__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Science_TB_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Science_TB_Trial_Start_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Science_TB_Trial_Start_Date__c]"
+                      name="Science_TB_Trial_Start_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Science_TB_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Science_TB_Trial_End_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Science_TB_Trial_End_Date__c]"
+                      name="Science_TB_Trial_End_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SS_TB_Trial__c]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[SS_TB_Trial__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SS_TB_Trial__c]"
+                      name="SS_TB_Trial__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SS_TB_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[SS_TB_Trial_Start_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SS_TB_Trial_Start_Date__c]"
+                      name="SS_TB_Trial_Start_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SS_TB_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[SS_TB_Trial_End_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[SS_TB_Trial_End_Date__c]"
+                      name="SS_TB_Trial_End_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Math_TB_Trial__c]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Math_TB_Trial__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Math_TB_Trial__c]"
+                      name="Math_TB_Trial__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Math_TB_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Math_TB_Trial_Start_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Math_TB_Trial_Start_Date__c]"
+                      name="Math_TB_Trial_Start_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Math_TB_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Math_TB_Trial_End_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[Math_TB_Trial_End_Date__c]"
+                      name="Math_TB_Trial_End_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[STEM_Connect_Trial__c]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[STEM_Connect_Trial__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[STEM_Connect_Trial__c]"
+                      name="STEM_Connect_Trial__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[STEM_Connect_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[STEM_Connect_Trial_Start_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[STEM_Connect_Trial_Start_Date__c]"
+                      name="STEM_Connect_Trial_Start_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[STEM_Connect_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[STEM_Connect_Trial_End_Date__c]"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].Columns[STEM_Connect_Trial_End_Date__c]"
+                      name="STEM_Connect_Trial_End_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[SLX_ID__C]"
+                      dataType="wstr"
+                      length="24"
+                      name="SLX_ID__C" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[DES_Plus_Trial__c]"
+                      dataType="bool"
+                      name="DES_Plus_Trial__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[DES_Plus_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      name="DES_Plus_Trial_Start_Date__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[DES_Plus_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      name="DES_Plus_Trial_End_Date__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Science_TB_Trial__c]"
+                      dataType="bool"
+                      name="Science_TB_Trial__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Science_TB_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      name="Science_TB_Trial_Start_Date__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Science_TB_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      name="Science_TB_Trial_End_Date__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[SS_TB_Trial__c]"
+                      dataType="bool"
+                      name="SS_TB_Trial__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[SS_TB_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      name="SS_TB_Trial_Start_Date__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[SS_TB_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      name="SS_TB_Trial_End_Date__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Math_TB_Trial__c]"
+                      dataType="bool"
+                      name="Math_TB_Trial__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Math_TB_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      name="Math_TB_Trial_Start_Date__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[Math_TB_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      name="Math_TB_Trial_End_Date__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[STEM_Connect_Trial__c]"
+                      dataType="bool"
+                      name="STEM_Connect_Trial__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[STEM_Connect_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      name="STEM_Connect_Trial_Start_Date__c" />
+                    <externalMetadataColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output].ExternalColumns[STEM_Connect_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      name="STEM_Connect_Trial_End_Date__c" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[SLX_ID__C]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[SLX_ID__C]"
+                      name="SLX_ID__C" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[DES_Plus_Trial__c]"
+                      dataType="bool"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[DES_Plus_Trial__c]"
+                      name="DES_Plus_Trial__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[DES_Plus_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[DES_Plus_Trial_Start_Date__c]"
+                      name="DES_Plus_Trial_Start_Date__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[DES_Plus_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[DES_Plus_Trial_End_Date__c]"
+                      name="DES_Plus_Trial_End_Date__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Science_TB_Trial__c]"
+                      dataType="bool"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Science_TB_Trial__c]"
+                      name="Science_TB_Trial__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Science_TB_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Science_TB_Trial_Start_Date__c]"
+                      name="Science_TB_Trial_Start_Date__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Science_TB_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Science_TB_Trial_End_Date__c]"
+                      name="Science_TB_Trial_End_Date__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[SS_TB_Trial__c]"
+                      dataType="bool"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[SS_TB_Trial__c]"
+                      name="SS_TB_Trial__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[SS_TB_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[SS_TB_Trial_Start_Date__c]"
+                      name="SS_TB_Trial_Start_Date__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[SS_TB_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[SS_TB_Trial_End_Date__c]"
+                      name="SS_TB_Trial_End_Date__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Math_TB_Trial__c]"
+                      dataType="bool"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Math_TB_Trial__c]"
+                      name="Math_TB_Trial__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Math_TB_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Math_TB_Trial_Start_Date__c]"
+                      name="Math_TB_Trial_Start_Date__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Math_TB_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[Math_TB_Trial_End_Date__c]"
+                      name="Math_TB_Trial_End_Date__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[STEM_Connect_Trial__c]"
+                      dataType="bool"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[STEM_Connect_Trial__c]"
+                      name="STEM_Connect_Trial__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[STEM_Connect_Trial_Start_Date__c]"
+                      dataType="dbDate"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[STEM_Connect_Trial_Start_Date__c]"
+                      name="STEM_Connect_Trial_Start_Date__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[STEM_Connect_Trial_End_Date__c]"
+                      dataType="dbDate"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[STEM_Connect_Trial_End_Date__c]"
+                      name="STEM_Connect_Trial_End_Date__c" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget.Paths[OLE DB Source Output]"
+              endId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E4A2556A-7D68-45D8-9CD8-A426829B8352}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Successful Records in Exact Target stage TrialSchoolUpdate"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result"
+              componentClassID="DTSAdapter.OLEDBSource.3"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DBAMP dbo Account_LoadTrialSchool_Result"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select SchoolSLXID = SLX_ID__C
+from Account_LoadTrialSchool_Result 
+where Error = N'Operation Successful.'</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Connections[OleDbConnection]"
+                  connectionManagerID="{EC905563-BE8C-4FC5-80FA-618CE2EB249D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DBAMP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Output].Columns[SchoolSLXID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Output].ExternalColumns[SchoolSLXID]"
+                      length="24"
+                      lineageId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Output].Columns[SchoolSLXID]"
+                      name="SchoolSLXID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Output].ExternalColumns[SchoolSLXID]"
+                      dataType="wstr"
+                      length="24"
+                      name="SchoolSLXID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Error Output].Columns[SchoolSLXID]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Error Output].Columns[SchoolSLXID]"
+                      name="SchoolSLXID" />
+                    <outputColumn
+                      refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Exact Target stage TrialSchoolUpdate"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage].[TrialSchoolUpdate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Connections[OleDbConnection]"
+                  connectionManagerID="{AECFF992-9B25-4470-858B-549D6C58BD4B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ExactTarget DB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Inputs[OLE DB Destination Input].Columns[SchoolSLXID]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="SchoolSLXID"
+                      externalMetadataColumnId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Inputs[OLE DB Destination Input].ExternalColumns[SchoolSLXID]"
+                      lineageId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Output].Columns[SchoolSLXID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Inputs[OLE DB Destination Input].ExternalColumns[SchoolSLXID]"
+                      dataType="wstr"
+                      length="24"
+                      name="SchoolSLXID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate.Paths[OLE DB Source Output]"
+              endId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{E83AC957-1615-43CF-8797-8321C323896C}"
+      DTS:From="Package\Create dbamp dbo Account_loadtrialschool"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{BEDE229E-F182-4E74-A48E-656661CE3B8D}"
+      DTS:From="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Get the Salesforce ID into the Load Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{ECBD528C-7F36-4E28-BF48-C82C38EE088D}"
+      DTS:From="Package\Get the Salesforce ID into the Load Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Delete records in Load table that have no SalesForce ID (SLX ID is either incorrect or not set in SF yet)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{9790AF56-6CEF-42CC-B3B2-6D78A0496E73}"
+      DTS:From="Package\Delete records in Load table that have no SalesForce ID (SLX ID is either incorrect or not set in SF yet)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\execute dbamp dbo SF_TableLoader to process records to SF" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{8A5C7872-9AC8-44C8-AD0D-FBB0B6E6797D}"
+      DTS:From="Package\execute dbamp dbo SF_TableLoader to process records to SF"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{7C506EA9-5473-4E82-B828-628DF1D2EC96}"
+      DTS:From="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\execute exacttarget stage processTrialSchoolUpdate" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="280,42"
+          Id="Package\Create dbamp dbo Account_loadtrialschool"
+          TopLeft="259,56" />
+        <NodeLayout
+          Size="564,42"
+          Id="Package\Delete records in Load table that have no SalesForce ID (SLX ID is either incorrect or not set in SF yet)"
+          TopLeft="98,313" />
+        <NodeLayout
+          Size="368,42"
+          Id="Package\execute dbamp dbo SF_TableLoader to process records to SF"
+          TopLeft="191,394" />
+        <NodeLayout
+          Size="325,42"
+          Id="Package\execute exacttarget stage processTrialSchoolUpdate"
+          TopLeft="203,565" />
+        <NodeLayout
+          Size="274,42"
+          Id="Package\Get the Salesforce ID into the Load Table"
+          TopLeft="248,227" />
+        <NodeLayout
+          Size="365,42"
+          Id="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget"
+          TopLeft="209,141" />
+        <NodeLayout
+          Size="390,42"
+          Id="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate"
+          TopLeft="173,477" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="395.25,98">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="388.25,183">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="382.5,269">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="377.5,355">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="371.5,436">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="366.75,519">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool"
+          TopLeft="252,55" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool"
+          TopLeft="239,187" />
+        <EdgeLayout
+          Id="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget.Paths[OLE DB Source Output]"
+          TopLeft="366.75,97">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,90"
+              Start="0,0"
+              End="0,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\DBAMP dbo Account_LoadTrialSchool">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load DBAMP dbo Account_LoadTrialSchool from ExactTarget\Exact Target dbo GetTrialSchool">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="289,42"
+          Id="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result"
+          TopLeft="198,59" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate"
+          TopLeft="214,156" />
+        <EdgeLayout
+          Id="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate.Paths[OLE DB Source Output]"
+          TopLeft="342,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\DBAMP dbo Account_LoadTrialSchool_Result">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Successful Records in Exact Target stage TrialSchoolUpdate\Exact Target stage TrialSchoolUpdate">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

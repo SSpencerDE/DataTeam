@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<DTS:Executable
+  DTS:refId="Package" xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:CreatorName="DATACENTER\tspagnoli"
+  DTS:CreatorComputerName="MN-DE-WSQLJS-D1"
+  DTS:CreationDate="7/24/2015 10:41:59 PM"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{1DD230C4-3AF4-4123-A22F-9D4FC9E29A21}"
+  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="dimAssetGrade"
+  DTS:DTSID="{5460C500-EC9E-4A09-80B9-FF97FDC00C16}"
+  DTS:CreationName="SSIS.Package.3">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\process dimAssetGrade"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ThreadHint="0"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="process dimAssetGrade"
+      DTS:DTSID="{E76A33AB-7465-4DA5-B49B-6D06DBDA5B24}"
+      DTS:Description="Execute SQL Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CC19AA09-9B38-43CB-AC7C-7D8176F5E16B}"
+          SQLTask:SqlStatementSource=";with grades as (&#xA;  select legacy_id, Description, gradeBand&#xA;  from AllProductAssets.dbo.audience&#xA;  )&#xA;&#xA;MERGE INTO dw.dbo.dimAssetGrade as target &#xA;using grades as source&#xA;on target.AssetGradeId = source.legacy_id&#xA;&#x9;when matched and target.AssetGradeBand != source.GradeBand or target.AssetGradeDescription != source.Description&#xA;&#x9;THEN update&#xA;&#x9;&#x9;set target.AssetGradeBand = source.GradeBand, target.AssetGradeDescription = source.Description&#xA;&#x9;WHEN NOT MATCHED BY TARGET&#xA;&#x9;THEN INSERT&#x9;([AssetGradeId],[AssetGradeDescription],[AssetGradeBand])&#xA;&#x9;VALUES (source.legacy_id, source.Description, source.GradeBand);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="189,42"
+          Id="Package\process dimAssetGrade"
+          TopLeft="615,172" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
